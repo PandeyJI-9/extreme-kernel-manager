@@ -199,25 +199,48 @@ jobs:
         if: steps.sign_apk.conclusion == 'success' && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: |
           APK_PATH="${{ steps.sign_apk.outputs.FINAL_APK_PATH }}"
+          FINAL_NAME="${{ steps.sign_apk.outputs.FINAL_APK_NAME }}"
           TAG="${{ steps.release_tag.outputs.TAG }}"
+          FILE_SIZE=$(stat -c%s "$APK_PATH")
+          FILE_SIZE_MB=$(awk "BEGIN {printf \"%.2f\", $FILE_SIZE/1048576}")
+          DOWNLOAD_URL="https://github.com/PandeyJI-9/extreme-kernel-manager/releases/download/${TAG}/${FINAL_NAME}"
           
-          CAPTION="🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]%0A%0A📱 <b>Device:</b> POCO F4 (munch / SM8250)%0A⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi%0A👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9%0A💬 <b>Support Group:</b> t.me/Extremeplus_Support%0A🏷️ <b>Release:</b> ${TAG}%0A%0A🔥 <b>Features:</b>%0A• Dynamic Tri-Profile Engine%0A• Hardware DC Dimming QS Tile%0A• Kang-Proof Kernel Handshake%0A• Dual-Tier Rootless/Root Architecture"
+          CAPTION="🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]%0A%0A📱 <b>Device:</b> POCO F4 (munch / SM8250)%0A⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi%0A👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9%0A💬 <b>Support Group:</b> t.me/Extremeplus_Support%0A🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)%0A%0A🔥 <b>Features:</b>%0A• Dynamic Tri-Profile Engine%0A• Hardware DC Dimming QS Tile%0A• Kang-Proof Kernel Handshake%0A• Dual-Tier Rootless/Root Architecture"
           
-          echo "Sending Telegram broadcast..."
-          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
-            -F chat_id="${TELEGRAM_CHAT_ID}" \
-            -F document=@"${APK_PATH}" \
-            -F caption="${CAPTION}" \
-            -F parse_mode="HTML")
-            
-          HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
-          BODY=$(echo "$RESPONSE" | head -n -1)
+          HTTP_CODE=""
+          BODY=""
           
-          echo "Telegram API HTTP status: $HTTP_CODE"
-          echo "Telegram response: $BODY"
+          # Telegram Bot API sendDocument limit is 50MB (50000000 bytes)
+          if [ "$FILE_SIZE" -lt 50000000 ]; then
+            echo "APK is ${FILE_SIZE_MB} MB (<50MB). Uploading document directly to Telegram..."
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
+              -F chat_id="${TELEGRAM_CHAT_ID}" \
+              -F document=@"${APK_PATH}" \
+              -F caption="${CAPTION}" \
+              -F parse_mode="HTML")
+            HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
+            BODY=$(echo "$RESPONSE" | head -n -1)
+            echo "Telegram sendDocument status: $HTTP_CODE"
+            echo "Telegram response: $BODY"
+          else
+            echo "APK is ${FILE_SIZE_MB} MB (>=50MB limit). Using rich announcement with direct download link..."
+            HTTP_CODE="413"
+          fi
           
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "::warning::Telegram notification returned HTTP $HTTP_CODE: $BODY"
+            echo "Executing Telegram broadcast with Direct APK Download Link..."
+            MSG="🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]%0A%0A📱 <b>Device:</b> POCO F4 (munch / SM8250)%0A⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi%0A👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9%0A💬 <b>Support Group:</b> t.me/Extremeplus_Support%0A🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)%0A%0A🔥 <b>Features:</b>%0A• Dynamic Tri-Profile Engine%0A• Hardware DC Dimming QS Tile%0A• Kang-Proof Kernel Handshake%0A• Dual-Tier Rootless/Root Architecture%0A%0A📥 <b>Direct APK Download:</b>%0A<a href=\"${DOWNLOAD_URL}\">⚡ Click Here to Download ${FINAL_NAME}</a>"
+            
+            FALLBACK_RESP=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              -d chat_id="${TELEGRAM_CHAT_ID}" \
+              -d text="${MSG}" \
+              -d parse_mode="HTML" \
+              -d disable_web_page_preview="false")
+              
+            FB_CODE=$(echo "$FALLBACK_RESP" | tail -n 1)
+            FB_BODY=$(echo "$FALLBACK_RESP" | head -n -1)
+            echo "Telegram sendMessage status: $FB_CODE"
+            echo "Telegram response: $FB_BODY"
           else
-            echo "Telegram broadcast sent successfully!"
+            echo "Telegram document broadcast sent successfully!"
           fi
