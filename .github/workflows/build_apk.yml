@@ -208,21 +208,20 @@ jobs:
           FILE_SIZE_MB=$(awk "BEGIN {printf \"%.2f\", $FILE_SIZE/1048576}")
           DOWNLOAD_URL="https://github.com/PandeyJI-9/extreme-kernel-manager/releases/download/${TAG}/${FINAL_NAME}"
           
-          read -r -d '' CAPTION << EOF || true
-🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]
-
-📱 <b>Device:</b> POCO F4 (munch / SM8250)
-⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi
-👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9
-💬 <b>Support Group:</b> t.me/Extremeplus_Support
-🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)
-
-🔥 <b>Features:</b>
-• Dynamic Tri-Profile Engine (extreme+ Governor)
-• Hardware DC Dimming QS Tile
-• Dual-Tier Rootless/Root Architecture
-• Universal Handshake & Hardware Magic
-EOF
+          CAPTION=$(printf '%s\n' \
+            "🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]" \
+            "" \
+            "📱 <b>Device:</b> POCO F4 (munch / SM8250)" \
+            "⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi" \
+            "👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9" \
+            "💬 <b>Support Group:</b> t.me/Extremeplus_Support" \
+            "🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)" \
+            "" \
+            "🔥 <b>Features:</b>" \
+            "• Dynamic Tri-Profile Engine (extreme+ Governor)" \
+            "• Hardware DC Dimming QS Tile" \
+            "• Dual-Tier Rootless/Root Architecture" \
+            "• Universal Handshake & Hardware Magic")
           
           HTTP_CODE=""
           BODY=""
@@ -246,24 +245,23 @@ EOF
           
           if [ "$HTTP_CODE" != "200" ]; then
             echo "Executing Telegram broadcast with Direct APK Download Link..."
-            read -r -d '' MSG << EOF || true
-🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]
-
-📱 <b>Device:</b> POCO F4 (munch / SM8250)
-⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi
-👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9
-💬 <b>Support Group:</b> t.me/Extremeplus_Support
-🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)
-
-🔥 <b>Features:</b>
-• Dynamic Tri-Profile Engine (extreme+ Governor)
-• Hardware DC Dimming QS Tile
-• Dual-Tier Rootless/Root Architecture
-• Universal Handshake & Hardware Magic
-
-📥 <b>Direct APK Download:</b>
-<a href="${DOWNLOAD_URL}">⚡ Click Here to Download ${FINAL_NAME}</a>
-EOF
+            MSG=$(printf '%s\n' \
+              "🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]" \
+              "" \
+              "📱 <b>Device:</b> POCO F4 (munch / SM8250)" \
+              "⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi" \
+              "👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9" \
+              "💬 <b>Support Group:</b> t.me/Extremeplus_Support" \
+              "🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)" \
+              "" \
+              "🔥 <b>Features:</b>" \
+              "• Dynamic Tri-Profile Engine (extreme+ Governor)" \
+              "• Hardware DC Dimming QS Tile" \
+              "• Dual-Tier Rootless/Root Architecture" \
+              "• Universal Handshake & Hardware Magic" \
+              "" \
+              "📥 <b>Direct APK Download:</b>" \
+              "<a href=\"${DOWNLOAD_URL}\">⚡ Click Here to Download ${FINAL_NAME}</a>")
             
             FALLBACK_RESP=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
               --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
