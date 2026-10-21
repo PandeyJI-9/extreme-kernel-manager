@@ -1,77 +1,136 @@
-<h1 align="center">Extreme+ Kernel Manager (EKM)</h1>
+<div align="center">
 
-<p align="center">
-  <b>The Ultimate Gaming Companion for POCO F4 (munch / SM8250) running EXTREME++ Kernel</b>
-</p>
+# ⚡ Extreme+ Kernel Manager (EKM) ⚡
 
-<p align="center">
-  <img src="https://img.shields.io/badge/platform-Android-green?style=for-the-badge&logo=android" alt="Platform">
-  <img src="https://img.shields.io/badge/target-POCO_F4_(munch)-orange?style=for-the-badge" alt="POCO F4">
-  <img src="https://img.shields.io/badge/kernel-EXTREME++-red?style=for-the-badge" alt="EXTREME++">
-  <img src="https://img.shields.io/badge/language-Kotlin-purple?style=for-the-badge&logo=kotlin" alt="Kotlin">
-  <img src="https://img.shields.io/badge/UI-Jetpack_Compose-blue?style=for-the-badge&logo=jetpackcompose" alt="Compose">
-</p>
-
-<p align="center">
-  <a href="https://t.me/Extremeplus_Support"><img src="https://img.shields.io/badge/Telegram-Support_Group-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Support Group"></a>
-  <a href="https://t.me/PandeyJi_8"><img src="https://img.shields.io/badge/Developer-@PandeyJi__8-0088cc?style=for-the-badge&logo=telegram&logoColor=white" alt="Developer Telegram"></a>
-  <a href="https://github.com/PandeyJI-9"><img src="https://img.shields.io/badge/GitHub-PandeyJI--9-181717?style=for-the-badge&logo=github&logoColor=white" alt="Developer GitHub"></a>
-</p>
+### *The High-Performance Hardware Companion for POCO F4 (`munch` / SM8250)*
+**Engineered Exclusively for EXTREME++ Kernel by PandeyJi**
 
 ---
 
-## ⚡ Overview
-**Extreme+ Kernel Manager (EKM)** is an elite, high-performance Android root companion designed from the ground up for the **EXTREME++ Kernel** by **PandeyJi** on the **POCO F4 (`munch` / Snapdragon 870)**.
+[![Target Device](https://img.shields.io/badge/Device-POCO_F4_(munch)-FF6900?style=for-the-badge&logo=xiaomi&logoColor=white)](https://t.me/Extremeplus_Support)
+[![Kernel Target](https://img.shields.io/badge/Kernel-EXTREME++_4.19-E50914?style=for-the-badge&logo=linux&logoColor=white)](https://github.com/PandeyJI-9/extreme-kernel-manager)
+[![Platform](https://img.shields.io/badge/Platform-Android_13--15-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/PandeyJI-9/extreme-kernel-manager)
+[![Language](https://img.shields.io/badge/Language-Kotlin_2.4-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![UI Engine](https://img.shields.io/badge/UI-Jetpack_Compose_MD3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
 
-EKM replaces clunky kernel interfaces with dynamic profiles, hardware-level unforgeable handshakes, native E4 AMOLED DC Dimming, and real-time gaming telemetry.
+[![Support Group](https://img.shields.io/badge/Telegram-Extreme+_Support-2CA5E0?style=flat-square&logo=telegram&logoColor=white)](https://t.me/Extremeplus_Support)
+[![Lead Developer](https://img.shields.io/badge/Dev-@PandeyJi__8-0088cc?style=flat-square&logo=telegram&logoColor=white)](https://t.me/PandeyJi_8)
+[![GitHub](https://img.shields.io/badge/GitHub-PandeyJI--9-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/PandeyJI-9)
+
+</div>
+
+---
+
+## 📖 About EKM
+
+**Extreme+ Kernel Manager (EKM)** is an advanced, ultra-responsive kernel control and monitoring suite built natively for the **POCO F4 (Snapdragon 870 / SM8250)**. 
+
+Designed specifically to tap into the low-level silicon potential of **EXTREME++ Kernel**, EKM bridges kernel-space optimizations (`kgsl_skip_zeroing`, `avoid_dirty_pte`, custom governor rate clamping) with a buttery-smooth Material 3 Expressive UI.
+
+---
+
+## 📱 Hardware Architecture (POCO F4 / Munch)
+
+| Subsystem | Hardware Specification | EKM Integration |
+| :--- | :--- | :--- |
+| **SoC** | Qualcomm Snapdragon 870 (SM8250-AC) | Direct per-cluster clock scaling |
+| **CPU Cluster** | 1x Prime (3.2GHz) + 3x Gold (2.42GHz) + 4x Little (1.8GHz) | Tri-Profile Dynamic Engine |
+| **GPU** | Adreno 650 (670 MHz Peak) | Power level throttling & zero-copy bypass |
+| **Display** | 6.67" E4 AMOLED (120Hz, HDR10+) | Hardware DSI / DRM DC Dimming |
+| **Memory** | LPDDR5 + UFS 3.1 | L3 / LLCC bus lock & dirty PTE bypass |
 
 ---
 
 ## 🚀 Key Features
 
-### 1. ⚡ Dynamic Tri-Profile Switcher
-Seamlessly switch hardware states on the fly without rebooting:
-* **🔋 Battery Saver (2.42 GHz Peak)**: Little up to 1.80GHz, Gold up to 2.25GHz, Prime clamped to 2.42GHz. GPU capped at 490MHz (pwrlevel 2). Smooth 10,000us decay.
-* **⚖️ Balanced Cruise (2.84 GHz Sweet Spot)**: Locked to 2.84GHz for locked 120 FPS frame pacing. GPU up to 587MHz (pwrlevel 1).
-* **🔥 Apex Turbo Gaming (3.19 GHz Unlocked Monster)**: Full 3.19GHz Prime Core 7, GPU uncapped 670MHz (pwrlevel 0), zero-latency governor slope, L3 cache/bus priority lock.
-* **Persistent Boot Execution**: Automatically restored on boot via `/data/adb/service.d/extreme_profile.sh` (KernelSU / Magisk / APatch).
+### ⚡ 1. Tri-Profile Dynamic Engine
+Switch between tailored thermal & frequency profiles instantly without reboots:
 
-### 2. 🔐 Kang-Proof Hardware Handshake
-* Directly verifies `/sys/kernel/extreme_attributes/magic` compiled into the EXTREME++ kernel binary.
-* Even if another developer forks or strips names from `uname -r`, EKM validates the internal cryptographic token and unlocks.
-* Unauthorized, generic, or stock kernels are blocked from running EKM.
+| Setting | 🔋 Battery Saver | ⚖️ Balanced Cruise | 🔥 Apex Turbo Gaming |
+| :--- | :--- | :--- | :--- |
+| **Prime Core 7** | Clamped at **2.42 GHz** | Locked at **2.84 GHz** sweet-spot | Full **3.19 GHz** uncapped |
+| **Gold Cores 4-6** | Max **2.25 GHz** | Max **2.42 GHz** | Max **2.42 GHz** |
+| **Little Cores 0-3** | 576 MHz - 1.80 GHz | 576 MHz - 1.80 GHz | 576 MHz - 1.80 GHz |
+| **Adreno 650 GPU** | Level 2 (490 MHz) | Level 1 (587 MHz) | Level 0 (**670 MHz Peak**) |
+| **Governor Pacing** | Smooth decay (10,000us) | 120 FPS Cruise (500us/20,000us) | Zero-latency instant burst |
+| **L3 Cache Bus** | Dynamic downclock | Stock scaling | **High-priority bus lock** |
 
-### 3. 🌙 Native E4 AMOLED DC Dimming
-* Directly controls Munch hardware registers (`msm_fb_ea_enable` / `disp_param`).
-* Eliminates PWM flicker at low brightness.
-* Features a Quick Settings (QS) Tile for instant notification shade toggling.
-
-### 4. 📊 Live Gaming Telemetry & Floating Overlay
-* Per-core CPU load and cluster clock tracking (Little 0-3, Gold 4-6, Prime 7).
-* Adreno 650 GPU clock, load, and temperature stats.
-* Floating FPS counter with 1% Lows, frame time tracking, and battery drain rate.
+> **Persistence**: Active profiles automatically sync to `/data/adb/extreme/profile.conf` and re-apply cleanly via KernelSU / Magisk / APatch `service.d` boot hooks.
 
 ---
 
-## 🛠️ Developer & Community Credits
+### 🌙 2. Hardware DC Dimming & QS Tile
+* Directly writes to native Munch display registers (`/sys/devices/platform/soc/soc:qcom,dsi-display-primary/msm_fb_ea_enable` or `card0-DSI-1/disp_param`).
+* Completely stops OLED pulse-width modulation (PWM) flicker at low brightness.
+* Includes a native Android Quick Settings (QS) Tile for instant notification shade toggling.
 
-### 👑 Lead Developer & Kernel Architect
-* **PandeyJi**
+---
+
+### 📊 3. Live Telemetry & Floating Overlay
+* **Real-Time Frequency Gauges**: Per-core Little, Gold, and Prime clock load bars.
+* **Adreno 650 Monitor**: GPU frequency, current power level, and thermal load.
+* **Battery Diagnostics**: Live current draw (mA), battery voltage (mV), wattage, and temperature.
+* **In-Game FPS Meter**: Floating draggable overlay tracking real-time FPS and frame times.
+
+---
+
+### 🔐 4. Kang-Proof Hardware Handshake
+EKM verifies authentic **EXTREME++** builds via an unforgeable kernel-space token:
+* Checks `/sys/kernel/extreme_attributes/magic`.
+* Even if another developer renames the kernel string in `uname -r`, EKM detects the internal compiled kernel signature and unlocks full hardware features.
+* Foreign / stock kernels are strictly prevented from running EKM.
+
+---
+
+## 🛠️ Kernel Patching Guide (Quick & Concise)
+
+To enable the unforgeable handshake and GPU optimizations in your EXTREME++ kernel tree:
+
+### Step 1: Copy Patch to Kernel Root
+The patch file is located in this repository at:
+[`kernel-patches/extreme_kernel_handshake.patch`](kernel-patches/extreme_kernel_handshake.patch)
+
+```bash
+cp /path/to/extreme-kernel-manager/kernel-patches/extreme_kernel_handshake.patch /path/to/your/kernel/source/
+cd /path/to/your/kernel/source/
+```
+
+### Step 2: Apply the Patch
+```bash
+# Verify no conflicts:
+git apply --check extreme_kernel_handshake.patch
+
+# Apply cleanly:
+git apply extreme_kernel_handshake.patch
+```
+
+### Step 3: Compile & Verify
+Compile your kernel and flash to POCO F4. After boot, verify in terminal:
+```bash
+cat /sys/kernel/extreme_attributes/magic
+# Expected output: EXTREME++_BY_PANDEYJI_SM8250_AUTHENTIC
+```
+*That's it! EKM will instantly authenticate and unlock all hardware controls.*
+
+---
+
+## 🏗️ Automated CI/CD Compilation
+
+This repository uses **GitHub Actions** (`.github/workflows/build_apk.yml`):
+* **Automatic Builds**: On every push to `main` or release tag.
+* **Auto-Sign Engine**: Releases are automatically signed with production keys.
+* **Telegram Notification**: Pushes signed APKs directly to Telegram channels.
+
+---
+
+## 👑 Credits & Community
+
+* **Lead Architect & Developer**: **PandeyJi**
   * Telegram: [@PandeyJi_8](https://t.me/PandeyJi_8)
   * GitHub: [@PandeyJI-9](https://github.com/PandeyJI-9)
-
-### 💬 Community & Bug Reporting
-* **Extreme+ Official Support Group**: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)
-  * Join for bug reports, discussions, and new feature requests.
-
-### 🌟 Open-Source Acknowledgments
-* **[N0Kontzzz Kernel Manager](https://github.com/bimoalfarrabi/N0Kontzzz-Kernel-Manager)** by Bimo Al-Farrabi (Viasco)
-* **[Xtra Kernel Manager](https://github.com/Gustyx-Power/Xtra-Kernel-Manager)** by Gustyx-Power
-* **[RvKernel Manager](https://github.com/Rve27/RvKernel-Manager)** by Radika (Rve27)
-* **[libsu](https://github.com/topjohnwu/libsu)** by John Wu
-
----
-
-## 📦 Building EKM
-Compilation is fully automated via **GitHub Actions CI/CD** (`.github/workflows/build_apk.yml`). 
-Simply push to GitHub or trigger manual dispatch to produce signed release APKs with automated Telegram and GitHub Release broadcasts.
+* **Official Support Group**: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)
+  * Join for feature suggestions, bug reports, and kernel update announcements.
+* **Open Source Acknowledgments**:
+  * [N0Kontzzz Kernel Manager](https://github.com/bimoalfarrabi/N0Kontzzz-Kernel-Manager) by Bimo Al-Farrabi
+  * [libsu](https://github.com/topjohnwu/libsu) by John Wu
+  * [XKM](https://github.com/Gustyx-Power/Xtra-Kernel-Manager) by Gustyx-Power
