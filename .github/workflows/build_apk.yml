@@ -76,7 +76,7 @@ jobs:
 
       - name: 📄 Upload Build Error Logs on Failure
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: gradle-build-failure-reports
           path: |
@@ -146,7 +146,7 @@ jobs:
           echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_OUTPUT
 
       - name: 📦 Upload Signed APK Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.sign_apk.outputs.FINAL_APK_NAME }}
           path: ${{ steps.sign_apk.outputs.FINAL_APK_PATH }}
