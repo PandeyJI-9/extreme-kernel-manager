@@ -169,7 +169,7 @@ jobs:
 
       - name: 📢 Create GitHub Release
         if: steps.sign_apk.conclusion == 'success' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || github.event.inputs.publish_release == 'true')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.release_tag.outputs.TAG }}
           name: "EKM ${{ steps.release_tag.outputs.TAG }} for POCO F4 (EXTREME++) [Beta]"
