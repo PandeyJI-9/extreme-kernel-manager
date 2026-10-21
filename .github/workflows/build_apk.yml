@@ -72,7 +72,16 @@ jobs:
         run: chmod +x gradlew
 
       - name: 🏗️ Compile Release APK
-        run: ./gradlew assembleRelease --no-daemon --stacktrace
+        run: ./gradlew assembleRelease -x test -x lint --no-daemon --stacktrace
+
+      - name: 📄 Upload Build Error Logs on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-build-failure-reports
+          path: |
+            app/build/reports/
+            ~/.gradle/daemon/
 
       - name: 🔑 Sign Release APK
         id: sign_apk

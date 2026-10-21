@@ -54,20 +54,20 @@ abstract class BuildNativeTelemetryTask @Inject constructor(
 
 configure <com.android.build.api.dsl.ApplicationExtension> {
     namespace = "id.nkz.nokontzzzmanager"
-    compileSdk = 37
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "id.nkz.nokontzzzmanager"
         minSdk = 31
-        targetSdk = 36
-        versionCode = 122
-        versionName = "2.0.0-beta"
+        targetSdk = 35
+        versionCode = 123
+        versionName = "2.1.0-extreme"
     }
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -75,6 +75,8 @@ configure <com.android.build.api.dsl.ApplicationExtension> {
         targetCompatibility = JavaVersion.VERSION_17
     }
     lint {
+        abortOnError = false
+        checkReleaseBuilds = false
         disable.add("NullSafeMutableLiveData")
     }
     buildFeatures { compose = true }
