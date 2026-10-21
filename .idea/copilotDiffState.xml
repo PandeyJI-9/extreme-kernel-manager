@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/app/src/main/java/id/xms/xtrakernelmanager/ui/components/SystemInfoCard.kt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/id/xms/xtrakernelmanager/ui/components/SystemInfoCard.kt" />
+              <option name="updatedContent" value="package id.xms.xtrakernelmanager.ui.components&#10;&#10;import androidx.compose.foundation.layout.*&#10;import androidx.compose.material3.*&#10;import androidx.compose.runtime.Composable&#10;import androidx.compose.ui.Modifier&#10;import androidx.compose.ui.unit.dp&#10;import id.xms.xtrakernelmanager.ui.viewmodel.BatteryInfoViewModel&#10;&#10;@Composable&#10;fun SystemInfoCard(&#10;    systemInfo: String,&#10;    batteryInfo: BatteryInfoViewModel.BatteryInfo,&#10;    modifier: Modifier = Modifier&#10;) {&#10;    Card(&#10;        modifier = modifier.fillMaxWidth()&#10;    ) {&#10;        Column(&#10;            modifier = Modifier.padding(16.dp)&#10;        ) {&#10;            Text(&#10;                text = &quot;System Information&quot;,&#10;                style = MaterialTheme.typography.titleMedium&#10;            )&#10;            Spacer(modifier = Modifier.height(8.dp))&#10;            &#10;            // Battery Info Section&#10;            Column {&#10;                Text(&#10;                    text = &quot;Battery: ${batteryInfo.level}% &quot; +&#10;                          if (batteryInfo.isCharging) &quot;(Charging: ${String.format(&quot;%.1f&quot;, batteryInfo.chargingWattage)}W)&quot; else &quot;&quot;,&#10;                    style = MaterialTheme.typography.bodyMedium&#10;                )&#10;                Text(&#10;                    text = &quot;Temperature: ${String.format(&quot;%.1f&quot;, batteryInfo.temperature)}°C&quot;,&#10;                    style = MaterialTheme.typography.bodyMedium&#10;                )&#10;                Text(&#10;                    text = &quot;Voltage: ${String.format(&quot;%.1f&quot;, batteryInfo.voltage)}V&quot;,&#10;                    style = MaterialTheme.typography.bodyMedium&#10;                )&#10;            }&#10;            &#10;            Spacer(modifier = Modifier.height(8.dp))&#10;            Divider()&#10;            Spacer(modifier = Modifier.height(8.dp))&#10;            &#10;            // System Info Section&#10;            Text(&#10;                text = systemInfo,&#10;                style = MaterialTheme.typography.bodyMedium&#10;            )&#10;        }&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

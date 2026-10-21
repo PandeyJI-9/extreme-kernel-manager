@@ -1,0 +1,843 @@
+<resources>
+    <string name="app_name">NKM</string>
+    <string name="desc_about">Terima kasih telah memilih N0Kontzzz Kernel Manager. Semoga Anda menikmati pengalamannya!</string>
+    <string name="about">Tentang Aplikasi</string>
+    <string name="telegram">Telegram</string>
+    <string name="github">Github</string>
+    <string name="credits">Pengembang dan Kontributor</string>
+    <string name="kernel">Kernel</string>
+    <string name="version">Versi</string>
+    <string name="kernel_type">Jenis Kernel</string>
+    <string name="sched">I/O Scheduler</string>
+    <string name="abi" translatable="false">ABI</string>
+    <string name="kernel_version">Versi Kernel</string>
+    <string name="wireguard_version">Versi WireGuard</string>
+    <string name="n0kz_kernel_manager">N0Kontzzz Kernel Manager</string>
+    <string name="home">Beranda</string>
+    <string name="tuning">Tuning</string>
+    <string name="misc">Lainnya</string>
+    <string name="info">Info</string>
+    <string name="github_link">https://github.com/bimoalfarrabi/kernel_xiaomi_sm8250_n0kontzz</string>
+    <string name="telegram_link">https://t.me/n0kontzzz</string>
+    <string name="reboot_system">Mulai Ulang Sistem</string>
+    <string name="reboot_bootloader">Mulai Ulang ke Bootloader</string>
+    <string name="reboot_recovery">Mulai Ulang ke Recovery</string>
+    <string name="power_off">Matikan Daya</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_icon">Ikon Notifikasi</string>
+    <string name="requires_battery_monitor">Memerlukan Monitor Baterai untuk diaktifkan</string>
+    <string name="icon_battery_percent">Persentase Baterai</string>
+    <string name="icon_app_logo">Logo Aplikasi</string>
+    <string name="icon_transparent">Transparan</string>
+    <string name="select_notification_icon">Pilih Ikon Notifikasi</string>
+    <string name="battery_charging_icon">Ikon Pengisian</string>
+    <string name="battery_charging_icon_desc">Tampilkan ikon petir alih-alih persentase saat mengisi daya</string>
+
+    <!-- Settings strings -->
+
+    <!-- ... string lainnya ... -->
+    <string name="cpu_clusters_title">Kluster CPU</string>
+    <string name="central_proccessing_unit_cpu">Central Processing Unit (CPU)</string>
+    <string name="cpu_governor_label">Governor:</string>
+    <string name="cpu_cores_title" translatable="false">CPU Cores</string>
+    <string name="cpu_cores_label">Inti:</string>
+    <!-- atau "Cores" -->
+    <string name="temperature_label">Suhu:</string>
+
+    <!-- String yang sudah ada dari kode sebelumnya, pastikan masih relevan -->
+
+    <!-- Settings Screen -->
+    <string name="settings">Pengaturan</string>
+    <string name="back">Kembali</string>
+    <string name="theme">Tema</string>
+    <string name="theme_system">Sistem</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="select_theme">Pilih Tema</string>
+
+    <!-- Widget strings -->
+
+    <!-- Battery Performance Widget strings -->
+
+    <string name="battery_toggle">Ubah Statistik Baterai</string>
+
+    <!-- CpuCard -->
+    <string name="cpu_soc_label">SoC</string>
+    <string name="cpu_cpu_label">CPU</string>
+    <string name="cpu_freq_mhz">%d MHz</string>
+    <string name="common_na">Tidak Ada</string>
+
+    <!-- HomeScreen -->
+    <string name="home_settings_button_desc">Pengaturan</string>
+
+    <!-- Common -->
+    <string name="common_unknown_value">Tidak Diketahui</string>
+    <string name="language">Bahasa</string>
+    <string name="select_language">Pilih Bahasa</string>
+    <string name="close">Tutup</string>
+    <string name="system_info">Informasi Sistem</string>
+
+    <!-- FPS Overlay Strings -->
+
+    <!-- Language strings -->
+    <string name="language_english">Inggris</string>
+    <string name="language_indonesian">Indonesia</string>
+    <string name="cpu_core_offline">Mati</string>
+    <string name="system_stats_title">Statistik Sistem</string>
+    <string name="cpu_load_label">Beban</string>
+    <string name="gathering_data_placeholder">Mengumpulkan data…</string>
+    <string name="cpu_graph_mode_load" translatable="false">Beban CPU</string>
+    <string name="cpu_graph_mode_speed" translatable="false">Kecepatan Jam</string>
+    <string name="graphics_processing_unit_gpu">Graphics Processing Unit (GPU)</string>
+    <string name="gpu_label">GPU</string>
+    <string name="gpu_current_freq">Frekuensi Saat Ini</string>
+    <string name="gpu_max_freq">Frekuensi Maksimum</string>
+    <string name="gpu_usage">Penggunaan</string>
+
+    <!-- Tuning Feature Info Dialog strings -->
+    <string name="tuning_feature_info_title">Informasi Fitur Tuning</string>
+    <string name="tuning_feature_performance_mode_title">Mode Performa</string>
+    <string name="tuning_feature_performance_mode_desc">Preset cepat yang mengatur governor CPU di semua klaster sekaligus. Seimbang menggunakan schedutil (cocok untuk sehari-hari), Performa mengunci ke frekuensi tertinggi, Hemat Daya mengunci ke frekuensi terendah.</string>
+    <string name="tuning_feature_cpu_governor_title">Governor CPU</string>
+    <string name="tuning_feature_cpu_governor_desc">Menentukan seberapa cepat CPU naik atau turun frekuensi sesuai beban. schedutil mengikuti beban secara dekat; performance selalu di maks; powersave selalu di min; conservative naik perlahan untuk hemat daya.</string>
+    <string name="tuning_feature_cpu_freq_title">Frekuensi CPU</string>
+    <string name="tuning_feature_cpu_freq_desc">Mengatur batas frekuensi minimum dan maksimum untuk setiap klaster CPU (Little/Big/Prime). Minimum lebih tinggi meningkatkan respons; maksimum lebih rendah menghemat baterai dan mengurangi panas.</string>
+    <string name="tuning_feature_core_control_title">Kontrol Core</string>
+    <string name="tuning_feature_core_control_desc">Mengaktifkan atau menonaktifkan core CPU secara individual. Menonaktifkan core dapat mengurangi panas dan konsumsi daya; mengaktifkannya kembali memulihkan kapasitas paralel penuh. Core 0 tidak bisa dinonaktifkan.</string>
+    <string name="tuning_feature_gpu_control_title">Kontrol GPU</string>
+    <string name="tuning_feature_gpu_control_desc">Menyetel governor GPU, batas frekuensi min/maks, dan level daya. Frekuensi lebih tinggi meningkatkan kelancaran grafis; lebih rendah menghemat baterai. Paling terasa di game dan rendering UI berat.</string>
+    <string name="tuning_feature_thermal_title">Termal</string>
+    <string name="tuning_feature_thermal_desc">Menerapkan profil termal yang mengatur seberapa agresif kernel membatasi CPU dan GPU saat panas. Profil konservatif melindungi hardware; profil permisif memungkinkan performa puncak yang berkelanjutan pada suhu lebih tinggi.</string>
+    <string name="tuning_feature_zram_title">ZRAM</string>
+    <string name="tuning_feature_zram_desc">Disk RAM terkompresi yang digunakan sebagai swap. Mengaktifkan ZRAM dan memperbesar ukurannya memungkinkan sistem menyimpan lebih banyak aplikasi di memori. Algoritma kompresi (lz4, zstd, dll.) menukar overhead CPU dengan rasio kompresi.</string>
+    <string name="tuning_feature_swappiness_title">Swappiness</string>
+    <string name="tuning_feature_swappiness_desc">Seberapa cepat kernel memindahkan halaman dari RAM ke ZRAM/swap. Nilai rendah (mis. 10–40) mempertahankan lebih banyak data di RAM untuk multitasking yang lebih responsif; nilai tinggi (60–100) membebaskan RAM lebih cepat dengan biaya CPU tambahan untuk dekompresi.</string>
+    <string name="tuning_feature_dirty_ratio_title">Dirty Ratio</string>
+    <string name="tuning_feature_dirty_ratio_desc">Persentase RAM yang boleh menampung data belum ditulis (dirty) sebelum kernel memaksa flush ke penyimpanan. Nilai lebih tinggi menggabungkan lebih banyak penulisan untuk throughput; nilai lebih rendah flush lebih sering, mengurangi risiko kehilangan data saat mati mendadak.</string>
+    <string name="tuning_feature_dirty_bg_ratio_title">Dirty Background Ratio</string>
+    <string name="tuning_feature_dirty_bg_ratio_desc">Ambang batas di mana kernel mulai diam-diam mem-flush halaman dirty di latar belakang. Harus lebih rendah dari Dirty Ratio. Mengaturnya menggeser kapan I/O latar belakang dimulai tanpa memblokir foreground.</string>
+    <string name="tuning_feature_writeback_title">Interval Dirty Writeback</string>
+    <string name="tuning_feature_writeback_desc">Seberapa sering (dalam detik) kernel bangun untuk mem-flush halaman dirty ke penyimpanan. Interval lebih panjang mengurangi wake-up dan menghemat daya; lebih pendek menjaga status on-disk lebih terkini.</string>
+    <string name="tuning_feature_dirty_expire_title">Dirty Expire</string>
+    <string name="tuning_feature_dirty_expire_desc">Berapa lama (dalam centidetik) halaman dirty boleh tinggal di memori sebelum harus ditulis. Menurunkan ini membatasi usia data yang belum ditulis; menaikkannya menunda I/O untuk throughput lebih baik.</string>
+    <string name="tuning_feature_min_free_title">Min Free Memory</string>
+    <string name="tuning_feature_min_free_desc">Jumlah minimum RAM (dalam KB) yang dicadangkan kernel sebagai buffer bebas. Nilai lebih tinggi memberi kernel lebih banyak ruang untuk menangani alokasi mendadak tanpa memicu OOM killer; terlalu tinggi membuang memori yang bisa digunakan.</string>
+
+    <string name="kernel_verification_title">Kernel Tidak Didukung</string>
+    <string name="kernel_verification_desc">Aplikasi ini hanya mendukung N0Kontzzz, N0kernel, Lunar, FusionX, E404R, perf+, Oxygen+, dan dead-butterflies.</string>
+    <string name="kernel_verification_perf_note">Untuk \'perf+\', hanya build dari \'rohmanurip@Github\' yang didukung. Untuk \'Oxygen+\', hanya build dari \'danda@pavilion\' dan \'candy@arch\' yang didukung. For \'dead-butterflies\', only builds from \'moon.ell@stargaze\' are supported.</string>
+    <string name="kernel_verification_instruction">Harap gunakan kernel yang didukung untuk melanjutkan.</string>
+    <string name="root_required">Root Diperlukan</string>
+    <string name="root_required_desc">Aplikasi ini memerlukan akses root agar berfungsi dengan baik. Harap berikan izin root.</string>
+    <string name="exit_app">Keluar</string>
+
+    <!-- Tuning Screen -->
+    <string name="quick_presets_desc">Preset cepat untuk mengoptimalkan performa sistem dan konsumsi daya</string>
+    <string name="balanced_performance_desc">%s governor untuk performa seimbang</string>
+    <string name="maximum_speed_desc">%s governor untuk kecepatan maksimum</string>
+    <string name="powersave_performance_desc">%s governor untuk penghematan daya maksimum</string>
+    <string name="default_governor_desc">%s governor</string>
+    <string name="common_selected">Terpilih</string>
+    <string name="performance_mode_applied">Mode Performa Diterapkan</string>
+    <string name="changed_cpu_governor_desc">Governor CPU diubah ke %s pada semua cluster</string>
+    <string name="system_tuning">Penyesuaian Sistem</string>
+    <string name="system_tuning_desc">Optimasikan performa perangkat dan efisiensi daya dengan kontrol kernel tingkat lanjut</string>
+    <string name="tap_for_more_info">Ketuk untuk info lebih lanjut</string>
+
+    <!-- CpuGovernorCard -->
+    <string name="cpu_control">Kontrol CPU</string>
+    <string name="collapse">Sembunyikan</string>
+    <string name="expand">Perluas</string>
+    <string name="configure_cpu_governor_desc">Konfigurasikan CPU governor dan frekuensi untuk tiap cluster</string>
+    <string name="loading_cpu_data">Memuat data CPU…</string>
+    <string name="set_governor_for_cluster">Atur Governor untuk %s</string>
+    <string name="frequency">Frekuensi</string>
+    <string name="set_min_frequency">Atur Frekuensi Minimum</string>
+    <string name="set_max_frequency">Atur Frekuensi Maksimum</string>
+    <string name="core_status">Status Inti</string>
+    <string name="core_x">Inti %d</string>
+    <string name="little_cluster">Little Cluster</string>
+    <string name="big_cluster">Big Cluster</string>
+    <string name="prime_cluster">Prime Cluster</string>
+    <string name="cluster_control">Kontrol Cluster</string>
+    <string name="active">AKTIF</string>
+    <string name="loading">MEMUAT</string>
+    <string name="error">Kesalahan</string>
+    <string name="min_frequency">Frekuensi Minimum</string>
+    <string name="loading_ellipsis">Memuat…</string>
+    <string name="max_frequency">Frekuensi Maksimum</string>
+    <string name="cores_online">%1$d/%2$d Aktif</string>
+
+    <!-- IoSchedulerDialog -->
+    <string name="io_scheduler">I/O Scheduler</string>
+
+    <!-- TcpCongestionDialog -->
+    <string name="tcp_congestion_control">Kontrol TCP Congestion</string>
+    <string name="tcp_congestion">TCP Congestion</string>
+
+    <string name="apply_on_boot_title">Terapkan saat Boot</string>
+    <string name="apply_on_boot_desc">Secara otomatis terapkan pengaturan TCP dan I/O yang tersimpan setelah reboot</string>
+    <string name="apply_on_boot_active">Terapkan saat Boot Aktif</string>
+    <string name="apply_on_boot_active_desc">Pengaturan jaringan dan penyimpanan saat ini diterapkan pada setiap reboot. \n\nCatatan: Direkomendasikan untuk menonaktifkan opsi ini sebelum mengganti kernel guna menghindari penerapan nilai yang tidak kompatibel.</string>
+
+    <!-- MiscScreen -->
+    <string name="avoid_dirty_pte">Avoid Dirty PTE</string>
+    <string name="avoid_dirty_pte_desc">Mencegah pembersihan paksa dirty page. Dapat meningkatkan skor benchmark namun mungkin mempengaruhi konsistensi ZRAM.</string>
+    <string name="avoid_dirty_pte_activated">Avoid Dirty PTE Diaktifkan</string>
+    <string name="avoid_dirty_pte_active_desc">Sistem kini menghindari pembersihan paksa dirty page.</string>
+
+    <string name="gpu_power">GPU &amp; Daya</string>
+    <string name="network_storage">Jaringan &amp; Penyimpanan</string>
+    <string name="kgsl_skip_pool_zeroing">KGSL Skip Pool Zeroing</string>
+    <string name="kgsl_skip_pool_zeroing_desc">Meningkatkan FPS di emulator, game Unity &amp; Unreal. Mungkin menyebabkan gangguan UI.</string>
+    <string name="feature_not_available">Fitur tidak tersedia di versi kernel Anda.</string>
+    <string name="performance_mode_active">Mode Performa Aktif</string>
+    <string name="kgsl_warning">Fitur ini dapat menyebabkan gangguan UI atau artefak visual. Jika mengalaminya, nonaktifkan fitur ini.</string>
+    <string name="change_algorithm">Ubah Algoritma</string>
+    <string name="change_scheduler">Ubah Penjadwal</string>
+    <string name="bypass_charging">Bypass Charging</string>
+    <string name="bypass_charging_desc">Mengisi daya perangkat tanpa mengisi baterai. Dapat menjaga kesehatan baterai. Pastikan kernel didukung.</string>
+    <string name="bypass_charging_activated">Bypass Charging Diaktifkan</string>
+    <string name="bypass_charging_active_desc">Bypass Charging aktif. Baterai tidak diisi.</string>
+
+    <string name="force_fast_charge">USB Fast Charge</string>
+    <string name="force_fast_charge_desc">Memaksa perangkat mengisi daya lebih cepat saat terhubung ke port USB (misal: Laptop). Gunakan dengan hati-hati karena dapat meningkatkan suhu. Pastikan kernel Anda mendukung fitur ini.</string>
+    <string name="force_fast_charge_activated">USB Fast Charge Diaktifkan</string>
+    <string name="force_fast_charge_active_desc">USB Fast Charge sedang aktif. Perangkat Anda mengisi daya lebih cepat melalui USB.</string>
+
+    <string name="charging_control_title">Kontrol Pengisian Daya</string>
+    <string name="charging_control_desc">Berhenti dan lanjutkan pengisian daya secara otomatis pada level baterai tertentu</string>
+    <string name="charging_control_bypass_note">Catatan: Fitur ini hanya berfungsi jika kernel mendukung Bypass Charging (menggunakan node kontrol yang sama).</string>
+    <string name="enable_charging_control">Aktifkan Batas Pengisian</string>
+    <string name="bypass_active_subtitle">Dinonaktifkan: Bypass Charging aktif</string>
+    <string name="charging_control_active_subtitle">Dinonaktifkan: Kontrol Pengisian aktif</string>
+    <string name="stop_charging_at">Berhenti mengisi pada: %d%%</string>
+    <string name="resume_charging_at">Lanjutkan mengisi pada: %d%%</string>
+    <string name="charging_status">Status: %s</string>
+    <string name="status_limit_reached">BATAS TERCAPAI</string>
+    <string name="status_stopped">BERHENTI</string>
+    <string name="status_charging">MENGISI DAYA</string>
+    <string name="status_idle">IDLE</string>
+    <string name="charging_control_notif_desc">Pengisian dihentikan pada %d%% untuk menjaga kesehatan baterai.</string>
+
+    <!-- Battery Monitor -->
+    <string name="battery_settings">Baterai</string>
+    <string name="battery_monitor">Monitor Baterai</string>
+    <string name="battery_monitor_desc">Tampilkan statistik baterai realtime. Diperlukan untuk fitur seperti Kontrol Pengisian Daya.</string>
+    <string name="battery_monitor_reset_title">Reset Monitor Baterai</string>
+    <string name="battery_monitor_reset_desc">Hapus akumulasi statistik tanpa mematikan layanan</string>
+    <string name="battery_stats_reset_toast">Statistik baterai direset</string>
+    <string name="battery_history_title">Histori Baterai</string>
+    <string name="battery_history_desc">Lihat kecepatan pengisian dan pengurasan baterai serta riwayat</string>
+    <string name="history_stats_title">Statistik Histori</string>
+    <string name="stats_avg_charge_speed">Rata-rata Kecepatan Isi</string>
+    <string name="stats_max_charge_speed">Maks Kecepatan Isi</string>
+    <string name="stats_avg_discharge_speed">Rata-rata Kecepatan Kuras</string>
+    <string name="stats_max_discharge_speed">Maks Kecepatan Kuras</string>
+    <string name="stats_avg_charge_temp">Rata-rata Suhu Isi</string>
+    <string name="stats_max_charge_temp">Maks Suhu Isi</string>
+    <string name="stats_avg_discharge_temp">Rata-rata Suhu Kuras</string>
+    <string name="stats_max_discharge_temp">Maks Suhu Kuras</string>
+    <string name="stats_avg_active_drain">Rata-rata Drain Aktif</string>
+    <string name="stats_avg_idle_drain">Rata-rata Drain Idle</string>
+    <string name="stats_charge_range">Rentang Pengisian</string>
+    <string name="stats_charge_duration">Durasi Pengisian</string>
+    <string name="stats_synced">Sinkron dengan Monitor</string>
+    <string name="stats_manual">Kalkulasi Manual</string>
+    <string name="stats_total_active_time">Total Aktif</string>
+    <string name="stats_screen_on_time">Layar Hidup</string>
+    <string name="stats_screen_off_time">Layar Mati</string>
+    <string name="battery_monitor_disabled_warning">Monitor Baterai Nonaktif</string>
+    <string name="battery_monitor_disabled_desc">Untuk melihat statistik Awake dan Deep Sleep, layanan Monitor Baterai harus diaktifkan.</string>
+    <string name="enable_battery_monitor">Aktifkan</string>
+
+    <!-- SettingsScreen -->
+    <string name="theme_and_display">Tema &amp; Tampilan</string>
+    <string name="amoled_mode">Mode AMOLED</string>
+    <string name="amoled_mode_desc">Gunakan latar belakang hitam pekat dalam mode gelap</string>
+    <string name="version_format">Versi %1$s (%2$d)</string>
+    <string name="version_na">Versi Tidak Tersedia</string>
+
+    <!-- HomeScreen -->
+    <string name="unknown_soc">SoC Tidak Dikenal</string>
+
+    <!-- GpuCard -->
+    <string name="gpu_icon_desc">Ikon GPU</string>
+    <string name="gpu_usage_format">%d%%</string>
+
+    <!-- MergedSystemCard -->
+    <string name="storage_tb">%.1f TB</string>
+    <string name="storage_gb">%.1f GB</string>
+    <string name="storage_mb">%.1f MB</string>
+    <string name="storage_kb">%.1f KB</string>
+    <string name="storage_b">%d B</string>
+    <string name="battery_status">Status Baterai</string>
+    <string name="battery_status_template">%1$d%% • %2$.1f°C • %3$s</string>
+    <string name="charging">Mengisi Daya</string>
+    <string name="discharging">Menggunakan Daya</string>
+
+    <!-- MergedSystemCard Batch 2 -->
+    <string name="memory_status">Status Memori</string>
+    <string name="memory_status_template">%1$d%% Digunakan • %2$dGB</string>
+    <string name="memory_status_template_with_zram">%1$d%% Digunakan • %2$dGB + %3$dGB ZRAM</string>
+    <string name="storage_status">Status Penyimpanan</string>
+    <string name="storage_status_template">%1$d%% Digunakan • %2$s Total</string>
+
+    <!-- MergedSystemCard Batch 3 -->
+    <string name="charge_level">Tingkat Pengisian</string>
+    <string name="ram_usage">Penggunaan RAM</string>
+    <string name="zram">Zram</string>
+    <string name="zram_usage">Penggunaan ZRAM</string>
+    <string name="usage_percentage">%d%%</string>
+
+    <!-- MergedSystemCard Batch 4 -->
+    <string name="voltage">Tegangan</string>
+    <string name="uptime">Waktu Aktif</string>
+    <string name="health">Kesehatan</string>
+    <string name="cycles">Siklus</string>
+    <string name="technology">Teknologi</string>
+    <string name="status">Status</string>
+    <string name="current_cap">Kapasitas Saat Ini</string>
+    <string name="design_cap">Kapasitas Desain</string>
+    <string name="deep_sleep">Tidur Dalam</string>
+    <string name="deep_sleep_percentage">%.1f%%</string>
+    <string name="deep_sleep_default">0.0%</string>
+    <string name="screen_on">Layar Aktif</string>
+    <string name="current">Arus</string>
+    <string name="mah">%dmAh</string>
+    <string name="ma">%.0fmA</string>
+    <string name="v">%sV</string>
+
+    <!-- MergedSystemCard Batch 5 -->
+    <string name="used_ram">RAM Terpakai</string>
+    <string name="free_ram">RAM Kosong</string>
+    <string name="total_ram">Total RAM</string>
+    <string name="usage_percentage_label">Persentase Penggunaan</string>
+    <string name="zram_used">ZRAM Terpakai</string>
+    <string name="zram_total">Total ZRAM</string>
+    <string name="mb">%dMB</string>
+
+    <!-- MergedSystemCard Batch 6 -->
+    <string name="device_information">Informasi Perangkat</string>
+    <string name="rooted">Rooted</string>
+    <string name="not_rooted">Tidak Rooted</string>
+    <string name="version_template">v%s</string>
+    <string name="device">Perangkat</string>
+    <string name="model">Model</string>
+    <string name="codename">Nama Kode</string>
+    <string name="android">Android</string>
+    <string name="sdk">SDK</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="resolution">Resolusi</string>
+    <string name="refresh_rate">Refresh Rate</string>
+    <string name="dpi">DPI</string>
+
+    <!-- MergedSystemCard Batch 7 -->
+    <string name="internal_storage">Penyimpanan Internal</string>
+    <string name="storage_usage_template">%1$s / %2$s</string>
+    <string name="used_template">Terpakai: %s</string>
+    <string name="free_template">Kosong: %s</string>
+    <string name="used_storage">Penyimpanan Terpakai</string>
+    <string name="free_storage">Penyimpanan Kosong</string>
+    <string name="total_storage">Total Penyimpanan</string>
+
+    <!-- KernelCard -->
+    <string name="system_information">Informasi Sistem</string>
+    <string name="build">Build</string>
+    <string name="build_fingerprint">Build Fingerprint</string>
+    <string name="architecture">Arsitektur</string>
+    <string name="selinux">SELinux</string>
+    <string name="kernelsu">KernelSU</string>
+    <string name="ksu_active">✓ Aktif</string>
+    <string name="ksu_detected">✓ Terdeteksi</string>
+    <string name="ksu_not_found">✗ Tidak Ditemukan</string>
+    <string name="legacy">Legacy</string>
+    <string name="gki1">GKI 1</string>
+    <string name="gki2">GKI 2</string>
+    <string name="non_gki">Non GKI</string>
+
+    <!-- AboutCard -->
+    <string name="viasco">Viasco</string>
+    <string name="nkm_developer">Pengembang NKM</string>
+    <string name="gustyx_power">Gustyx-Power</string>
+    <string name="xkm_developer">Pengembang XKM</string>
+    <string name="radika">Radika</string>
+    <string name="rvkm_developer">Pengembang RvKM</string>
+    <string name="danda">Danda</string>
+    <string name="kenskuyy">Kenskuyy</string>
+    <string name="nkm_contributor">Kontributor NKM</string>
+    <string name="help_and_support">Bantuan dan Dukungan</string>
+    <string name="xtra_kernel_manager_repo">Repositori Xtra Kernel Manager</string>
+    <string name="original_project_repo">Repositori Proyek Asli</string>
+    <string name="rvkernel_manager_repo">Repositori RvKernel Manager</string>
+    <string name="feature_and_code_reference">Fitur dan referensi kode dari repositori ini</string>
+    <string name="developer_profile_picture">Foto profil milik %1$s</string>
+
+    <!-- AboutCard Batch 2 -->
+    <string name="follow_us">Ikuti kami:</string>
+    <string name="developer">Pengembang</string>
+    <string name="individual_contributors">Kontributor Individu</string>
+    <string name="repository_contributors">Kontributor Repositori</string>
+    <string name="at_github">@%s</string>
+
+    <!-- MainActivity -->
+    <string name="toggle_fab_menu">Ubah Menu FAB</string>
+
+    <!-- GpuControlCard -->
+    <string name="gpu_control_title">Kontrol GPU</string>
+    <string name="gpu_control_desc">Konfigurasikan GPU governor, frekuensi, dan pengaturan renderer</string>
+    <string name="gpu_governor">GPU Governor</string>
+    <string name="gpu_governor_desc">Mengontrol perilaku penskalaan frekuensi GPU</string>
+    <string name="current_governor">Governor Saat Ini</string>
+    <string name="change_governor">Ubah Governor</string>
+    <string name="gpu_frequency">GPU Frequency</string>
+    <string name="gpu_frequency_desc">Frekuensi GPU minimum dan maksimum</string>
+    <string name="min_frequency_label">Frekuensi Minimum</string>
+    <string name="change_min_frequency">Ubah Frekuensi Minimum</string>
+    <string name="max_frequency_label">Frekuensi Maksimum</string>
+    <string name="change_max_frequency">Ubah Frekuensi Maksimum</string>
+    <string name="gpu_power_level">GPU Power Level</string>
+    <string name="gpu_power_level_desc">Atur power level dan throttling GPU</string>
+    <string name="power_level">Power Level</string>
+    <string name="gpu_throttling">GPU Throttling</string>
+    <string name="gpu_throttling_desc">Batasi performa untuk menghemat daya</string>
+    <string name="gpu_power_level_note">Catatan: Level 0 biasanya merupakan Performa Maksimal</string>
+    <string name="error_at_least_one_core">Setidaknya 1 core harus tetap online</string>
+    <string name="error_zram_size_invalid">Ukuran ZRAM tidak valid (512 MB - %1$d MB)</string>
+    <string name="set_gpu_governor">Atur GPU Governor</string>
+
+    <!-- ThermalCard -->
+    <string name="thermal_control">Kontrol Termal</string>
+    <string name="active_profile_template">Aktif: %s</string>
+    <string name="loading_thermal_profiles">Memuat profil termal…</string>
+    <string name="warning">Peringatan</string>
+    <string name="no_thermal_profiles">Tidak ada profil termal yang didefinisikan.</string>
+    <string name="active_profile">Profil Aktif</string>
+    <string name="manage_thermal_profile">Kelola profil termal</string>
+    <string name="change_profile">Ubah Profil</string>
+    <string name="select_thermal_profile">Pilih Profil Termal</string>
+
+    <!-- SwappinessCard -->
+    <string name="zram_settings">Pengaturan ZRAM</string>
+    <string name="zram_size">Ukuran ZRAM</string>
+    <string name="zram_size_desc">Atur ukuran RAM terkompresi</string>
+    <string name="compression">Kompresi</string>
+    <string name="compression_algorithm">Algoritma Kompresi</string>
+    <string name="memory_settings">Pengaturan Memori</string>
+    <string name="swappiness_desc">Agresivitas swap memori</string>
+    <string name="dirty_ratio">Dirty Ratio</string>
+    <string name="dirty_ratio_desc">Ambang batas dirty page cache</string>
+    <string name="dirty_background_ratio">Dirty Background Ratio</string>
+    <string name="dirty_background_ratio_desc">Ambang batas background writeback</string>
+    <string name="dirty_writeback">Dirty Writeback</string>
+    <string name="dirty_writeback_desc">Interval waktu writeback</string>
+    <string name="dirty_expire">Dirty Expire</string>
+    <string name="dirty_expire_desc">Waktu kedaluwarsa page</string>
+    <string name="min_free_memory">Memori Bebas Minimum</string>
+    <string name="min_free_memory_desc">Cadangan memori bebas minimum</string>
+
+    <!-- SwappinessCard Batch 2 -->
+    <string name="set_swappiness">Atur Swappiness</string>
+    <string name="set_dirty_ratio">Atur Dirty Ratio</string>
+    <string name="set_dirty_background_ratio">Atur Dirty Background Ratio</string>
+    <string name="set_dirty_writeback">Atur Dirty Writeback</string>
+    <string name="set_dirty_expire">Atur Dirty Expire</string>
+    <string name="set_min_free_memory">Atur Memori Bebas Minimum</string>
+
+    <!-- SwappinessCard Batch 3 -->
+    <string name="ram_control">Kontrol RAM</string>
+    <string name="zram_active_template">ZRAM: %dMB Aktif</string>
+    <string name="zram_disabled">ZRAM: Nonaktif</string>
+    <string name="zram_state">Status ZRAM</string>
+    <string name="zram_enabled_desc">RAM terkompresi aktif</string>
+    <string name="zram_disabled_desc">RAM terkompresi nonaktif</string>
+    <string name="on">AKTIF</string>
+    <string name="off">NONAKTIF</string>
+    <string name="disabling_zram_wait">Sedang mematikan ZRAM, mohon tunggu…</string>
+    <string name="enabling_zram_wait">Sedang mengaktifkan ZRAM, mohon tunggu…</string>
+
+    <!-- SwappinessCard Batch 4 -->
+    <string name="configure">Konfigurasikan</string>
+    <string name="ram_performance_control">Kontrol RAM &amp; Performa</string>
+    <string name="about_this_feature">Tentang Fitur Ini</string>
+    <string name="current_value">Nilai Saat Ini</string>
+    <string name="cancel">Batal</string>
+    <string name="apply">Terapkan</string>
+    <string name="swappiness_explanation">Mengontrol seberapa agresif kernel memindahkan data dari RAM ke penyimpanan. Nilai rendah (0–10) membuat sistem lebih fokus menggunakan RAM, nilai tinggi (60–100) menggunakan swap lebih sering untuk menghemat RAM.</string>
+    <string name="dirty_ratio_explanation">Menetapkan persentase RAM yang digunakan untuk cache tulis sebelum memaksa penulisan ke penyimpanan. Nilai lebih tinggi = performa lebih baik tetapi risiko kehilangan data saat crash.</string>
+    <string name="dirty_background_ratio_explanation">Menentukan kapan kernel mulai secara bertahap menulis cache ke penyimpanan di latar belakang. Membantu menjaga performa stabil dengan mengurangi lag saat penulisan besar.</string>
+    <string name="feedback_adjusted_bg_ratio">Menyesuaikan rasio latar belakang ke %1$d%%</string>
+    <string name="feedback_adjusted_total_ratio">Menyesuaikan rasio total ke %1$d%%</string>
+    <string name="error_bg_ratio_less_than_total">Rasio latar belakang harus kurang dari rasio total</string>
+    <string name="min_free_memory_warning">Peringatan: 1024 KB = 1 MB. Nilai yang terlalu tinggi dapat menyebabkan aplikasi crash.</string>
+    <string name="min_free_memory_explanation">Menentukan jumlah minimum RAM yang harus selalu bebas. Nilai lebih tinggi membuat sistem lebih responsif tetapi mengurangi RAM yang tersedia untuk aplikasi.</string>
+    <string name="dirty_expire_explanation">Menentukan berapa lama data cache dapat bertahan sebelum dipaksa menulis ke penyimpanan. Nilai lebih rendah = data lebih aman tetapi performa berkurang.</string>
+    <string name="dirty_writeback_explanation">Menetapkan interval waktu bagi kernel untuk memeriksa dan menulis cache yang sudah kedaluwarsa. Mempengaruhi seberapa sering sistem melakukan pembersihan cache otomatis.</string>
+
+    <!-- Thermal Service -->
+    <string name="thermal_service_channel_name">Saluran Layanan Termal</string>
+    <string name="thermal_service_notification_title">Layanan Termal</string>
+    <string name="thermal_service_notification_text">Memantau pengaturan termal di latar belakang.</string>
+
+    <!-- Battery History Screen -->
+    <string name="clear_history_title">Hapus Riwayat</string>
+    <string name="clear_history_confirmation">Apakah Anda yakin ingin menghapus semua riwayat baterai?</string>
+    <string name="delete">Hapus</string>
+    <string name="graph_mode_drain">Laju Pengurasan</string>
+    <string name="graph_mode_speed_short">Kec. Isi/Kuras</string>
+    <string name="graph_title_current">Arus (mA) - %s</string>
+    <string name="graph_title_drain">Laju Pengurasan (%%/hr) - %s</string>
+    <string name="filter_last_24h">24 Jam Terakhir</string>
+    <string name="filter_last_24h_short">24j Terakhir</string>
+    <string name="filter_since_unplugged">Sejak Dicabut</string>
+    <string name="filter_per_cycle">Per Siklus</string>
+    <string name="legend_active_drain">Drain Aktif</string>
+    <string name="legend_idle_drain">Drain Idle</string>
+    <string name="legend_charge_speed">Kec. Isi</string>
+    <string name="legend_discharge_speed">Kec. Kuras</string>
+    <string name="no_data_available">Data belum tersedia</string>
+    <string name="app_usage_title">Penggunaan Aplikasi</string>
+    <string name="grant_usage_permission">Izinkan Akses Penggunaan</string>
+    <string name="usage_permission_desc">Untuk melihat detail penggunaan aplikasi, mohon berikan izin akses penggunaan.</string>
+    <string name="usage_time_format">%1$dj %2$dm</string>
+    <string name="usage_time_format_min">%dm</string>
+
+    <!-- App Profiles Screen -->
+    <string name="automation_title">Otomasi</string>
+    <string name="app_profiles_title">Profil Per-Aplikasi</string>
+    <string name="app_profiles_desc">Atur performa, KGSL, dan pengisian daya khusus untuk aplikasi tertentu</string>
+    <string name="app_profiles_add_profile">Tambah Profil Aplikasi</string>
+    <string name="app_profiles_permission_required">Izin Statistik Penggunaan diperlukan agar Profil Aplikasi berfungsi. Ketuk untuk mengaktifkan.</string>
+    <string name="app_profiles_no_profiles">Tidak ada profil yang dikonfigurasi. Ketuk + untuk menambahkan satu.</string>
+    <string name="app_profiles_delete">Hapus</string>
+    <string name="app_profiles_select_app">Pilih Aplikasi</string>
+    <string name="app_profiles_search_apps">Cari aplikasi…</string>
+    <string name="app_profiles_clear_search">Bersihkan pencarian</string>
+    <string name="app_profiles_no_apps_found">Tidak ada aplikasi ditemukan</string>
+    <string name="app_profiles_close">Tutup</string>
+    <string name="app_profiles_enable_profile">Aktifkan Profil</string>
+    <string name="app_profiles_performance_mode">Mode Performa</string>
+    <string name="app_profiles_powersave">Hemat Daya</string>
+    <string name="app_profiles_balanced">Seimbang</string>
+    <string name="app_profiles_performance">Performa</string>
+    <string name="app_profiles_cpu_tuning">CPU Tuning</string>
+    <string name="app_profiles_gpu_tuning">GPU Tuning</string>
+    <string name="app_profiles_thermal_tuning">Thermal Tuning</string>
+    <string name="app_profiles_kgsl_skip_zeroing">KGSL Skip Pool Zeroing</string>
+    <string name="app_profiles_bypass_charging">Bypass Charging</string>
+    <string name="app_profiles_allow_dirty_pte">Izinkan Dirty PTE</string>
+    <string name="app_profiles_cancel">Batal</string>
+    <string name="app_profiles_save">Simpan</string>
+    <string name="app_profiles_kgsl_prefix"> • KGSL: </string>
+    <string name="app_profiles_bypass_prefix"> • Bypass: </string>
+    <string name="app_profiles_dirty_pte_prefix"> • Dirty PTE: </string>
+    <string name="app_profiles_on">Aktif</string>
+    <string name="app_profiles_off">Nonaktif</string>
+    <string name="app_profiles_custom">Kustom</string>
+    <string name="app_profiles_custom_tuning_active">Tuning Kustom Aktif</string>
+    <string name="reset_to_default">Reset ke Awal</string>
+    <string name="app_profiles_default">Bawaan</string>
+    <string name="app_profiles_cores_override">%d Inti Diubah</string>
+    <string name="app_profiles_mhz_suffix">%s MHz</string>
+
+    <!-- Battery History Config Dialog -->
+    <string name="battery_history_config_title">Reset Otomatis Riwayat</string>
+    <string name="battery_history_config_desc">Secara otomatis mereset grafik riwayat baterai saat:</string>
+    <string name="battery_monitor_config_title">Reset Otomatis Monitor</string>
+    <string name="battery_monitor_config_desc">Secara otomatis mereset statistik monitor aktif saat:</string>
+    <string name="battery_history_config_device_reboot">Perangkat Mulai Ulang (Reboot)</string>
+    <string name="battery_history_config_charger_connected">Pengisi Daya Terhubung</string>
+    <string name="battery_history_config_battery_level">Baterai mencapai %1$d%%</string>
+    <string name="battery_history_config_done">Selesai</string>
+
+    <string name="usage_access">Akses Penggunaan</string>
+    <string name="usage_access_desc">NKM memerlukan izin Akses Penggunaan untuk mendeteksi aplikasi yang sedang berjalan untuk fitur Profil Per-Aplikasi dan Monitor FPS. Mohon berikan izin ini.</string>
+    <string name="perm_data_sync_title">Sinkronisasi Data Latar Depan</string>
+    <string name="perm_data_sync_desc">Diperlukan untuk Android 14+ guna mempertahankan tuning sistem saat aplikasi berada di latar belakang.</string>
+
+    <!-- Battery Optimization Dialog -->
+    <string name="permissions_required">Izin Diperlukan</string>
+    <string name="battery_optimization">Optimasi Baterai</string>
+    <string name="battery_opt_desc_exit">NKM memerlukan pengecualian optimasi baterai agar berfungsi dengan baik. Tanpa izin ini, aplikasi tidak dapat mempertahankan pengaturan termal di latar belakang. Harap berikan izin atau keluar dari aplikasi.</string>
+    <string name="battery_opt_desc_later">NKM perlu dikecualikan dari optimasi baterai untuk mempertahankan pengaturan termal di latar belakang. Harap izinkan izin ini agar aplikasi berfungsi dengan baik.</string>
+    <string name="open_settings">Buka Pengaturan</string>
+    <string name="exit_app_dialog">Keluar Aplikasi</string>
+    <string name="later">Nanti</string>
+
+    <!-- Source Code Chip -->
+    <string name="source_code">Kode Sumber</string>
+
+    <!-- Compression Algorithm Descriptions -->
+    <string name="compression_lz4_desc">Kecepatan maksimum • Latensi rendah</string>
+    <string name="compression_zstd_desc">Efisiensi tinggi • Rasio kompresi terbaik</string>
+    <string name="compression_lzo_desc">Keseimbangan optimal • Stabil</string>
+    <string name="compression_lz4hc_desc">Kompresi tinggi • Kecepatan sedang</string>
+    <string name="compression_deflate_desc">Kompresi standar • Kecepatan sedang</string>
+    <string name="compression_lzma_desc">Kompresi maksimum • Lebih lambat</string>
+    <string name="compression_bzip2_desc">Kompresi lebih baik • Lebih lambat</string>
+    <string name="compression_zlib_desc">Kompresi seimbang • Kecepatan sedang</string>
+    <string name="compression_lzo_rle_desc">Kompresi cepat • Penggunaan CPU rendah</string>
+    <string name="compression_default_desc">Algoritma kompresi • Performa baik</string>
+
+    <!-- SwappinessCard Additional -->
+    <string name="unit_sec"> det</string>
+    <string name="unit_cs"> cs</string>
+    <string name="unit_kb_suffix"> KB</string>
+    <string name="unit_mb_suffix"> MB</string>
+    <string name="set_zram_size_title">Atur Ukuran ZRAM</string>
+    <string name="choose_compression_algorithm">Pilih Algoritma Kompresi</string>
+    <string name="zram_performance_settings_subtitle">Pengaturan Performa ZRAM</string>
+    <string name="compression_feature_explanation">Algoritma kompresi yang digunakan oleh ZRAM untuk mengompres data di memori. LZ4 memprioritaskan kecepatan, ZSTD efisiensi tinggi, LZO keseimbangan optimal antara kecepatan dan rasio kompresi.</string>
+    <!-- Process Monitor -->
+    <string name="process_monitor_title">Proses Monitor</string>
+    <string name="process_monitor_desc">Pantau penggunaan CPU dan RAM proses yang berjalan</string>
+
+    <!-- Wakelock Monitor -->
+    <string name="wakelock_monitor_title">Wakelock Monitor</string>
+    <string name="wakelock_monitor_desc">Pantau kernel dan sistem wakelock yang mencegah deep sleep</string>
+    <string name="wakelock_name">Nama</string>
+    <string name="wakelock_active_count">Jumlah Aktif</string>
+    <string name="wakelock_wakeup_count">Jumlah Bangun</string>
+    <string name="wakelock_total_time">Total Waktu</string>
+    <string name="wakelock_prevent_suspend">Cegah Suspend</string>
+    <string name="wakelock_last_change">Perubahan Terakhir</string>
+    <string name="wakelock_search_placeholder">Cari wakelock…</string>
+    <string name="wakelock_no_results">Wakelock tidak ditemukan</string>
+
+    <string name="process_monitor_sample_rate">Sample Rate (ms)</string>
+    <string name="process_monitor_max_processes">Maks Proses</string>
+    <string name="process_monitor_settings">Pengaturan Monitor</string>
+    <string name="process_name">Nama Proses</string>
+    <string name="sort_by">Urutkan</string>
+    <string name="filter">Filter</string>
+    <string name="filter_all">Semua</string>
+    <string name="filter_user">User</string>
+    <string name="filter_system">Sistem</string>
+
+    <!-- Permission Manager -->
+    <string name="permission_manager_title">Manajer Izin</string>
+    <string name="permission_manager_desc">Lihat izin yang diberikan dan ditolak</string>
+    <string name="permission_granted">Diberikan</string>
+    <string name="permission_denied">Ditolak</string>
+
+    <!-- Permission Labels & Descriptions -->
+    <string name="perm_root_title">Akses Root</string>
+    <string name="perm_root_desc">Diperlukan untuk tuning kernel dan operasi tingkat sistem.</string>
+    <string name="perm_notif_title">Notifikasi</string>
+    <string name="perm_notif_desc">Diperlukan untuk menampilkan statistik baterai realtime di bilah status.</string>
+    <string name="perm_usage_title">Statistik Penggunaan</string>
+    <string name="perm_usage_desc">Diperlukan agar Profil Per-Aplikasi dapat mendeteksi aplikasi yang sedang dibuka.</string>
+    <string name="perm_storage_title">Penyimpanan File</string>
+    <string name="perm_storage_desc">Diperlukan untuk mencadangkan dan memulihkan konfigurasi aplikasi.</string>
+    <string name="perm_battery_opt_title">Abaikan Optimasi Baterai</string>
+    <string name="perm_battery_opt_desc">Memastikan aplikasi tidak dihentikan oleh sistem untuk menjaga tuning tetap aktif.</string>
+    <string name="perm_dump_title">Dump Informasi Sistem</string>
+    <string name="perm_dump_desc">Diperlukan untuk fitur Dexopt guna mengoptimalkan performa aplikasi.</string>
+    <string name="perm_vibrate_title">Umpan Balik Haptic</string>
+    <string name="perm_vibrate_desc">Memberikan umpan balik taktil untuk interaksi UI.</string>
+    <string name="perm_boot_title">Boot Selesai</string>
+    <string name="perm_boot_desc">Mulai layanan otomatis dan terapkan pengaturan saat reboot perangkat.</string>
+    <string name="perm_fgs_title">Layanan Latar Depan</string>
+    <string name="perm_fgs_desc">Menjalankan layanan pemantauan kritis di latar belakang.</string>
+    <string name="perm_overlay_title">Tampilkan di Atas Aplikasi Lain</string>
+    <string name="perm_overlay_desc">Diperlukan untuk menampilkan overlay FPS real-time di atas game.</string>
+    <string name="perm_secure_settings_title">Pengaturan Aman</string>
+    <string name="perm_secure_settings_desc">Diperlukan untuk menyembunyikan/menampilkan ikon baterai sistem saat monitor aktif.</string>
+
+    <string name="perm_battery_stats_title">Statistik Baterai</string>
+    <string name="perm_battery_stats_desc">Diperlukan untuk riwayat baterai terperinci dan statistik pengisian daya.</string>
+    <string name="perm_query_packages_title">Daftar Paket</string>
+    <string name="perm_query_packages_desc">Diperlukan untuk mendeteksi game yang terinstal untuk FPS Meter.</string>
+
+
+    <!-- Backup & Restore -->
+    <string name="backup_restore_title">Cadangkan &amp; Pulihkan</string>
+    <string name="backup_restore_desc">Cadangkan atau pulihkan pengaturan dan konfigurasi aplikasi Anda.</string>
+    <string name="backup">Cadangkan</string>
+    <string name="restore">Pulihkan</string>
+    <string name="select_items_to_backup">Pilih item untuk dicadangkan</string>
+    <string name="select_items_to_restore">Pilih item untuk dipulihkan</string>
+    <string name="category_tuning">Tuning Sistem</string>
+    <string name="category_network_storage">Jaringan &amp; Penyimpanan</string>
+    <string name="category_battery">Baterai &amp; Pengisian</string>
+    <string name="category_other">Pengaturan Lainnya</string>
+    <string name="desc_tuning">Termasuk Mode Termal, CPU Governor, dan Frekuensi Maksimum.</string>
+    <string name="desc_network_storage">Termasuk Algoritma TCP Congestion dan I/O Scheduler.</string>
+    <string name="desc_battery">Termasuk Bypass Charging, USB Fast Charge, Batas Kontrol Pengisian, dan status Monitor Baterai.</string>
+    <string name="desc_other">Termasuk KGSL Skip Pool Zeroing dan gaya Ikon Notifikasi.</string>
+    <string name="category_app_profiles">Profil Per-Aplikasi</string>
+    <string name="desc_app_profiles">Termasuk pengaturan performa dan pengisian daya individu untuk tiap aplikasi.</string>
+    <string name="category_games">Daftar Game FPS</string>
+    <string name="desc_games">Termasuk daftar game dan pengaturan target FPS untuk Meter FPS.</string>
+    <string name="backup_success">Cadangan berhasil dibuat</string>
+    <string name="restore_success">Pengaturan berhasil dipulihkan</string>
+    <string name="error_backup">Pencadangan gagal</string>
+    <string name="error_restore">Pemulihan gagal</string>
+    <string name="permission_storage_required">Izin penyimpanan diperlukan untuk pencadangan/pemulihan</string>
+    <string name="backup_restore_select_file_msg">Pilih file cadangan untuk melanjutkan</string>
+    <string name="backup_restore_select_file_btn">Pilih File</string>
+
+    <!-- Dexopt Screen -->
+    <string name="dexopt_title">Dexopt</string>
+    <string name="dexopt_desc">Optimalkan aplikasi yang terinstal</string>
+    <string name="dexopt_run_dexopt">Jalankan Dexopt</string>
+    <string name="dexopt_confirm_title">Jalankan Dexopt?</string>
+    <string name="dexopt_confirm_content">Proses ini mungkin memakan waktu lama dan mengonsumsi baterai. Jangan tutup aplikasi saat sedang berjalan.</string>
+    <string name="dexopt_start">Mulai</string>
+    <string name="dexopt_about_title">Tentang Dexopt</string>
+    <string name="dexopt_about_content">Dexopt (Dalvik EXecutable OPTimization) mengompilasi aplikasi untuk mengoptimalkan performa. Skrip ini menjalankan:\n\n1. Kompilasi Profil Kecepatan\n2. Kompilasi Tata Letak\n3. Pekerjaan Latar Belakang Dexopt</string>
+    <string name="dexopt_running">Berjalan… JANGAN tutup aplikasi!</string>
+    <string name="dexopt_finished">Dexopt Selesai!</string>
+    <string name="dexopt_last_logs">10 Log Terakhir:</string>
+
+    <!-- Reset to Default Strings -->
+    <string name="reset_to_default_title">Reset ke Awal</string>
+    <string name="reset_to_default_desc">Reset konfigurasi tuning ke kondisi awal</string>
+    <string name="reset_selection_title">Pilih Item untuk Direset</string>
+    <string name="reset_confirmation">Reset Terpilih</string>
+    <string name="reset_success_toast">Pengaturan direset. Reboot untuk menerapkan sepenuhnya.</string>
+    <string name="reset_cpu">Pengaturan CPU</string>
+    <string name="reset_gpu">Pengaturan GPU</string>
+    <string name="reset_thermal">Profil Termal</string>
+    <string name="reset_ram">Pengaturan RAM &amp; I/O</string>
+
+    <!-- GPU Driver Info -->
+    <string name="gpu_driver_info_title">Info Driver GPU</string>
+    <string name="gpu_driver_info_subtitle">Informasi Grafis</string>
+    <string name="gpu_renderer">Renderer</string>
+    <string name="gpu_vendor">Vendor</string>
+    <string name="gpu_driver_version">Versi Driver</string>
+    <string name="gpu_opengl_version">OpenGL ES</string>
+    <string name="gpu_gl_es_prefix">GL ES %s</string>
+    <string name="copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="unknown_vendor">Vendor Tidak Diketahui</string>
+    <string name="unknown">Tidak Diketahui</string>
+
+    <!-- Boot Settings -->
+    <string name="boot_settings_title">Terapkan saat Boot</string>
+    <string name="boot_settings_desc">Konfigurasi pengaturan mana yang tersimpan setelah reboot</string>
+    <string name="boot_settings_dialog_title">Terapkan saat Boot</string>
+    <string name="boot_settings_dialog_desc">Pilih modul tuning mana yang harus diterapkan kembali secara otomatis saat perangkat dinyalakan.</string>
+    <string name="boot_settings_performance">Mode Performa</string>
+    <string name="boot_settings_cpu">Kontrol CPU</string>
+    <string name="boot_settings_gpu">Kontrol GPU</string>
+    <string name="boot_settings_thermal">Kontrol Termal</string>
+    <string name="boot_settings_ram">Kontrol RAM</string>
+
+    <!-- Kernel Log -->
+    <string name="kernel_log_title">Log Kernel</string>
+    <string name="kernel_log_desc">Lihat pesan diagnostik kernel (dmesg)</string>
+    <string name="kernel_log_empty">Tidak ada log tersedia atau output kosong.</string>
+    <string name="kernel_log_loading">Memuat log…</string>
+    <string name="kernel_log_error_fetch">Gagal memuat log: %s</string>
+    <string name="kernel_log_error_clear">Gagal menghapus log: %s</string>
+    <string name="kernel_log_refresh">Segarkan</string>
+    <string name="kernel_log_clear">Hapus</string>
+    <string name="kernel_log_retry">Coba Lagi</string>
+    <string name="kernel_log_export">Ekspor Log</string>
+
+    <!-- Custom Tunable -->
+    <string name="custom_tunable_title">Custom Tunable</string>
+    <string name="custom_tunable_desc">Konfigurasi node kernel custom dan terapkan saat boot</string>
+    <string name="add_tunable">Tambah Tunable</string>
+    <string name="edit_tunable">Ubah Tunable</string>
+    <string name="set_on_boot">Set saat Boot</string>
+    <string name="tunable_path_label">Lokasi File (/proc/…, /sys/…)</string>
+    <string name="tunable_value_label">Nilai</string>
+    <string name="tunable_read_current">Baca Saat Ini</string>
+    <string name="tunable_root_tip">Tips: Gunakan ikon folder untuk menjelajahi direktori root.</string>
+    <string name="tunable_path_required">Lokasi file harus diisi</string>
+    <string name="tunable_value_read">Nilai Terbaca</string>
+    <string name="tunable_target_prefix">Target:</string>
+    <string name="tunable_actual_prefix">Aktual:</string>
+    <string name="file_picker_title">Pilih File</string>
+    <string name="file_picker_empty">Direktori Kosong atau Akses Ditolak</string>
+    <string name="delete_tunable_title">Hapus Tunable?</string>
+    <string name="delete_tunable_confirm_msg">Apakah Anda yakin ingin menghapus konfigurasi tunable ini?\n\nLokasi: %s</string>
+    <string name="open_custom_tunable">Buka Custom Tunable</string>
+    <string name="stop">Berhenti</string>
+    <string name="edit">Ubah</string>
+    <string name="pick_file">Pilih File</string>
+    <string name="up">Atas</string>
+    <string name="tunable_path_invalid">Lokasi file harus diawali dengan /</string>
+    <string name="tunable_unsafe_input">Input mengandung karakter berbahaya (; | &amp;&amp; $ ` ( ) &gt; &lt; \\)</string>
+
+    <!-- Background App Blocker -->
+    <string name="bg_blocker_title">Background App Blocker</string>
+    <string name="bg_blocker_desc">Blokir aplikasi tertentu agar tidak berjalan di latar belakang untuk menghemat baterai dan memori.</string>
+    <string name="bg_blocker_add_app">Tambah Aplikasi ke Daftar Blokir</string>
+    <string name="bg_blocker_no_apps">Belum ada aplikasi yang diblokir. Ketuk + untuk menambah.</string>
+    <string name="bg_blocker_reset_confirm_title">Reset Daftar Blokir?</string>
+    <string name="bg_blocker_reset_confirm_msg">Apakah Anda yakin ingin mereset daftar blokir ke nilai default?</string>
+    <string name="bg_blocker_not_installed">Tidak terinstal</string>
+    <string name="bg_blocker_apply_on_boot">Terapkan saat Boot</string>
+    <string name="bg_blocker_apply_on_boot_desc">Secara otomatis menerapkan daftar blokir setelah setiap reboot.</string>
+    <string name="bg_blocker_max_apps">Maksimal 16 aplikasi diizinkan</string>
+    <string name="bg_blocker_max_chars">Daftar blokir terlalu panjang (maksimal 255 karakter)</string>
+    <string name="bg_blocker_limit_reached">Batas aplikasi tercapai (maksimal 16 aplikasi)</string>
+    <string name="bg_blocker_char_limit_exceeded">Menambah aplikasi ini akan melebihi batas karakter kernel</string>
+
+    <!-- QS Tiles -->
+    <string name="tile_bypass_charging">Bypass Charging</string>
+    <string name="tile_kgsl_skip_zeroing">KGSL Skip Zeroing</string>
+    <string name="status_active">Aktif</string>
+    <string name="status_inactive">Nonaktif</string>
+
+    <!-- FPS Meter & Benchmarking -->
+    <string name="fps_monitor_title">FPS Meter &amp; Benchmarking</string>
+    <string name="fps_monitor_desc">Overlay FPS realtime dan benchmarking performa untuk game</string>
+    <string name="fps_permission_warning">Izin overlay diperlukan untuk menampilkan metrik FPS di atas game.</string>
+    <string name="grant_permission">Berikan Izin</string>
+    <string name="fps_games_tab">Game</string>
+    <string name="fps_history_tab">Histori</string>
+    <string name="fps_add_game">Tambah Game</string>
+    <string name="fps_no_games">Belum ada game. Ketuk + untuk menambah game pertama Anda.</string>
+    <string name="fps_no_history">Belum ada histori benchmarking.</string>
+    <string name="fps_benchmarking_active">Benchmarking Aktif</string>
+    <string name="fps_stop_benchmark">Hentikan Benchmark</string>
+    <string name="fps_start_benchmark">Mulai Benchmark</string>
+    <string name="fps_layer_search_info">Saat menambahkan game dan menjalankan overlay untuk pertama kalinya, aplikasi melakukan pencarian layer di latar belakang. Hal ini dapat menyebabkan FPS terbaca 0 atau N/A selama beberapa detik selagi monitor mempelajari pola rendering.</string>
+    <string name="benchmark_got_it">Mengerti</string>
+    <string name="benchmark_info_title">Informasi Penting</string>
+
+    <!-- Benchmark Detail -->
+    <string name="benchmark_result">Hasil Benchmark</string>
+    <string name="benchmark_avg_fps">Rata-rata FPS</string>
+    <string name="benchmark_1low_fps">1% Low</string>
+    <string name="benchmark_01low_fps">0.1% Low</string>
+    <string name="benchmark_avg_cpu">Rata-rata CPU</string>
+    <string name="benchmark_avg_gpu">Rata-rata GPU</string>
+    <string name="benchmark_avg_temp">Rata-rata Suhu</string>
+    <string name="benchmark_max_temp">Suhu Maks</string>
+    <string name="benchmark_max_fps">FPS Maks</string>
+    <string name="benchmark_min_fps">FPS Min</string>
+    <string name="benchmark_fps_variance">Variansi</string>
+    <string name="benchmark_avg_power">Daya Rata-rata</string>
+    <string name="benchmark_duration">Durasi</string>
+    <string name="duration_format_ms">%1$dm %2$dd</string>
+    <string name="duration_format_s">%dd</string>
+    <string name="benchmark_janks">Jank</string>
+    <string name="benchmark_big_janks">Jank Besar</string>
+    <string name="benchmark_fps_stability">Stabilitas FPS</string>
+    <string name="benchmark_frame_time">Jitter Frame Time</string>
+    <string name="benchmark_cpu_usage">Penggunaan CPU</string>
+    <string name="benchmark_cpu_temp">Suhu CPU</string>
+    <string name="benchmark_gpu_usage">Penggunaan GPU</string>
+    <string name="benchmark_gpu_freq">Frekuensi GPU</string>
+    <string name="benchmark_cpu_clusters">Frekuensi Cluster CPU</string>
+    <string name="benchmark_battery_power">Konsumsi Daya Baterai</string>
+    <string name="benchmark_battery_level">Level Baterai</string>
+    <string name="benchmark_battery_temp">Suhu Baterai</string>
+    <string name="benchmark_no_data">Tidak ada data tercatat</string>
+    <string name="benchmark_delete_confirm">Hapus rekaman benchmark ini?</string>
+    <string name="benchmark_share">Bagikan Benchmark</string>
+    <string name="benchmark_download">Unduh Benchmark</string>
+    <string name="benchmark_save_success">Berhasil disimpan!</string>
+    <string name="benchmark_save_failed">Gagal menyimpan: %s</string>
+    <string name="benchmark_capture_failed">Gagal menangkap layar: %s</string>
+    <string name="benchmark_share_chooser">Bagikan Hasil Benchmark</string>
+    <string name="benchmark_generating_screenshot">Membuat Tangkapan Layar Panjang…</string>
+    <string name="benchmark_auto_stopped">Benchmark dihentikan otomatis (batas 60 menit tercapai untuk mencegah crash)</string>
+    <string name="backup_file_name" translatable="false">nkm_backup.json</string>
+</resources>

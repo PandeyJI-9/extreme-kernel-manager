@@ -1,0 +1,850 @@
+<resources>
+    <string name="app_name">EKM</string>
+    <string name="desc_about">Extreme+ Kernel Manager (EKM) - The ultimate powerhouse companion app designed specifically for EXTREME++ Kernel by PandeyJi on POCO F4 (munch / SM8250).</string>
+    <string name="about">About App</string>
+    <string name="telegram">Telegram</string>
+    <string name="github">Github</string>
+    <string name="credits">Developer and Contributors</string>
+    <string name="kernel">Kernel</string>
+    <string name="version">Version</string>
+    <string name="kernel_type">Kernel Type</string>
+    <string name="sched">I/O Scheduler</string>
+    <string name="abi" translatable="false">ABI</string>
+    <string name="kernel_version">Kernel Version</string>
+    <string name="wireguard_version">WireGuard Version</string>
+    <string name="n0kz_kernel_manager">Extreme+ Kernel Manager</string>
+    <string name="home">Home</string>
+    <string name="tuning">Tuning</string>
+    <string name="misc">Misc</string>
+    <string name="info">Info</string>
+    <string name="github_link">https://github.com/pandeyJi_9</string>
+    <string name="telegram_link">https://t.me/PandeyJi_8</string>
+    <string name="telegram_support_link">https://t.me/Extremeplus_Support</string>
+    <string name="telegram_support_title">Community &amp; Support</string>
+    <string name="telegram_support_desc">Bug reports &amp; feature requests on Telegram</string>
+    <string name="pandeyji_name">PandeyJi</string>
+    <string name="extreme_developer_role">Lead Kernel &amp; App Architect</string>
+    <string name="reboot_system">Reboot System</string>
+    <string name="reboot_bootloader">Reboot Bootloader</string>
+    <string name="reboot_recovery">Reboot Recovery</string>
+    <string name="power_off">Power Off</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_icon">Notification Icon</string>
+    <string name="requires_battery_monitor">Requires Battery Monitor to be enabled</string>
+    <string name="icon_battery_percent">Battery Percentage</string>
+    <string name="icon_app_logo">App Logo</string>
+    <string name="icon_transparent">Transparent</string>
+    <string name="select_notification_icon">Select Notification Icon</string>
+    <string name="battery_charging_icon">Charging Icon</string>
+    <string name="battery_charging_icon_desc">Show lightning icon instead of percentage while charging</string>
+
+    <!-- Settings strings -->
+
+    <!-- ... string lainnya ... -->
+    <string name="cpu_clusters_title">CPU Clusters</string>
+    <string name="central_proccessing_unit_cpu">Central Processing Unit (CPU)</string>
+    <string name="cpu_governor_label">Governor:</string>
+    <string name="cpu_cores_title" translatable="false">CPU Cores</string>
+    <string name="cpu_cores_label">Cores:</string>
+    <string name="temperature_label">Temp:</string>
+
+    <!-- String yang sudah ada dari kode sebelumnya, pastikan masih relevan -->
+
+    <!-- Settings Screen -->
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="select_theme">Choose Theme</string>
+
+    <!-- Widget strings -->
+
+    <!-- Battery Performance Widget strings -->
+
+    <string name="battery_toggle">Toggle Battery Stats</string>
+
+    <!-- CpuCard -->
+    <string name="cpu_soc_label">SoC</string>
+    <string name="cpu_cpu_label">CPU</string>
+    <string name="cpu_freq_mhz">%d MHz</string>
+    <string name="common_na">N/A</string>
+
+    <!-- HomeScreen -->
+    <string name="home_settings_button_desc">Settings</string>
+
+    <!-- Common -->
+    <string name="common_unknown_value">Unknown</string>
+    <string name="language">Language</string>
+    <string name="select_language">Choose Language</string>
+    <string name="close">Close</string>
+    <string name="system_info">System Info</string>
+
+    <!-- FPS Overlay Strings -->
+
+    <!-- Language strings -->
+    <string name="language_english">English</string>
+    <string name="language_indonesian">Indonesian</string>
+    <string name="cpu_core_offline">Off</string>
+    <string name="system_stats_title">System Stats</string>
+    <string name="cpu_load_label">Load</string>
+    <string name="gathering_data_placeholder">Gathering data…</string>
+    <string name="cpu_graph_mode_load" translatable="false">CPU Load</string>
+    <string name="cpu_graph_mode_speed" translatable="false">Clock Speed</string>
+    <string name="graphics_processing_unit_gpu">Graphics Processing Unit (GPU)</string>
+    <string name="gpu_label">GPU</string>
+    <string name="gpu_current_freq">Current Freq</string>
+    <string name="gpu_max_freq">Max Freq</string>
+    <string name="gpu_usage">Usage</string>
+
+    <!-- Tuning Feature Info Dialog strings -->
+    <string name="tuning_feature_info_title">Tuning Feature Information</string>
+    <string name="tuning_feature_performance_mode_title">Performance Mode</string>
+    <string name="tuning_feature_performance_mode_desc">Quick presets that set the CPU governor across all clusters at once. Balanced uses schedutil (good all-rounder), Performance locks to the highest frequency, Powersave locks to the lowest.</string>
+    <string name="tuning_feature_cpu_governor_title">CPU Governor</string>
+    <string name="tuning_feature_cpu_governor_desc">Decides how fast the CPU ramps up or down in response to load. schedutil tracks workload closely; performance always runs at max; powersave always runs at min; conservative ramps up slowly to save power.</string>
+    <string name="tuning_feature_cpu_freq_title">CPU Frequency</string>
+    <string name="tuning_feature_cpu_freq_desc">Sets the minimum and maximum clock speed for each CPU cluster (Little/Big/Prime). A higher minimum improves responsiveness; a lower maximum saves battery and reduces heat.</string>
+    <string name="tuning_feature_core_control_title">Core Control</string>
+    <string name="tuning_feature_core_control_desc">Enables or disables individual CPU cores. Disabling a core can reduce heat and power draw; re-enabling it restores full parallel throughput. Core 0 cannot be disabled.</string>
+    <string name="tuning_feature_gpu_control_title">GPU Control</string>
+    <string name="tuning_feature_gpu_control_desc">Tunes the GPU governor, min/max frequency, and power level. Higher frequencies improve graphics smoothness; lower ones save battery. Most noticeable in games and heavy UI rendering.</string>
+    <string name="tuning_feature_thermal_title">Thermal</string>
+    <string name="tuning_feature_thermal_desc">Applies a thermal profile that controls how aggressively the kernel throttles the CPU and GPU under heat. Conservative profiles protect the hardware; permissive profiles allow sustained peak performance at higher temps.</string>
+    <string name="tuning_feature_zram_title">ZRAM</string>
+    <string name="tuning_feature_zram_desc">A compressed RAM disk used as swap. Enabling ZRAM and increasing its size lets the system keep more apps in memory. The compression algorithm (lz4, zstd, etc.) trades CPU overhead for compression ratio.</string>
+    <string name="tuning_feature_swappiness_title">Swappiness</string>
+    <string name="tuning_feature_swappiness_desc">How eagerly the kernel moves pages from RAM to ZRAM/swap. Lower values (e.g. 10–40) keep more data in RAM for snappier multitasking; higher values (60–100) free RAM sooner at the cost of extra CPU for decompression.</string>
+    <string name="tuning_feature_dirty_ratio_title">Dirty Ratio</string>
+    <string name="tuning_feature_dirty_ratio_desc">The percentage of RAM that can hold unwritten (dirty) data before the kernel forces a flush to storage. A higher ratio batches more writes for throughput; a lower ratio flushes more often, reducing data-loss risk on sudden power-off.</string>
+    <string name="tuning_feature_dirty_bg_ratio_title">Dirty Background Ratio</string>
+    <string name="tuning_feature_dirty_bg_ratio_desc">The threshold at which the kernel quietly starts flushing dirty pages in the background. Must be lower than Dirty Ratio. Tuning this shifts when background I/O begins without blocking the foreground.</string>
+    <string name="tuning_feature_writeback_title">Dirty Writeback Interval</string>
+    <string name="tuning_feature_writeback_desc">How often (in seconds) the kernel wakes up to flush dirty pages to storage. Longer intervals reduce wake-ups and save power; shorter ones keep on-disk state more current.</string>
+    <string name="tuning_feature_dirty_expire_title">Dirty Expire</string>
+    <string name="tuning_feature_dirty_expire_desc">How long (in centiseconds) a dirty page can stay in memory before it must be written. Lowering this caps the age of unwritten data; raising it defers I/O for better throughput.</string>
+    <string name="tuning_feature_min_free_title">Min Free Memory</string>
+    <string name="tuning_feature_min_free_desc">The minimum amount of RAM (in KB) the kernel reserves as a free buffer. A higher value gives the kernel more headroom to handle sudden allocations without triggering the OOM killer; too high wastes usable memory.</string>
+
+    <string name="kernel_verification_title">EXTREME++ Kernel Required</string>
+    <string name="kernel_verification_desc">Extreme+ Kernel Manager (EKM) is exclusively built for the EXTREME++ Kernel with hardware handshake engine.</string>
+    <string name="kernel_verification_perf_note">Hardware Handshake verification failed (/sys/kernel/extreme_attributes/magic). Stock, generic, or unauthorized kernels are blocked.</string>
+    <string name="kernel_verification_instruction">Please flash the authentic EXTREME++ Kernel by PandeyJi to unlock EKM.</string>
+    <string name="root_required">Root Required</string>
+    <string name="root_required_desc">This application requires root access to function properly. Please grant root access.</string>
+    <string name="exit_app">Exit</string>
+
+    <!-- Tuning Screen -->
+    <string name="quick_presets_desc">Quick presets to optimize system performance and power consumption</string>
+    <string name="balanced_performance_desc">%s governor for balanced performance</string>
+    <string name="maximum_speed_desc">%s governor for maximum speed</string>
+    <string name="powersave_performance_desc">%s governor for maximum power saving</string>
+    <string name="default_governor_desc">%s governor</string>
+    <string name="common_selected">Selected</string>
+    <string name="performance_mode_applied">Performance Mode Applied</string>
+    <string name="changed_cpu_governor_desc">Changed CPU governor to %s on all clusters</string>
+    <string name="system_tuning">System Tuning</string>
+    <string name="system_tuning_desc">Optimize your device performance and power efficiency with advanced kernel controls</string>
+    <string name="tap_for_more_info">Tap for more information</string>
+
+    <!-- CpuGovernorCard -->
+    <string name="cpu_control">CPU Control</string>
+    <string name="collapse">Collapse</string>
+    <string name="expand">Expand</string>
+    <string name="configure_cpu_governor_desc">Configure CPU governor and frequency settings for each cluster</string>
+    <string name="loading_cpu_data">Loading CPU data…</string>
+    <string name="set_governor_for_cluster">Set Governor for %s</string>
+    <string name="frequency">Frequency</string>
+    <string name="set_min_frequency">Set Min Frequency</string>
+    <string name="set_max_frequency">Set Max Frequency</string>
+    <string name="core_status">Core Status</string>
+    <string name="core_x">Core %d</string>
+    <string name="little_cluster">Little Cluster</string>
+    <string name="big_cluster">Big Cluster</string>
+    <string name="prime_cluster">Prime Cluster</string>
+    <string name="cluster_control">Cluster Control</string>
+    <string name="active">ACTIVE</string>
+    <string name="loading">LOADING</string>
+    <string name="error">Error</string>
+    <string name="min_frequency">Min Frequency</string>
+    <string name="loading_ellipsis">Loading…</string>
+    <string name="max_frequency">Max Frequency</string>
+    <string name="cores_online">%1$d/%2$d Online</string>
+
+    <!-- IoSchedulerDialog -->
+    <string name="io_scheduler">I/O Scheduler</string>
+
+    <!-- TcpCongestionDialog -->
+    <string name="tcp_congestion_control">TCP Congestion Control</string>
+    <string name="tcp_congestion">TCP Congestion</string>
+
+    <string name="apply_on_boot_title">Apply on Boot</string>
+    <string name="apply_on_boot_desc">Automatically apply saved TCP and I/O settings after reboot</string>
+    <string name="apply_on_boot_active">Apply on Boot Active</string>
+    <string name="apply_on_boot_active_desc">Network and storage settings are currently being applied on every boot. \n\nNote: It is recommended to disable this before changing kernels to avoid applying incompatible settings.</string>
+
+    <!-- MiscScreen -->
+    <string name="avoid_dirty_pte">Avoid Dirty PTE</string>
+    <string name="avoid_dirty_pte_desc">Prevent brute force clearing of dirty pages. Can improve benchmark scores but may affect ZRAM consistency.</string>
+    <string name="avoid_dirty_pte_activated">Avoid Dirty PTE Activated</string>
+    <string name="avoid_dirty_pte_active_desc">The system is now avoiding brute force clearing of dirty pages.</string>
+
+    <string name="gpu_power">GPU &amp; Power</string>
+    <string name="network_storage">Network &amp; Storage</string>
+    <string name="kgsl_skip_pool_zeroing">KGSL Skip Pool Zeroing</string>
+    <string name="kgsl_skip_pool_zeroing_desc">Improve FPS in emulators, Unity &amp; Unreal games. May cause UI glitches.</string>
+    <string name="feature_not_available">Feature not available in your kernel version.</string>
+    <string name="performance_mode_active">Performance Mode Active</string>
+    <string name="kgsl_warning">This feature may cause UI glitches or visual artifacts. If you experience issues, disable this feature.</string>
+    <string name="change_algorithm">Change algorithm</string>
+    <string name="change_scheduler">Change scheduler</string>
+    <string name="bypass_charging">Bypass Charging</string>
+    <string name="bypass_charging_desc">Charge the device without charging the battery. May preserve battery health. Make sure the kernel is supported.</string>
+    <string name="bypass_charging_activated">Bypass Charging Activated</string>
+    <string name="bypass_charging_active_desc">Bypass charging is active. The battery is not charging.</string>
+
+    <string name="force_fast_charge">USB Fast Charge</string>
+    <string name="force_fast_charge_desc">Forces the device to charge at a faster rate when connected to a USB port (e.g., laptop). Use with caution as it may increase heat. Ensure your kernel supports this feature.</string>
+    <string name="force_fast_charge_activated">USB Fast Charge Activated</string>
+    <string name="force_fast_charge_active_desc">USB fast charge is active. Your device is charging faster from USB.</string>
+
+    <string name="charging_control_title">Charging Control</string>
+    <string name="charging_control_desc">Automatically stop and resume charging at specific battery levels</string>
+    <string name="charging_control_bypass_note">Note: This feature only works if your kernel supports Bypass Charging as it uses the same control node.</string>
+    <string name="enable_charging_control">Enable Charge Limit</string>
+    <string name="bypass_active_subtitle">Disabled: Bypass Charging is active</string>
+    <string name="charging_control_active_subtitle">Disabled: Charging Control is active</string>
+    <string name="stop_charging_at">Stop charging at: %d%%</string>
+    <string name="resume_charging_at">Resume charging at: %d%%</string>
+    <string name="charging_status">Status: %s</string>
+    <string name="status_limit_reached">LIMIT REACHED</string>
+    <string name="status_stopped">STOPPED</string>
+    <string name="status_charging">CHARGING</string>
+    <string name="status_idle">IDLE</string>
+    <string name="charging_control_notif_desc">Charging stopped at %d%% to preserve battery health.</string>
+
+    <!-- Battery Monitor -->
+    <string name="battery_settings">Battery</string>
+    <string name="battery_monitor">Battery Monitor</string>
+    <string name="battery_monitor_desc">Show realtime battery stats. Required for features like Charging Control.</string>
+    <string name="battery_monitor_reset_title">Reset Battery Monitor</string>
+    <string name="battery_monitor_reset_desc">Clear accumulated stats without turning off the service</string>
+    <string name="battery_stats_reset_toast">Battery stats reset</string>
+    <string name="battery_history_title">Battery History</string>
+    <string name="battery_history_desc">View charging speed and drain rate history</string>
+    <string name="history_stats_title">History Statistics</string>
+    <string name="stats_avg_charge_speed">Avg Charge Speed</string>
+    <string name="stats_max_charge_speed">Max Charge Speed</string>
+    <string name="stats_avg_discharge_speed">Avg Discharge Speed</string>
+    <string name="stats_max_discharge_speed">Max Discharge Speed</string>
+    <string name="stats_avg_charge_temp">Avg Charge Temp</string>
+    <string name="stats_max_charge_temp">Max Charge Temp</string>
+    <string name="stats_avg_discharge_temp">Avg Discharge Temp</string>
+    <string name="stats_max_discharge_temp">Max Discharge Temp</string>
+    <string name="stats_avg_active_drain">Avg Active Drain</string>
+    <string name="stats_avg_idle_drain">Avg Idle Drain</string>
+    <string name="stats_charge_range">Charge Range</string>
+    <string name="stats_charge_duration">Charge Duration</string>
+    <string name="stats_synced">Synced with Monitor</string>
+    <string name="stats_manual">Manual Calculation</string>
+    <string name="stats_total_active_time">Total Active</string>
+    <string name="stats_screen_on_time">Screen On</string>
+    <string name="stats_screen_off_time">Screen Off</string>
+    <string name="battery_monitor_disabled_warning">Battery Monitor Disabled</string>
+    <string name="battery_monitor_disabled_desc">To view Awake and Deep Sleep stats, the Battery Monitor service must be enabled.</string>
+    <string name="enable_battery_monitor">Enable</string>
+
+    <!-- SettingsScreen -->
+    <string name="theme_and_display">Theme &amp; Display</string>
+    <string name="amoled_mode">AMOLED Mode</string>
+    <string name="amoled_mode_desc">Use a pure black background in dark mode</string>
+    <string name="version_format">Version %1$s (%2$d)</string>
+    <string name="version_na">Version N/A</string>
+
+    <!-- HomeScreen -->
+    <string name="unknown_soc">Unknown SoC</string>
+
+    <!-- GpuCard -->
+    <string name="gpu_icon_desc">GPU Icon</string>
+    <string name="gpu_usage_format">%d%%</string>
+
+    <!-- MergedSystemCard -->
+    <string name="storage_tb">%.1f TB</string>
+    <string name="storage_gb">%.1f GB</string>
+    <string name="storage_mb">%.1f MB</string>
+    <string name="storage_kb">%.1f KB</string>
+    <string name="storage_b">%d B</string>
+    <string name="battery_status">Battery Status</string>
+    <string name="battery_status_template">%1$d%% • %2$.1f°C • %3$s</string>
+    <string name="charging">Charging</string>
+    <string name="discharging">Discharging</string>
+
+    <!-- MergedSystemCard Batch 2 -->
+    <string name="memory_status">Memory Status</string>
+    <string name="memory_status_template">%1$d%% Used • %2$dGB</string>
+    <string name="memory_status_template_with_zram">%1$d%% Used • %2$dGB + %3$dGB ZRAM</string>
+    <string name="storage_status">Storage Status</string>
+    <string name="storage_status_template">%1$d%% Used • %2$s Total</string>
+
+    <!-- MergedSystemCard Batch 3 -->
+    <string name="charge_level">Charge Level</string>
+    <string name="ram_usage">RAM Usage</string>
+    <string name="zram">Zram</string>
+    <string name="zram_usage">ZRAM Usage</string>
+    <string name="usage_percentage">%d%%</string>
+
+    <!-- MergedSystemCard Batch 4 -->
+    <string name="voltage">Voltage</string>
+    <string name="uptime">Uptime</string>
+    <string name="health">Health</string>
+    <string name="cycles">Cycles</string>
+    <string name="technology">Technology</string>
+    <string name="status">Status</string>
+    <string name="current_cap">Current Cap</string>
+    <string name="design_cap">Design Cap</string>
+    <string name="deep_sleep">Deep Sleep</string>
+    <string name="deep_sleep_percentage">%.1f%%</string>
+    <string name="deep_sleep_default">0.0%</string>
+    <string name="screen_on">Screen On</string>
+    <string name="current">Current</string>
+    <string name="mah">%dmAh</string>
+    <string name="ma">%.0fmA</string>
+    <string name="v">%sV</string>
+
+    <!-- MergedSystemCard Batch 5 -->
+    <string name="used_ram">Used RAM</string>
+    <string name="free_ram">Free RAM</string>
+    <string name="total_ram">Total RAM</string>
+    <string name="usage_percentage_label">Usage %</string>
+    <string name="zram_used">ZRAM Used</string>
+    <string name="zram_total">ZRAM Total</string>
+    <string name="mb">%dMB</string>
+
+    <!-- MergedSystemCard Batch 6 -->
+    <string name="device_information">Device Information</string>
+    <string name="rooted">Rooted</string>
+    <string name="not_rooted">Not Rooted</string>
+    <string name="version_template">v%s</string>
+    <string name="device">Device</string>
+    <string name="model">Model</string>
+    <string name="codename">Codename</string>
+    <string name="android">Android</string>
+    <string name="sdk">SDK</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="resolution">Resolution</string>
+    <string name="refresh_rate">Refresh Rate</string>
+    <string name="dpi">DPI</string>
+
+    <!-- MergedSystemCard Batch 7 -->
+    <string name="internal_storage">Internal Storage</string>
+    <string name="storage_usage_template">%1$s / %2$s</string>
+    <string name="used_template">Used: %s</string>
+    <string name="free_template">Free: %s</string>
+    <string name="used_storage">Used Storage</string>
+    <string name="free_storage">Free Storage</string>
+    <string name="total_storage">Total Storage</string>
+
+    <!-- KernelCard -->
+    <string name="system_information">System Information</string>
+    <string name="build">Build</string>
+    <string name="build_fingerprint">Build Fingerprint</string>
+    <string name="architecture">Architecture</string>
+    <string name="selinux">SELinux</string>
+    <string name="kernelsu">KernelSU</string>
+    <string name="ksu_active">✓ Active</string>
+    <string name="ksu_detected">✓ Detected</string>
+    <string name="ksu_not_found">✗ Not Found</string>
+    <string name="legacy">Legacy</string>
+    <string name="gki1">GKI 1</string>
+    <string name="gki2">GKI 2</string>
+    <string name="non_gki">Non GKI</string>
+
+    <!-- AboutCard -->
+    <string name="viasco">Viasco</string>
+    <string name="nkm_developer">NKM developer</string>
+    <string name="gustyx_power">Gustyx-Power</string>
+    <string name="xkm_developer">XKM developer</string>
+    <string name="radika">Radika</string>
+    <string name="rvkm_developer">RvKM developer</string>
+    <string name="danda">Danda</string>
+    <string name="kenskuyy">Kenskuyy</string>
+    <string name="nkm_contributor">NKM contributor</string>
+    <string name="help_and_support">Help and support</string>
+    <string name="xtra_kernel_manager_repo">Xtra Kernel Manager Repository</string>
+    <string name="original_project_repo">Original project repository</string>
+    <string name="rvkernel_manager_repo">RvKernel Manager Repository</string>
+    <string name="feature_and_code_reference">Feature and code reference from this repository</string>
+    <string name="developer_profile_picture">%1$s profile picture</string>
+
+    <!-- AboutCard Batch 2 -->
+    <string name="follow_us">Follow us:</string>
+    <string name="developer">Developer</string>
+    <string name="individual_contributors">Individual Contributors</string>
+    <string name="repository_contributors">Repository Contributors</string>
+    <string name="at_github">@%s</string>
+
+    <!-- MainActivity -->
+    <string name="toggle_fab_menu">Toggle FAB Menu</string>
+
+    <!-- GpuControlCard -->
+    <string name="gpu_control_title">GPU Control</string>
+    <string name="gpu_control_desc">Configure GPU governor, frequency, and renderer settings</string>
+    <string name="gpu_governor">GPU Governor</string>
+    <string name="gpu_governor_desc">Controls GPU frequency scaling behavior</string>
+    <string name="current_governor">Current Governor</string>
+    <string name="change_governor">Change Governor</string>
+    <string name="gpu_frequency">GPU Frequency</string>
+    <string name="gpu_frequency_desc">Minimum and maximum GPU frequencies</string>
+    <string name="min_frequency_label">Minimum Frequency</string>
+    <string name="change_min_frequency">Change Min Frequency</string>
+    <string name="max_frequency_label">Maximum Frequency</string>
+    <string name="change_max_frequency">Change Max Frequency</string>
+    <string name="gpu_power_level">GPU Power Level</string>
+    <string name="gpu_power_level_desc">Adjust GPU power and throttling settings</string>
+    <string name="power_level">Power Level</string>
+    <string name="gpu_throttling">GPU Throttling</string>
+    <string name="gpu_throttling_desc">Reduce performance to save power</string>
+    <string name="gpu_power_level_note">Note: Level 0 is usually Max Performance</string>
+    <string name="error_at_least_one_core">At least 1 core must remain online</string>
+    <string name="error_zram_size_invalid">Invalid ZRAM size (512 MB - %1$d MB)</string>
+    <string name="set_gpu_governor">Set GPU Governor</string>
+
+    <!-- ThermalCard -->
+    <string name="thermal_control">Thermal Control</string>
+    <string name="active_profile_template">Active: %s</string>
+    <string name="loading_thermal_profiles">Loading thermal profiles…</string>
+    <string name="warning">Warning</string>
+    <string name="no_thermal_profiles">No thermal profiles defined.</string>
+    <string name="active_profile">Active Profile</string>
+    <string name="manage_thermal_profile">Manage thermal profile</string>
+    <string name="change_profile">Change Profile</string>
+    <string name="select_thermal_profile">Select Thermal Profile</string>
+
+    <!-- SwappinessCard -->
+    <string name="zram_settings">ZRAM Settings</string>
+    <string name="zram_size">ZRAM Size</string>
+    <string name="zram_size_desc">Adjust compressed RAM size</string>
+    <string name="compression">Compression</string>
+    <string name="compression_algorithm">Compression algorithm</string>
+    <string name="memory_settings">Memory Settings</string>
+    <string name="swappiness_desc">Memory swap aggressiveness</string>
+    <string name="dirty_ratio">Dirty Ratio</string>
+    <string name="dirty_ratio_desc">Page cache dirty data threshold</string>
+    <string name="dirty_background_ratio">Dirty Background Ratio</string>
+    <string name="dirty_background_ratio_desc">Background writeback threshold</string>
+    <string name="dirty_writeback">Dirty Writeback</string>
+    <string name="dirty_writeback_desc">Writeback interval time</string>
+    <string name="dirty_expire">Dirty Expire</string>
+    <string name="dirty_expire_desc">Page expiration time</string>
+    <string name="min_free_memory">Min Free Memory</string>
+    <string name="min_free_memory_desc">Minimum free memory reserve</string>
+
+    <!-- SwappinessCard Batch 2 -->
+    <string name="set_swappiness">Set Swappiness</string>
+    <string name="set_dirty_ratio">Set Dirty Ratio</string>
+    <string name="set_dirty_background_ratio">Set Dirty Background Ratio</string>
+    <string name="set_dirty_writeback">Set Dirty Writeback</string>
+    <string name="set_dirty_expire">Set Dirty Expire</string>
+    <string name="set_min_free_memory">Set Min Free Memory</string>
+
+    <!-- SwappinessCard Batch 3 -->
+    <string name="ram_control">RAM Control</string>
+    <string name="zram_active_template">ZRAM: %dMB Active</string>
+    <string name="zram_disabled">ZRAM: Disabled</string>
+    <string name="zram_state">ZRAM State</string>
+    <string name="zram_enabled_desc">Compressed RAM enabled</string>
+    <string name="zram_disabled_desc">Compressed RAM disabled</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="disabling_zram_wait">Disabling ZRAM, please wait…</string>
+    <string name="enabling_zram_wait">Enabling ZRAM, please wait…</string>
+
+    <!-- SwappinessCard Batch 4 -->
+    <string name="configure">Configure</string>
+    <string name="ram_performance_control">RAM &amp; Performance Control</string>
+    <string name="about_this_feature">About This Feature</string>
+    <string name="current_value">Current Value</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="swappiness_explanation">Controls how aggressively the kernel moves data from RAM to storage. Low values (0–10) make the system focus more on using RAM, high values (60–100) use swap more frequently to save RAM.</string>
+    <string name="dirty_ratio_explanation">Sets the percentage of RAM used for write cache before forcing writes to storage. Higher values = better performance but risk of data loss during crashes.</string>
+    <string name="dirty_background_ratio_explanation">Sets when the kernel starts gradually writing cache to storage in the background. Helps maintain stable performance by reducing lag during large writes.</string>
+    <string name="feedback_adjusted_bg_ratio">Adjusted background ratio to %1$d%%</string>
+    <string name="feedback_adjusted_total_ratio">Adjusted total ratio to %1$d%%</string>
+    <string name="error_bg_ratio_less_than_total">Background ratio must be less than total ratio</string>
+    <string name="min_free_memory_warning">Warning: 1024 KB = 1 MB. Too high values can cause app crashes.</string>
+    <string name="min_free_memory_explanation">Sets the minimum amount of RAM that must always remain free. Higher values make the system more responsive but reduce RAM available for applications.</string>
+    <string name="dirty_expire_explanation">Sets how long cache data can persist before being forced to write to storage. Lower values = safer data but reduced performance.</string>
+    <string name="dirty_writeback_explanation">Sets the time interval for the kernel to check and write expired cache. Affects how often the system performs automatic cache cleanup.</string>
+
+    <!-- Thermal Service -->
+    <string name="thermal_service_channel_name">Thermal Service Channel</string>
+    <string name="thermal_service_notification_title">Thermal Service</string>
+    <string name="thermal_service_notification_text">Monitoring thermal settings in the background.</string>
+
+    <!-- Battery History Screen -->
+    <string name="clear_history_title">Clear History</string>
+    <string name="clear_history_confirmation">Are you sure you want to delete all battery history?</string>
+    <string name="delete">Delete</string>
+    <string name="graph_mode_drain">Drain Rate</string>
+    <string name="graph_mode_speed_short">C/D Speed</string>
+    <string name="graph_title_current">Current (mA) - %s</string>
+    <string name="graph_title_drain">Drain Rate (%%/hr) - %s</string>
+    <string name="filter_last_24h">Last 24 Hours</string>
+    <string name="filter_last_24h_short">Last 24h</string>
+    <string name="filter_since_unplugged">Since Unplugged</string>
+    <string name="filter_per_cycle">Per Cycle</string>
+    <string name="legend_active_drain">Active Drain</string>
+    <string name="legend_idle_drain">Idle Drain</string>
+    <string name="legend_charge_speed">Charge Speed</string>
+    <string name="legend_discharge_speed">Discharge Speed</string>
+    <string name="no_data_available">No data available yet</string>
+    <string name="app_usage_title">App Usage</string>
+    <string name="grant_usage_permission">Grant Usage Access</string>
+    <string name="usage_permission_desc">To see app usage details, please grant usage access permission.</string>
+    <string name="usage_time_format">%1$dh %2$dm</string>
+    <string name="usage_time_format_min">%dm</string>
+
+    <!-- App Profiles Screen -->
+    <string name="automation_title">Automation</string>
+    <string name="app_profiles_title">Per-App Profiles</string>
+    <string name="app_profiles_desc">Set custom performance, KGSL, and charging settings for specific apps</string>
+    <string name="app_profiles_add_profile">Add App Profile</string>
+    <string name="app_profiles_permission_required">Usage Stats permission required for App Profiles to work. Tap to enable.</string>
+    <string name="app_profiles_no_profiles">No profiles configured. Tap + to add one.</string>
+    <string name="app_profiles_delete">Delete</string>
+    <string name="app_profiles_select_app">Select App</string>
+    <string name="app_profiles_search_apps">Search apps…</string>
+    <string name="app_profiles_clear_search">Clear search</string>
+    <string name="app_profiles_no_apps_found">No apps found</string>
+    <string name="app_profiles_close">Close</string>
+    <string name="app_profiles_enable_profile">Enable Profile</string>
+    <string name="app_profiles_performance_mode">Performance Mode</string>
+    <string name="app_profiles_powersave">Powersave</string>
+    <string name="app_profiles_balanced">Balanced</string>
+    <string name="app_profiles_performance">Performance</string>
+    <string name="app_profiles_cpu_tuning">CPU Tuning</string>
+    <string name="app_profiles_gpu_tuning">GPU Tuning</string>
+    <string name="app_profiles_thermal_tuning">Thermal Tuning</string>
+    <string name="app_profiles_kgsl_skip_zeroing">KGSL Skip Pool Zeroing</string>
+    <string name="app_profiles_bypass_charging">Bypass Charging</string>
+    <string name="app_profiles_allow_dirty_pte">Allow Dirty PTE</string>
+    <string name="app_profiles_cancel">Cancel</string>
+    <string name="app_profiles_save">Save</string>
+    <string name="app_profiles_kgsl_prefix"> • KGSL: </string>
+    <string name="app_profiles_bypass_prefix"> • Bypass: </string>
+    <string name="app_profiles_dirty_pte_prefix"> • Dirty PTE: </string>
+    <string name="app_profiles_on">On</string>
+    <string name="app_profiles_off">Off</string>
+    <string name="app_profiles_custom">Custom</string>
+    <string name="app_profiles_custom_tuning_active">Custom Tuning Active</string>
+    <string name="reset_to_default">Reset to Default</string>
+    <string name="app_profiles_default">Default</string>
+    <string name="app_profiles_cores_override">%d Cores Override</string>
+    <string name="app_profiles_mhz_suffix">%s MHz</string>
+
+    <!-- Battery History Config Dialog -->
+    <string name="battery_history_config_title">History Auto-Reset</string>
+    <string name="battery_history_config_desc">Automatically reset battery history graph when:</string>
+    <string name="battery_monitor_config_title">Monitor Auto-Reset</string>
+    <string name="battery_monitor_config_desc">Automatically reset active monitor statistics when:</string>
+    <string name="battery_history_config_device_reboot">Device Reboot</string>
+    <string name="battery_history_config_charger_connected">Charger Connected</string>
+    <string name="battery_history_config_battery_level">Battery reaches %1$d%%</string>
+    <string name="battery_history_config_done">Done</string>
+
+    <string name="usage_access">Usage Access</string>
+    <string name="usage_access_desc">NKM requires Usage Access permission to detect foreground applications for Per-App Profiles and FPS Monitor. Please grant this permission.</string>
+    <string name="perm_data_sync_title">Foreground Data Sync</string>
+    <string name="perm_data_sync_desc">Required for Android 14+ to maintain system tuning while the app is in the background.</string>
+
+    <!-- Battery Optimization Dialog -->
+    <string name="permissions_required">Permissions Required</string>
+    <string name="battery_optimization">Battery Optimization</string>
+    <string name="battery_opt_desc_exit">NKM requires battery optimization exclusion to function properly. Without this permission, the app cannot maintain your thermal settings in the background. Please grant the permission or exit the app.</string>
+    <string name="battery_opt_desc_later">NKM needs to be excluded from battery optimization to maintain your thermal settings in the background. Please allow this permission for the app to work properly.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="exit_app_dialog">Exit App</string>
+    <string name="later">Later</string>
+
+    <!-- Source Code Chip -->
+    <string name="source_code">Source Code</string>
+    <string name="source_code_link" translatable="false">https://github.com/pandeyJi_9/extreme-kernel-manager</string>
+
+    <!-- Compression Algorithm Descriptions -->
+    <string name="compression_lz4_desc">Maximum speed • Low latency</string>
+    <string name="compression_zstd_desc">High efficiency • Best compression ratio</string>
+    <string name="compression_lzo_desc">Optimal balance • Stable</string>
+    <string name="compression_lz4hc_desc">High compression • Moderate speed</string>
+    <string name="compression_deflate_desc">Standard compression • Moderate speed</string>
+    <string name="compression_lzma_desc">Maximum compression • Slower</string>
+    <string name="compression_bzip2_desc">Better compression • Slower</string>
+    <string name="compression_zlib_desc">Balanced compression • Moderate speed</string>
+    <string name="compression_lzo_rle_desc">Fast compression • Low CPU usage</string>
+    <string name="compression_default_desc">Compression algorithm • Good performance</string>
+
+    <!-- SwappinessCard Additional -->
+    <string name="unit_sec"> sec</string>
+    <string name="unit_cs"> cs</string>
+    <string name="unit_kb_suffix"> KB</string>
+    <string name="unit_mb_suffix"> MB</string>
+    <string name="set_zram_size_title">Set ZRAM Size</string>
+    <string name="choose_compression_algorithm">Choose Compression Algorithm</string>
+    <string name="zram_performance_settings_subtitle">ZRAM Performance Settings</string>
+    <string name="compression_feature_explanation">The compression algorithm used by ZRAM to compress data in memory. LZ4 prioritizes speed, ZSTD high efficiency, LZO optimal balance between speed and compression ratio.</string>
+    <!-- Process Monitor -->
+    <string name="process_monitor_title">Process Monitor</string>
+    <string name="process_monitor_desc">Monitor running processes CPU and RAM usage</string>
+    
+    <!-- Wakelock Monitor -->
+    <string name="wakelock_monitor_title">Wakelock Monitor</string>
+    <string name="wakelock_monitor_desc">Monitor kernel and system wakelocks that prevent deep sleep</string>
+    <string name="wakelock_name">Name</string>
+    <string name="wakelock_active_count">Active Count</string>
+    <string name="wakelock_wakeup_count">Wakeup Count</string>
+    <string name="wakelock_total_time">Total Time</string>
+    <string name="wakelock_prevent_suspend">Prevent Suspend</string>
+    <string name="wakelock_last_change">Last Change</string>
+    <string name="wakelock_search_placeholder">Search wakelocks…</string>
+    <string name="wakelock_no_results">No wakelocks found</string>
+
+    <string name="process_monitor_sample_rate">Sample Rate (ms)</string>
+    <string name="process_monitor_max_processes">Max Processes</string>
+    <string name="process_monitor_settings">Monitor Settings</string>
+    <string name="process_name">Process Name</string>
+    <string name="sort_by">Sort By</string>
+    <string name="filter">Filter</string>
+    <string name="filter_all">All</string>
+    <string name="filter_user">User</string>
+    <string name="filter_system">System</string>
+
+    <!-- Permission Manager -->
+    <string name="permission_manager_title">Permission Manager</string>
+    <string name="permission_manager_desc">View granted and denied permissions</string>
+    <string name="permission_granted">Granted</string>
+    <string name="permission_denied">Denied</string>
+
+    <!-- Permission Labels & Descriptions -->
+    <string name="perm_root_title">Root Access</string>
+    <string name="perm_root_desc">Required for kernel tuning and system-level operations.</string>
+    <string name="perm_notif_title">Notifications</string>
+    <string name="perm_notif_desc">Required to show real-time battery statistics in the status bar.</string>
+    <string name="perm_usage_title">Usage Statistics</string>
+    <string name="perm_usage_desc">Required for Per-App Profiles to detect current foreground application.</string>
+    <string name="perm_storage_title">File Storage</string>
+    <string name="perm_storage_desc">Required for backing up and restoring app configurations.</string>
+    <string name="perm_battery_opt_title">Ignore Battery Optimization</string>
+    <string name="perm_battery_opt_desc">Ensures the app is not killed by the system to maintain active tuning.</string>
+    <string name="perm_dump_title">Dump System Info</string>
+    <string name="perm_dump_desc">Required for Dexopt feature to optimize application performance.</string>
+    <string name="perm_vibrate_title">Haptic Feedback</string>
+    <string name="perm_vibrate_desc">Provides tactile feedback for UI interactions.</string>
+    <string name="perm_boot_title">Boot Completed</string>
+    <string name="perm_boot_desc">Auto-start services and apply settings on device reboot.</string>
+    <string name="perm_fgs_title">Foreground Service</string>
+    <string name="perm_fgs_desc">Run critical monitoring services in the background.</string>
+    <string name="perm_overlay_title">Display Over Other Apps</string>
+    <string name="perm_overlay_desc">Required to show the real-time FPS overlay on top of games.</string>
+    <string name="perm_secure_settings_title">Secure Settings</string>
+    <string name="perm_secure_settings_desc">Required to show/hide the system battery icon when the monitor is active.</string>
+
+    <string name="perm_battery_stats_title">Battery Statistics</string>
+    <string name="perm_battery_stats_desc">Required for detailed battery history and charging statistics.</string>
+    <string name="perm_query_packages_title">Query Packages</string>
+    <string name="perm_query_packages_desc">Required to detect installed games for the FPS Meter.</string>
+
+
+    <!-- Backup & Restore -->
+    <string name="backup_restore_title">Backup &amp; Restore</string>
+    <string name="backup_restore_desc">Backup or restore your application settings and configurations.</string>
+    <string name="backup">Backup</string>
+    <string name="restore">Restore</string>
+    <string name="select_items_to_backup">Select items to backup</string>
+    <string name="select_items_to_restore">Select items to restore</string>
+    <string name="category_tuning">System Tuning</string>
+    <string name="category_network_storage">Network &amp; Storage</string>
+    <string name="category_battery">Battery &amp; Charging</string>
+    <string name="category_other">Other Settings</string>
+    <string name="desc_tuning">Includes Thermal Mode, CPU Governor, and Max Frequency settings.</string>
+    <string name="desc_network_storage">Includes TCP Congestion Algorithm and I/O Scheduler.</string>
+    <string name="desc_battery">Includes Bypass Charging, USB Fast Charge, Charging Control limits, and Battery Monitor state.</string>
+    <string name="desc_other">Includes KGSL Skip Pool Zeroing and Notification Icon style.</string>
+    <string name="category_app_profiles">Per-App Profiles</string>
+    <string name="desc_app_profiles">Includes individual performance and charging settings for each app.</string>
+    <string name="category_games">FPS Games List</string>
+    <string name="desc_games">Includes the list of games and target FPS settings for the FPS Meter.</string>
+    <string name="backup_success">Backup created successfully</string>
+    <string name="restore_success">Settings restored successfully</string>
+    <string name="error_backup">Backup failed</string>
+    <string name="error_restore">Restore failed</string>
+    <string name="permission_storage_required">Storage permission required for backup/restore</string>
+    <string name="backup_restore_select_file_msg">Select a backup file to continue</string>
+    <string name="backup_restore_select_file_btn">Select File</string>
+    <string name="backup_file_name" translatable="false">nkm_backup.json</string>
+
+    <!-- Dexopt Screen -->
+    <string name="dexopt_title">Dexopt</string>
+    <string name="dexopt_desc">Optimize installed applications</string>
+    <string name="dexopt_run_dexopt">Run Dexopt</string>
+    <string name="dexopt_confirm_title">Run Dexopt?</string>
+    <string name="dexopt_confirm_content">"This process may take a long time and consume battery. Do not close the app while it\'s running."</string>
+    <string name="dexopt_start">Start</string>
+    <string name="dexopt_about_title">About Dexopt</string>
+    <string name="dexopt_about_content">Dexopt (Dalvik EXecutable OPTimization) compiles apps to optimize performance. This script runs:\n\n1. Speed Profile Compilation\n2. Layout Compilation\n3. Background Dexopt Job</string>
+    <string name="dexopt_running">Running… Do NOT close the app!</string>
+    <string name="dexopt_finished">Dexopt Finished!</string>
+    <string name="dexopt_last_logs">Last 10 Logs:</string>
+
+    <!-- Reset to Default Strings -->
+    <string name="reset_to_default_title">Reset to Default</string>
+    <string name="reset_to_default_desc">Reset tuning configurations to their default state</string>
+    <string name="reset_selection_title">Select Items to Reset</string>
+    <string name="reset_confirmation">Reset Selected</string>
+    <string name="reset_success_toast">Settings reset. Reboot to apply fully.</string>
+    <string name="reset_cpu">CPU Settings</string>
+    <string name="reset_gpu">GPU Settings</string>
+    <string name="reset_thermal">Thermal Profiles</string>
+    <string name="reset_ram">RAM &amp; I/O Settings</string>
+    
+    <!-- GPU Driver Info -->
+    <string name="gpu_driver_info_title">GPU Driver Info</string>
+    <string name="gpu_driver_info_subtitle">Graphics Information</string>
+    <string name="gpu_renderer">Renderer</string>
+    <string name="gpu_vendor">Vendor</string>
+    <string name="gpu_driver_version">Driver Version</string>
+    <string name="gpu_opengl_version">OpenGL ES</string>
+    <string name="gpu_gl_es_prefix">GL ES %s</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="unknown_vendor">Unknown Vendor</string>
+    <string name="unknown">Unknown</string>
+    
+    <!-- Boot Settings -->
+    <string name="boot_settings_title">Set on Boot</string>
+    <string name="boot_settings_desc">Configure which settings persist after reboot</string>
+    <string name="boot_settings_dialog_title">Apply on Boot</string>
+    <string name="boot_settings_dialog_desc">Select which tuning modules should be automatically reapplied when the device boots.</string>
+    <string name="boot_settings_performance">Performance Mode</string>
+    <string name="boot_settings_cpu">CPU Control</string>
+    <string name="boot_settings_gpu">GPU Control</string>
+    <string name="boot_settings_thermal">Thermal Control</string>
+    <string name="boot_settings_ram">RAM Control</string>
+
+    <!-- Kernel Log -->
+    <string name="kernel_log_title">Kernel Log</string>
+    <string name="kernel_log_desc">View kernel diagnostic messages (dmesg)</string>
+    <string name="kernel_log_empty">No logs available or empty output.</string>
+    <string name="kernel_log_loading">Loading logs…</string>
+    <string name="kernel_log_error_fetch">Failed to load logs: %s</string>
+    <string name="kernel_log_error_clear">Failed to clear logs: %s</string>
+    <string name="kernel_log_refresh">Refresh</string>
+    <string name="kernel_log_clear">Clear</string>
+    <string name="kernel_log_retry">Retry</string>
+    <string name="kernel_log_export">Export Log</string>
+
+    <!-- Custom Tunable -->
+    <string name="custom_tunable_title">Custom Tunable</string>
+    <string name="custom_tunable_desc">Configure custom kernel nodes and apply on boot</string>
+    <string name="add_tunable">Add Tunable</string>
+    <string name="edit_tunable">Edit Tunable</string>
+    <string name="set_on_boot">Set on Boot</string>
+    <string name="tunable_path_label">Path (/proc/…, /sys/…)</string>
+    <string name="tunable_value_label">Value</string>
+    <string name="tunable_read_current">Read Current</string>
+    <string name="tunable_root_tip">Tip: Use the folder icon to browse root directories.</string>
+    <string name="tunable_path_required">Path is required</string>
+    <string name="tunable_value_read">Value Read</string>
+    <string name="tunable_target_prefix">Target:</string>
+    <string name="tunable_actual_prefix">Actual:</string>
+    <string name="file_picker_title">Pick a File</string>
+    <string name="file_picker_empty">Empty Directory or Access Denied</string>
+    <string name="delete_tunable_title">Delete Tunable?</string>
+    <string name="delete_tunable_confirm_msg">Are you sure you want to delete this tunable configuration?\n\nPath: %s</string>
+    <string name="open_custom_tunable">Open Custom Tunable</string>
+    <string name="edit">Edit</string>
+    <string name="stop">Stop</string>
+    <string name="pick_file">Pick File</string>
+    <string name="up">Up</string>
+    <string name="tunable_path_invalid">Path must start with /</string>
+    <string name="tunable_unsafe_input">Input contains unsafe characters (; | &amp;&amp; $ ` ( ) &gt; &lt; \\)</string>
+
+    <!-- Background App Blocker -->
+    <string name="bg_blocker_title">Background App Blocker</string>
+    <string name="bg_blocker_desc">Block specific apps from running in the background to save battery and memory.</string>
+    <string name="bg_blocker_add_app">Add App to Blocklist</string>
+    <string name="bg_blocker_no_apps">No apps blocked. Tap + to add one.</string>
+    <string name="bg_blocker_reset_confirm_title">Reset Blocklist?</string>
+    <string name="bg_blocker_reset_confirm_msg">Are you sure you want to reset the blocklist to the default values?</string>
+    <string name="bg_blocker_not_installed">Not installed</string>
+    <string name="bg_blocker_apply_on_boot">Apply on Boot</string>
+    <string name="bg_blocker_apply_on_boot_desc">Automatically apply the blocklist after every reboot.</string>
+    <string name="bg_blocker_max_apps">Maximum 16 apps allowed</string>
+    <string name="bg_blocker_max_chars">Blocklist is too long (max 255 characters)</string>
+    <string name="bg_blocker_limit_reached">App limit reached (16 apps max)</string>
+    <string name="bg_blocker_char_limit_exceeded">Adding this app would exceed kernel character limit</string>
+
+    <!-- QS Tiles -->
+    <string name="tile_bypass_charging">Bypass Charging</string>
+    <string name="tile_kgsl_skip_zeroing">KGSL Skip Zeroing</string>
+    <string name="tile_dc_dimming">DC Dimming</string>
+    <string name="tile_extreme_profile">Extreme Profile</string>
+    <string name="status_active">Active</string>
+    <string name="status_inactive">Inactive</string>
+
+    <!-- FPS Meter & Benchmarking -->
+    <string name="fps_monitor_title">FPS Meter &amp; Benchmarking</string>
+    <string name="fps_monitor_desc">Real-time FPS overlay and performance benchmarking for games</string>
+    <string name="fps_permission_warning">Overlay permission is required to display FPS metrics over games.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="fps_games_tab">Games</string>
+    <string name="fps_history_tab">History</string>
+    <string name="fps_add_game">Add Game</string>
+    <string name="fps_no_games">No games added. Tap + to add your first game.</string>
+    <string name="fps_no_history">No benchmarking history available.</string>
+    <string name="fps_benchmarking_active">Benchmarking Active</string>
+    <string name="fps_stop_benchmark">Stop Benchmark</string>
+    <string name="fps_start_benchmark">Start Benchmark</string>
+    <string name="fps_layer_search_info">When adding a game and running the overlay for the first time, the application performs a background layer discovery. This may cause the FPS to show as 0 or N/A for a few seconds while the monitor learns the rendering pattern.</string>
+    <string name="benchmark_got_it">Got it</string>
+    <string name="benchmark_info_title">Important Information</string>
+    
+    <!-- Benchmark Detail -->
+    <string name="benchmark_result">Benchmark Result</string>
+    <string name="benchmark_avg_fps">Avg FPS</string>
+    <string name="benchmark_1low_fps">1% Low</string>
+    <string name="benchmark_01low_fps">0.1% Low</string>
+    <string name="benchmark_avg_cpu">Avg CPU</string>
+    <string name="benchmark_avg_gpu">Avg GPU</string>
+    <string name="benchmark_avg_temp">Avg Temp</string>
+    <string name="benchmark_max_temp">Max Temp</string>
+    <string name="benchmark_max_fps">Max FPS</string>
+    <string name="benchmark_min_fps">Min FPS</string>
+    <string name="benchmark_fps_variance">Variance</string>
+    <string name="benchmark_avg_power">Avg Power</string>
+    <string name="benchmark_duration">Duration</string>
+    <string name="duration_format_ms">%1$dm %2$ds</string>
+    <string name="duration_format_s">%ds</string>
+    <string name="benchmark_janks">Janks</string>
+    <string name="benchmark_big_janks">Big Janks</string>
+    <string name="benchmark_fps_stability">FPS Stability</string>
+    <string name="benchmark_frame_time">Frame Time Jitter</string>
+    <string name="benchmark_cpu_usage">CPU Usage</string>
+    <string name="benchmark_cpu_temp">CPU Temperature</string>
+    <string name="benchmark_gpu_usage">GPU Usage</string>
+    <string name="benchmark_gpu_freq">GPU Frequency</string>
+    <string name="benchmark_cpu_clusters">CPU Cluster Frequencies</string>
+    <string name="benchmark_battery_power">Battery Power Consumption</string>
+    <string name="benchmark_battery_level">Battery Level</string>
+    <string name="benchmark_battery_temp">Battery Temperature</string>
+    <string name="benchmark_no_data">No data recorded</string>
+    <string name="benchmark_delete_confirm">Delete this benchmark record?</string>
+    <string name="benchmark_share">Share Benchmark</string>
+    <string name="benchmark_download">Download Benchmark</string>
+    <string name="benchmark_save_success">Saved successfully!</string>
+    <string name="benchmark_save_failed">Save failed: %s</string>
+    <string name="benchmark_capture_failed">Capture failed: %s</string>
+    <string name="benchmark_share_chooser">Share Benchmark Result</string>
+    <string name="benchmark_generating_screenshot">Generating Long Screenshot…</string>
+    <string name="benchmark_auto_stopped">Benchmark auto-stopped (max 60 mins reached to prevent crash)</string>
+    </resources>

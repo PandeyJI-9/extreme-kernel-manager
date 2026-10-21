@@ -1,0 +1,194 @@
+name: Build Extreme+ Kernel Manager (EKM)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release Tag (e.g. v2.1.0-extreme)'
+        required: false
+        default: 'v2.1.0-extreme'
+      publish_release:
+        description: 'Publish GitHub Release'
+        required: true
+        type: boolean
+        default: true
+      send_telegram:
+        description: 'Send Telegram Broadcast'
+        required: true
+        type: boolean
+        default: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: 🚀 Build & Sign EKM Release APK
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🛠️ Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: ⚡ Cache Gradle Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', 'gradle/libs.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: 🔧 Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: 🏗️ Compile Release APK
+        run: ./gradlew assembleRelease --no-daemon --stacktrace
+
+      - name: 🔑 Sign Release APK
+        id: sign_apk
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          UNSIGNED_APK=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
+          if [ -z "$UNSIGNED_APK" ]; then
+            echo "::error::Release APK not found!"
+            exit 1
+          fi
+          
+          mkdir -p signed_out
+          SIGNED_APK="signed_out/EKM-Extreme-Kernel-Manager-Release.apk"
+          
+          ANDROID_BUILD_TOOLS=$(find $ANDROID_HOME/build-tools -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)
+          APKSIGNER="$ANDROID_BUILD_TOOLS/apksigner"
+          
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "Signing with provided production Keystore Secret..."
+            echo "$KEYSTORE_BASE64" | base64 -d > release.keystore
+            $APKSIGNER sign --ks release.keystore \
+              --ks-key-alias "$KEY_ALIAS" \
+              --ks-pass pass:"$KEYSTORE_PASSWORD" \
+              --key-pass pass:"$KEY_PASSWORD" \
+              --out "$SIGNED_APK" \
+              "$UNSIGNED_APK"
+            rm -f release.keystore
+          else
+            echo "No custom keystore secret detected. Generating self-signed release key..."
+            keytool -genkeypair -v \
+              -keystore temp.keystore \
+              -alias extreme \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -storepass android \
+              -keypass android \
+              -dname "CN=Extreme Kernel Manager, OU=Extreme, O=Extreme, L=Munch, ST=SM8250, C=IN"
+              
+            $APKSIGNER sign --ks temp.keystore \
+              --ks-key-alias extreme \
+              --ks-pass pass:android \
+              --key-pass pass:android \
+              --out "$SIGNED_APK" \
+              "$UNSIGNED_APK"
+            rm -f temp.keystore
+          fi
+          
+          # Verify APK Signature
+          $APKSIGNER verify --verbose "$SIGNED_APK"
+          
+          # Extract metadata
+          VERSION_NAME=$(grep 'versionName' app/build.gradle.kts | head -n 1 | cut -d '"' -f 2 || echo "2.0.0")
+          FINAL_NAME="EKM-Extreme-Kernel-Manager-v${VERSION_NAME}-Release.apk"
+          mv "$SIGNED_APK" "signed_out/$FINAL_NAME"
+          echo "FINAL_APK_PATH=signed_out/$FINAL_NAME" >> $GITHUB_OUTPUT
+          echo "FINAL_APK_NAME=$FINAL_NAME" >> $GITHUB_OUTPUT
+          echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+      - name: 📦 Upload Signed APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.sign_apk.outputs.FINAL_APK_NAME }}
+          path: ${{ steps.sign_apk.outputs.FINAL_APK_PATH }}
+          retention-days: 30
+
+      - name: 🏷️ Determine Tag for Release
+        id: release_tag
+        run: |
+          if [ -n "${{ github.event.inputs.release_tag }}" ]; then
+            echo "TAG=${{ github.event.inputs.release_tag }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "TAG=v${{ steps.sign_apk.outputs.VERSION_NAME }}-${{ github.run_number }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📢 Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/') || github.event.inputs.publish_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release_tag.outputs.TAG }}
+          name: "EKM ${{ steps.release_tag.outputs.TAG }} for POCO F4 (EXTREME++)"
+          body: |
+            ## 🚀 Extreme+ Kernel Manager (EKM) Release
+            
+            Engineered exclusively for **POCO F4 (`munch` / SM8250)** running **EXTREME++ Kernel by PandeyJI-9**.
+            
+            ### ✨ Highlights:
+            * **⚡ Tri-Profile Engine**: Dynamic Profile Switcher (Battery Saver 2.42GHz, Balanced Cruise 2.84GHz, Apex Turbo 3.19GHz).
+            * **🔓 Universal Handshake**: Removed all artificial kernel whitelists. Auto-detects EXTREME++ hardware node.
+            * **🌙 Hardware DC Dimming**: E4 AMOLED native Munch DSI/DRM registers controller + QS Tile.
+            * **🛡️ Dual-Tier Engine**: Rootless direct kernel nodes (`chmod 666`) + Elevated Root Shell (`libsu`).
+            * **📊 Live Telemetry**: Adreno 650 GPU, CPU per-core frequencies, L3 cache priority locks.
+            
+            ### 👑 Developer:
+            * **PandeyJi** ([@PandeyJi_8](https://t.me/PandeyJi_8) • [@pandeyJi_9](https://github.com/pandeyJi_9))
+            * 💬 Support & Bug Reports: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)
+
+            ### 📲 Downloads:
+            Download the signed APK below and install directly on your device.
+          files: ${{ steps.sign_apk.outputs.FINAL_APK_PATH }}
+          draft: false
+          prerelease: false
+
+      - name: ✈️ Send Telegram Broadcast
+        if: (startsWith(github.ref, 'refs/tags/') || github.event.inputs.send_telegram == 'true') && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          APK_PATH="${{ steps.sign_apk.outputs.FINAL_APK_PATH }}"
+          CAPTION="🚀 *Extreme+ Kernel Manager (EKM)* Updated!%0A%0A📱 *Device:* POCO F4 (munch / SM8250)%0A⚡ *Target Kernel:* EXTREME++ by PandeyJi%0A👑 *Dev:* @PandeyJi_8 | github.com/pandeyJi_9%0A💬 *Support Group:* t.me/Extremeplus_Support%0A🏷️ *Release:* ${{ steps.release_tag.outputs.TAG }}%0A%0A🔥 *Features:*%0A• Dynamic Tri-Profile Engine%0A• Hardware DC Dimming QS Tile%0A• Kang-Proof Kernel Handshake%0A• Dual-Tier Rootless/Root Architecture"
+          
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument" \
+            -F chat_id="${TELEGRAM_CHAT_ID}" \
+            -F document=@"${APK_PATH}" \
+            -F caption="${CAPTION}" \
+            -F parse_mode="Markdown"
