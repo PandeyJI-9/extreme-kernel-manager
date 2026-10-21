@@ -54,14 +54,14 @@ abstract class BuildNativeTelemetryTask @Inject constructor(
 
 configure <com.android.build.api.dsl.ApplicationExtension> {
     namespace = "id.nkz.nokontzzzmanager"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "id.nkz.nokontzzzmanager"
         minSdk = 31
         targetSdk = 35
-        versionCode = 123
-        versionName = "2.1.0-extreme"
+        versionCode = 124
+        versionName = "2.1.0-beta1"
     }
     buildTypes {
         release {
