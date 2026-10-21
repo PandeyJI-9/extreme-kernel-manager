@@ -17,7 +17,7 @@
     <string name="tuning">Tuning</string>
     <string name="misc">Misc</string>
     <string name="info">Info</string>
-    <string name="github_link">https://github.com/pandeyJi_9</string>
+    <string name="github_link">https://github.com/PandeyJI-9</string>
     <string name="telegram_link">https://t.me/PandeyJi_8</string>
     <string name="telegram_support_link">https://t.me/Extremeplus_Support</string>
     <string name="telegram_support_title">Community &amp; Support</string>
@@ -571,7 +571,7 @@
 
     <!-- Source Code Chip -->
     <string name="source_code">Source Code</string>
-    <string name="source_code_link" translatable="false">https://github.com/pandeyJi_9/extreme-kernel-manager</string>
+    <string name="source_code_link" translatable="false">https://github.com/PandeyJI-9/extreme-kernel-manager</string>
 
     <!-- Compression Algorithm Descriptions -->
     <string name="compression_lz4_desc">Maximum speed • Low latency</string>

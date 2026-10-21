@@ -15,7 +15,7 @@
 <p align="center">
   <a href="https://t.me/Extremeplus_Support"><img src="https://img.shields.io/badge/Telegram-Support_Group-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Support Group"></a>
   <a href="https://t.me/PandeyJi_8"><img src="https://img.shields.io/badge/Developer-@PandeyJi__8-0088cc?style=for-the-badge&logo=telegram&logoColor=white" alt="Developer Telegram"></a>
-  <a href="https://github.com/pandeyJi_9"><img src="https://img.shields.io/badge/GitHub-pandeyJi__9-181717?style=for-the-badge&logo=github&logoColor=white" alt="Developer GitHub"></a>
+  <a href="https://github.com/PandeyJI-9"><img src="https://img.shields.io/badge/GitHub-PandeyJI--9-181717?style=for-the-badge&logo=github&logoColor=white" alt="Developer GitHub"></a>
 </p>
 
 ---
@@ -58,7 +58,7 @@ Seamlessly switch hardware states on the fly without rebooting:
 ### 👑 Lead Developer & Kernel Architect
 * **PandeyJi**
   * Telegram: [@PandeyJi_8](https://t.me/PandeyJi_8)
-  * GitHub: [@pandeyJi_9](https://github.com/pandeyJi_9)
+  * GitHub: [@PandeyJI-9](https://github.com/PandeyJI-9)
 
 ### 💬 Community & Bug Reporting
 * **Extreme+ Official Support Group**: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)

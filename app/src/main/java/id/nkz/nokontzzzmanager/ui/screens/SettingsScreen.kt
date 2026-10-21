@@ -479,7 +479,7 @@ fun SettingsScreen(
 
             SettingItemCard(
                 headlineText = "Lead Developer: PandeyJi",
-                supportingText = "@PandeyJi_8 (Telegram) • pandeyJi_9 (GitHub)",
+                supportingText = "@PandeyJi_8 (Telegram) • PandeyJI-9 (GitHub)",
                 icon = {
                     Icon(
                         imageVector = Icons.Default.Bolt,

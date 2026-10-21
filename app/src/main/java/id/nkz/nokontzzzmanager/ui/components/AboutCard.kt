@@ -39,7 +39,7 @@ data class Developer(val name: Int, val role: Int, val githubUsername: String, v
 data class RepositoryContributor(val name: Int, val url: String, val description: Int, val drawableResId: Int)
 
 // Special recognition for the main developer who led this rebrand
-val leadDeveloper = Developer(R.string.pandeyji_name, R.string.extreme_developer_role, "pandeyJi_9", R.drawable.nkm_png)
+val leadDeveloper = Developer(R.string.pandeyji_name, R.string.extreme_developer_role, "PandeyJI-9", R.drawable.nkm_png)
 
 val individualContributors = listOf(
     Developer(R.string.viasco, R.string.nkm_developer, "bimoalfarrabi", R.drawable.viasco),
