@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer Shield / Hexagon -->
+    <path
+        android:pathData="M54,20 L82,36 L82,68 L54,88 L26,68 L26,36 Z"
+        android:strokeWidth="3"
+        android:strokeColor="#FF6B00"
+        android:fillColor="#151A22"/>
+
+    <!-- Inner Core Background -->
+    <path
+        android:pathData="M54,27 L76,40 L76,64 L54,81 L32,64 L32,40 Z"
+        android:fillColor="#1F2633"/>
+
+    <!-- High-Performance Lightning Bolt Core -->
+    <path
+        android:pathData="M57,30 L39,54 L52,54 L48,77 L69,49 L55,49 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="39"
+                android:startY="30"
+                android:endX="69"
+                android:endY="77"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FF9100"/>
+                <item android:offset="0.5" android:color="#FF3D00"/>
+                <item android:offset="1.0" android:color="#FF1744"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

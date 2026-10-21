@@ -2,21 +2,14 @@ name: Build Extreme+ Kernel Manager (EKM)
 
 on:
   push:
-    branches:
-      - main
-      - master
     tags:
       - 'v*'
-  pull_request:
-    branches:
-      - main
-      - master
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Release Tag (e.g. v2.1.0-beta1)'
+        description: 'Release Tag (e.g. v2.1.0-beta2)'
         required: false
-        default: 'v2.1.0-beta1'
+        default: 'v2.1.0-beta2'
       publish_release:
         description: 'Publish GitHub Release'
         required: true
@@ -168,7 +161,7 @@ jobs:
           fi
 
       - name: 📢 Create GitHub Release
-        if: steps.sign_apk.conclusion == 'success' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || github.event.inputs.publish_release == 'true')
+        if: steps.sign_apk.conclusion == 'success'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -184,6 +177,7 @@ jobs:
           Engineered exclusively for **POCO F4 (`munch` / SM8250)** running **EXTREME++ Kernel by PandeyJI-9**.
           
           ### ✨ Highlights:
+          * **⚡ Extreme+ Native Governor**: Integrated support and prioritisation for custom `extreme+` CPU governor.
           * **⚡ Tri-Profile Engine**: Dynamic Profile Switcher (Battery Saver 2.42GHz, Balanced Cruise 2.84GHz, Apex Turbo 3.19GHz).
           * **🔓 Universal Handshake**: Removed all artificial kernel whitelists. Auto-detects EXTREME++ hardware node.
           * **🌙 Hardware DC Dimming**: E4 AMOLED native Munch DSI/DRM registers controller + QS Tile.

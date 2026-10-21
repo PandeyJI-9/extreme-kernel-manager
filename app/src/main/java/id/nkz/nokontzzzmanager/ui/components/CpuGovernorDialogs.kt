@@ -107,14 +107,20 @@ internal fun GovernorSelectionDialog(
                         modifier = Modifier.heightIn(max = 350.dp),
                         verticalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
-                        val sortedGovernors = availableGovernors.sorted()
+                        val sortedGovernors = availableGovernors.sortedWith(
+                            compareByDescending<String> { it.equals("extreme+", ignoreCase = true) }
+                                .thenBy { it }
+                        )
                         itemsIndexed(sortedGovernors) { index, governor ->
                             val isSelected = governor == currentSelectedGovernor
+                            val isExtremeGov = governor.equals("extreme+", ignoreCase = true)
                             Card(
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = getDialogListItemShape(index, sortedGovernors.size, isSelected),
                                 colors = CardDefaults.cardColors(
-                                    containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainer
+                                    containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer 
+                                    else if (isExtremeGov) MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
+                                    else MaterialTheme.colorScheme.surfaceContainer
                                 ),
                                 onClick = { onGovernorSelected(governor) }
                             ) {
@@ -131,13 +137,22 @@ internal fun GovernorSelectionDialog(
                                             unselectedColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                         )
                                     )
-                                    Text(
-                                        text = governor,
-                                        style = MaterialTheme.typography.bodyLarge.copy(
-                                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                                        ),
-                                        color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-                                    )
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            text = governor,
+                                            style = MaterialTheme.typography.bodyLarge.copy(
+                                                fontWeight = if (isSelected || isExtremeGov) FontWeight.Bold else FontWeight.Normal
+                                            ),
+                                            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+                                        )
+                                        if (isExtremeGov) {
+                                            Text(
+                                                text = "⚡ EXTREME++ Native Governor",
+                                                style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                                color = MaterialTheme.colorScheme.primary
+                                            )
+                                        }
+                                    }
                                 }
                             }
                         }

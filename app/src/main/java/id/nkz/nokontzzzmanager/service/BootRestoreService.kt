@@ -316,7 +316,7 @@ class BootRestoreService : Service() {
 
     private fun createNotification(): Notification {
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("NKM: Restoring Settings")
+            .setContentTitle("EKM: Restoring Settings")
             .setContentText("Applying kernel configurations...")
             .setSmallIcon(R.drawable.ic_speed)
             .setPriority(NotificationCompat.PRIORITY_LOW)

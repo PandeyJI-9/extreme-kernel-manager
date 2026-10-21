@@ -48,7 +48,6 @@ import id.nkz.nokontzzzmanager.R
 
 // Daftar fitur dengan terjemahannya
 val tuningFeatures = listOf(
-    R.string.tuning_feature_performance_mode_title to R.string.tuning_feature_performance_mode_desc,
     R.string.tuning_feature_cpu_governor_title to R.string.tuning_feature_cpu_governor_desc,
     R.string.tuning_feature_cpu_freq_title to R.string.tuning_feature_cpu_freq_desc,
     R.string.tuning_feature_core_control_title to R.string.tuning_feature_core_control_desc,
@@ -119,12 +118,8 @@ fun TuningScreen(
                 )
             }
 
-                item {
-                    PerformanceModeCard(viewModel = viewModel)
-                }
-
-                item {
-                    CpuGovernorCard(
+            item {
+                CpuGovernorCard(
                         vm = viewModel,
                         isExpanded = expandedCards["cpu"] ?: false,
                         onExpandChange = { viewModel.toggleCardExpansion("cpu") }

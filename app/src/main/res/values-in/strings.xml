@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NKM</string>
+    <string name="app_name">EKM</string>
     <string name="desc_about">Terima kasih telah memilih N0Kontzzz Kernel Manager. Semoga Anda menikmati pengalamannya!</string>
     <string name="about">Tentang Aplikasi</string>
     <string name="telegram">Telegram</string>
@@ -552,15 +552,15 @@
     <string name="battery_history_config_done">Selesai</string>
 
     <string name="usage_access">Akses Penggunaan</string>
-    <string name="usage_access_desc">NKM memerlukan izin Akses Penggunaan untuk mendeteksi aplikasi yang sedang berjalan untuk fitur Profil Per-Aplikasi dan Monitor FPS. Mohon berikan izin ini.</string>
+    <string name="usage_access_desc">EKM memerlukan izin Akses Penggunaan untuk mendeteksi aplikasi yang sedang berjalan untuk fitur Profil Per-Aplikasi dan Monitor FPS. Mohon berikan izin ini.</string>
     <string name="perm_data_sync_title">Sinkronisasi Data Latar Depan</string>
     <string name="perm_data_sync_desc">Diperlukan untuk Android 14+ guna mempertahankan tuning sistem saat aplikasi berada di latar belakang.</string>
 
     <!-- Battery Optimization Dialog -->
     <string name="permissions_required">Izin Diperlukan</string>
     <string name="battery_optimization">Optimasi Baterai</string>
-    <string name="battery_opt_desc_exit">NKM memerlukan pengecualian optimasi baterai agar berfungsi dengan baik. Tanpa izin ini, aplikasi tidak dapat mempertahankan pengaturan termal di latar belakang. Harap berikan izin atau keluar dari aplikasi.</string>
-    <string name="battery_opt_desc_later">NKM perlu dikecualikan dari optimasi baterai untuk mempertahankan pengaturan termal di latar belakang. Harap izinkan izin ini agar aplikasi berfungsi dengan baik.</string>
+    <string name="battery_opt_desc_exit">EKM memerlukan pengecualian optimasi baterai agar berfungsi dengan baik. Tanpa izin ini, aplikasi tidak dapat mempertahankan pengaturan termal di latar belakang. Harap berikan izin atau keluar dari aplikasi.</string>
+    <string name="battery_opt_desc_later">EKM perlu dikecualikan dari optimasi baterai untuk mempertahankan pengaturan termal di latar belakang. Harap izinkan izin ini agar aplikasi berfungsi dengan baik.</string>
     <string name="open_settings">Buka Pengaturan</string>
     <string name="exit_app_dialog">Keluar Aplikasi</string>
     <string name="later">Nanti</string>
@@ -839,5 +839,5 @@
     <string name="benchmark_share_chooser">Bagikan Hasil Benchmark</string>
     <string name="benchmark_generating_screenshot">Membuat Tangkapan Layar Panjang…</string>
     <string name="benchmark_auto_stopped">Benchmark dihentikan otomatis (batas 60 menit tercapai untuk mencegah crash)</string>
-    <string name="backup_file_name" translatable="false">nkm_backup.json</string>
+    <string name="backup_file_name" translatable="false">ekm_backup.json</string>
 </resources>

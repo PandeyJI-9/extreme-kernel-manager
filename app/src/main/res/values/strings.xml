@@ -556,15 +556,15 @@
     <string name="battery_history_config_done">Done</string>
 
     <string name="usage_access">Usage Access</string>
-    <string name="usage_access_desc">NKM requires Usage Access permission to detect foreground applications for Per-App Profiles and FPS Monitor. Please grant this permission.</string>
+    <string name="usage_access_desc">EKM requires Usage Access permission to detect foreground applications for Per-App Profiles and FPS Monitor. Please grant this permission.</string>
     <string name="perm_data_sync_title">Foreground Data Sync</string>
     <string name="perm_data_sync_desc">Required for Android 14+ to maintain system tuning while the app is in the background.</string>
 
     <!-- Battery Optimization Dialog -->
     <string name="permissions_required">Permissions Required</string>
     <string name="battery_optimization">Battery Optimization</string>
-    <string name="battery_opt_desc_exit">NKM requires battery optimization exclusion to function properly. Without this permission, the app cannot maintain your thermal settings in the background. Please grant the permission or exit the app.</string>
-    <string name="battery_opt_desc_later">NKM needs to be excluded from battery optimization to maintain your thermal settings in the background. Please allow this permission for the app to work properly.</string>
+    <string name="battery_opt_desc_exit">EKM requires battery optimization exclusion to function properly. Without this permission, the app cannot maintain your thermal settings in the background. Please grant the permission or exit the app.</string>
+    <string name="battery_opt_desc_later">EKM needs to be excluded from battery optimization to maintain your thermal settings in the background. Please allow this permission for the app to work properly.</string>
     <string name="open_settings">Open Settings</string>
     <string name="exit_app_dialog">Exit App</string>
     <string name="later">Later</string>
@@ -682,7 +682,7 @@
     <string name="permission_storage_required">Storage permission required for backup/restore</string>
     <string name="backup_restore_select_file_msg">Select a backup file to continue</string>
     <string name="backup_restore_select_file_btn">Select File</string>
-    <string name="backup_file_name" translatable="false">nkm_backup.json</string>
+    <string name="backup_file_name" translatable="false">ekm_backup.json</string>
 
     <!-- Dexopt Screen -->
     <string name="dexopt_title">Dexopt</string>

@@ -175,16 +175,18 @@ class ProfileManager @Inject constructor(
         writeNodeDualTier("$policyDir/scaling_min_freq", minFreq.toString(), shellCommands)
         writeNodeDualTier("$policyDir/scaling_max_freq", maxFreq.toString(), shellCommands)
 
-        // Governor Rate Limits
-        val schedutilUp = "$policyDir/schedutil/up_rate_limit_us"
-        val schedutilDown = "$policyDir/schedutil/down_rate_limit_us"
-        val waltUp = "$policyDir/walt/up_rate_limit_us"
-        val waltDown = "$policyDir/walt/down_rate_limit_us"
+        // Enforce EXTREME++ kernel custom governor 'extreme+' if supported
+        shellCommands.add("""
+            if grep -q "extreme+" "$policyDir/scaling_available_governors" 2>/dev/null; then
+                echo "extreme+" > "$policyDir/scaling_governor" 2>/dev/null
+            fi
+        """.trimIndent())
 
-        writeNodeDualTier(schedutilUp, profile.govUpRateUs.toString(), shellCommands)
-        writeNodeDualTier(schedutilDown, profile.govDownRateUs.toString(), shellCommands)
-        writeNodeDualTier(waltUp, profile.govUpRateUs.toString(), shellCommands)
-        writeNodeDualTier(waltDown, profile.govDownRateUs.toString(), shellCommands)
+        // Governor Rate Limits for extreme+ and fallback governors (schedutil, walt)
+        for (gov in listOf("extreme+", "schedutil", "walt")) {
+            writeNodeDualTier("$policyDir/$gov/up_rate_limit_us", profile.govUpRateUs.toString(), shellCommands)
+            writeNodeDualTier("$policyDir/$gov/down_rate_limit_us", profile.govDownRateUs.toString(), shellCommands)
+        }
     }
 
     private fun applyGpuLimits(profile: ExtremeProfile, shellCommands: MutableList<String>) {
@@ -252,12 +254,15 @@ class ProfileManager @Inject constructor(
             echo ${profile.primeMinFreqKHz} > /sys/devices/system/cpu/cpufreq/policy7/scaling_min_freq 2>/dev/null
             echo ${profile.primeMaxFreqKHz} > /sys/devices/system/cpu/cpufreq/policy7/scaling_max_freq 2>/dev/null
             
-            # Governor Rate limits
+            # Governor Rate limits & custom extreme+ governor
             for p in /sys/devices/system/cpu/cpufreq/policy*; do
-                [ -d "${'$'}p/schedutil" ] && echo ${profile.govUpRateUs} > "${'$'}p/schedutil/up_rate_limit_us" 2>/dev/null
-                [ -d "${'$'}p/schedutil" ] && echo ${profile.govDownRateUs} > "${'$'}p/schedutil/down_rate_limit_us" 2>/dev/null
-                [ -d "${'$'}p/walt" ] && echo ${profile.govUpRateUs} > "${'$'}p/walt/up_rate_limit_us" 2>/dev/null
-                [ -d "${'$'}p/walt" ] && echo ${profile.govDownRateUs} > "${'$'}p/walt/down_rate_limit_us" 2>/dev/null
+                if [ -f "${'$'}p/scaling_available_governors" ] && grep -q "extreme+" "${'$'}p/scaling_available_governors"; then
+                    echo "extreme+" > "${'$'}p/scaling_governor" 2>/dev/null
+                fi
+                for gov in extreme+ schedutil walt; do
+                    [ -d "${'$'}p/${'$'}gov" ] && echo ${profile.govUpRateUs} > "${'$'}p/${'$'}gov/up_rate_limit_us" 2>/dev/null
+                    [ -d "${'$'}p/${'$'}gov" ] && echo ${profile.govDownRateUs} > "${'$'}p/${'$'}gov/down_rate_limit_us" 2>/dev/null
+                done
             done
             
             # GPU

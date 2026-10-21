@@ -57,11 +57,11 @@ configure <com.android.build.api.dsl.ApplicationExtension> {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "id.nkz.nokontzzzmanager"
+        applicationId = "com.extreme.plus.by_pandeyji"
         minSdk = 31
         targetSdk = 35
-        versionCode = 124
-        versionName = "2.1.0-beta1"
+        versionCode = 125
+        versionName = "2.1.0-beta2"
     }
     buildTypes {
         release {
