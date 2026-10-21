@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Release Tag (e.g. v2.1.0-beta2)'
+        description: 'Release Tag (e.g. v2.1.0-beta3)'
         required: false
-        default: 'v2.1.0-beta2'
+        default: 'v2.1.0-beta3'
       publish_release:
         description: 'Publish GitHub Release'
         required: true
@@ -179,9 +179,8 @@ jobs:
           ### ✨ Highlights:
           * **⚡ Extreme+ Native Governor**: Integrated support and prioritisation for custom `extreme+` CPU governor.
           * **⚡ Tri-Profile Engine**: Dynamic Profile Switcher (Battery Saver 2.42GHz, Balanced Cruise 2.84GHz, Apex Turbo 3.19GHz).
-          * **🔓 Universal Handshake**: Removed all artificial kernel whitelists. Auto-detects EXTREME++ hardware node.
+          * **🛡️ Dual-Tier Engine**: 100% rootless telemetry launch; root is requested strictly on-demand when tweaking parameters.
           * **🌙 Hardware DC Dimming**: E4 AMOLED native Munch DSI/DRM registers controller + QS Tile.
-          * **🛡️ Dual-Tier Engine**: Rootless direct kernel nodes (`chmod 666`) + Elevated Root Shell (`libsu`).
           * **📊 Live Telemetry**: Adreno 650 GPU, CPU per-core frequencies, L3 cache priority locks.
           
           ### 👑 Developer:
@@ -209,7 +208,21 @@ jobs:
           FILE_SIZE_MB=$(awk "BEGIN {printf \"%.2f\", $FILE_SIZE/1048576}")
           DOWNLOAD_URL="https://github.com/PandeyJI-9/extreme-kernel-manager/releases/download/${TAG}/${FINAL_NAME}"
           
-          CAPTION="🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]%0A%0A📱 <b>Device:</b> POCO F4 (munch / SM8250)%0A⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi%0A👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9%0A💬 <b>Support Group:</b> t.me/Extremeplus_Support%0A🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)%0A%0A🔥 <b>Features:</b>%0A• Dynamic Tri-Profile Engine%0A• Hardware DC Dimming QS Tile%0A• Kang-Proof Kernel Handshake%0A• Dual-Tier Rootless/Root Architecture"
+          read -r -d '' CAPTION << EOF || true
+🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]
+
+📱 <b>Device:</b> POCO F4 (munch / SM8250)
+⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi
+👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9
+💬 <b>Support Group:</b> t.me/Extremeplus_Support
+🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)
+
+🔥 <b>Features:</b>
+• Dynamic Tri-Profile Engine (extreme+ Governor)
+• Hardware DC Dimming QS Tile
+• Dual-Tier Rootless/Root Architecture
+• Universal Handshake & Hardware Magic
+EOF
           
           HTTP_CODE=""
           BODY=""
@@ -233,13 +246,30 @@ jobs:
           
           if [ "$HTTP_CODE" != "200" ]; then
             echo "Executing Telegram broadcast with Direct APK Download Link..."
-            MSG="🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]%0A%0A📱 <b>Device:</b> POCO F4 (munch / SM8250)%0A⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi%0A👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9%0A💬 <b>Support Group:</b> t.me/Extremeplus_Support%0A🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)%0A%0A🔥 <b>Features:</b>%0A• Dynamic Tri-Profile Engine%0A• Hardware DC Dimming QS Tile%0A• Kang-Proof Kernel Handshake%0A• Dual-Tier Rootless/Root Architecture%0A%0A📥 <b>Direct APK Download:</b>%0A<a href=\"${DOWNLOAD_URL}\">⚡ Click Here to Download ${FINAL_NAME}</a>"
+            read -r -d '' MSG << EOF || true
+🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]
+
+📱 <b>Device:</b> POCO F4 (munch / SM8250)
+⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi
+👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9
+💬 <b>Support Group:</b> t.me/Extremeplus_Support
+🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)
+
+🔥 <b>Features:</b>
+• Dynamic Tri-Profile Engine (extreme+ Governor)
+• Hardware DC Dimming QS Tile
+• Dual-Tier Rootless/Root Architecture
+• Universal Handshake & Hardware Magic
+
+📥 <b>Direct APK Download:</b>
+<a href="${DOWNLOAD_URL}">⚡ Click Here to Download ${FINAL_NAME}</a>
+EOF
             
             FALLBACK_RESP=$(curl -s -w "\n%{http_code}" -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-              -d chat_id="${TELEGRAM_CHAT_ID}" \
-              -d text="${MSG}" \
-              -d parse_mode="HTML" \
-              -d disable_web_page_preview="false")
+              --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
+              --data-urlencode "text=${MSG}" \
+              --data-urlencode "parse_mode=HTML" \
+              --data-urlencode "disable_web_page_preview=false")
               
             FB_CODE=$(echo "$FALLBACK_RESP" | tail -n 1)
             FB_BODY=$(echo "$FALLBACK_RESP" | head -n -1)

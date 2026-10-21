@@ -153,7 +153,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val systemInfoDeferred = async { systemRepo.getSystemInfo() }
             val kernelInfoDeferred = async { systemRepo.getKernelInfo() }
-            val rootStatusDeferred = async { rootRepo.isRooted() }
+            val rootStatusDeferred = async { rootRepo.isRootGrantedQuietly() }
             val cpuClustersDeferred = async { systemRepo.getCpuClusters() }
             val appVersionDeferred = async {
                 try {

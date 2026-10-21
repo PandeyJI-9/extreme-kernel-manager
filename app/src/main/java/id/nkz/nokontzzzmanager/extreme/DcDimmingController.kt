@@ -76,6 +76,8 @@ class DcDimmingController @Inject constructor(
         val file = File(path)
         if (file.exists()) return true
 
+        if (Shell.isAppGrantedRoot() != true) return false
+
         return try {
             val res = Shell.cmd("[ -e $path ] && echo 1 || echo 0").exec()
             res.isSuccess && res.out.firstOrNull() == "1"
@@ -139,6 +141,8 @@ class DcDimmingController @Inject constructor(
                 return file.readText().trim()
             } catch (_: Exception) {}
         }
+
+        if (Shell.isAppGrantedRoot() != true) return ""
 
         return try {
             val res = Shell.cmd("cat $path 2>/dev/null").exec()

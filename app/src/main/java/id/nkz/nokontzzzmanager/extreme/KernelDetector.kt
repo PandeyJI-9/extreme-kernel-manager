@@ -72,7 +72,7 @@ class KernelDetector @Inject constructor() {
             hardwareMagicMatched -> "EXTREME++ Hardware Engine (Cryptographically Verified)"
             isExtreme && isMunch -> "EXTREME++ Hardware Engine Active [POCO F4]"
             isExtreme -> "EXTREME++ Hardware Engine Active [Generic]"
-            else -> "UNAUTHORIZED KERNEL [Access Restricted]"
+            else -> "Standard Kernel Mode [Compatibility Active]"
         }
 
         val info = ExtremeKernelInfo(
@@ -96,6 +96,7 @@ class KernelDetector @Inject constructor() {
     /**
      * Checks unforgeable kernel token at /sys/kernel/extreme_attributes/magic.
      * Can only be exposed by the patched Linux kernel binary.
+     * Operates rootlessly first, and only uses shell if root was already granted.
      */
     private fun verifyHardwareMagic(): Boolean {
         return try {
@@ -103,9 +104,11 @@ class KernelDetector @Inject constructor() {
             if (file.exists() && file.canRead()) {
                 val token = file.readText().trim()
                 token == EXPECTED_MAGIC_TOKEN
-            } else {
+            } else if (Shell.isAppGrantedRoot() == true) {
                 val res = Shell.cmd("cat $SYSFS_EXTREME_MAGIC 2>/dev/null").exec()
                 res.isSuccess && res.out.any { it.trim() == EXPECTED_MAGIC_TOKEN }
+            } else {
+                false
             }
         } catch (_: Exception) {
             false
@@ -118,33 +121,6 @@ class KernelDetector @Inject constructor() {
             if (file.exists() && file.canRead()) {
                 file.readText().trim()
             } else {
-                readProcVersionViaShell()
-            }
-        } catch (_: Exception) {
-            readProcVersionViaShell()
-        }
-    }
-
-    private fun readProcVersionViaShell(): String {
-        return try {
-            val result = Shell.cmd("cat $PROC_VERSION_PATH").exec()
-            if (result.isSuccess && result.out.isNotEmpty()) {
-                result.out.joinToString(" ").trim()
-            } else {
-                ""
-            }
-        } catch (e: Exception) {
-            Log.w(TAG, "Failed to read /proc/version: ${e.message}")
-            ""
-        }
-    }
-
-    private fun readUnameRelease(): String {
-        return try {
-            val result = Shell.cmd("uname -r").exec()
-            if (result.isSuccess && result.out.isNotEmpty()) {
-                result.out.firstOrNull()?.trim() ?: ""
-            } else {
                 System.getProperty("os.version") ?: ""
             }
         } catch (_: Exception) {
@@ -152,16 +128,13 @@ class KernelDetector @Inject constructor() {
         }
     }
 
+    private fun readUnameRelease(): String {
+        return System.getProperty("os.version") ?: ""
+    }
+
     private fun checkExtremeNode(): Boolean {
         val node0 = File(EXTREME_NODE_POLICY0)
-        if (node0.exists()) return true
-
-        return try {
-            val result = Shell.cmd("[ -e $EXTREME_NODE_POLICY0 ] && echo 1 || echo 0").exec()
-            result.isSuccess && result.out.firstOrNull() == "1"
-        } catch (_: Exception) {
-            false
-        }
+        return node0.exists()
     }
 
     private fun checkDirectSysfsWritable(): Boolean {

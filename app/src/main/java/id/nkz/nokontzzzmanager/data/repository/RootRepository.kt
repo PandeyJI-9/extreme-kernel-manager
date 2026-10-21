@@ -18,14 +18,28 @@ class RootRepository @Inject constructor() {
         Shell.enableVerboseLogging = false
     }
 
-    fun isRooted(): Boolean = Shell.getShell().isRoot
+    fun isRootGrantedQuietly(): Boolean = Shell.isAppGrantedRoot() == true
+
+    fun isRooted(explicitPrompt: Boolean = false): Boolean {
+        if (!explicitPrompt && Shell.isAppGrantedRoot() != true) {
+            return false
+        }
+        return try {
+            Shell.getShell().isRoot
+        } catch (_: Exception) {
+            false
+        }
+    }
 
     /**
-     * Checks root status with cache invalidation to avoid excessive system calls
+     * Checks root status with cache invalidation.
+     * When explicitPrompt = false, does not spawn an SU dialog if root was not already granted.
      */
-    suspend fun checkRootFresh(): Boolean {
+    suspend fun checkRootFresh(explicitPrompt: Boolean = false): Boolean {
+        if (!explicitPrompt && Shell.isAppGrantedRoot() != true) {
+            return false
+        }
         val currentTime = System.currentTimeMillis()
-        // Cache result for 500ms to avoid excessive system calls
         if (currentTime - lastRootCheckTime < 500) {
             return cachedRootStatus
         }

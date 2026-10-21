@@ -48,9 +48,9 @@ class PermissionManagerViewModel @Inject constructor(
         checkRoot()
     }
 
-    fun checkRoot() {
+    fun checkRoot(explicitPrompt: Boolean = false) {
         viewModelScope.launch {
-            _isRooted.value = rootRepository.checkRootFresh()
+            _isRooted.value = rootRepository.checkRootFresh(explicitPrompt)
         }
     }
 }

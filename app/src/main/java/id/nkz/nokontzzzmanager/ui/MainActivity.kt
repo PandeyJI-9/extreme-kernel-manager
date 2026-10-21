@@ -201,17 +201,10 @@ class MainActivity : ComponentActivity() {
             val isRootAvailable by mainViewModel.isRootAvailable.collectAsStateWithLifecycle()
             val isKernelSupported by mainViewModel.isKernelSupported.collectAsStateWithLifecycle()
 
-            // Update dialog visibility based on ViewModel state
-            LaunchedEffect(isRootAvailable) {
-                showRootRequiredDialog = isRootAvailable == false
-            }
-
-            LaunchedEffect(isKernelSupported) {
-                if (isRootAvailable == true) {
-                    showKernelVerificationDialog = isKernelSupported == false
-                    if (isKernelSupported == true) {
-                        checkAndHandlePermissions()
-                    }
+            // Rootless non-blocking startup: check permissions only if quiet root is already granted
+            LaunchedEffect(isRootAvailable, isKernelSupported) {
+                if (isRootAvailable == true && isKernelSupported == true) {
+                    checkAndHandlePermissions()
                 }
             }
 
@@ -759,7 +752,7 @@ class MainActivity : ComponentActivity() {
 
     private fun checkAndHandlePermissions() {
         lifecycleScope.launch {
-            if (rootRepo.checkRootFresh() && !batteryOptChecker.hasRequiredPermissions()) {
+            if (rootRepo.isRootGrantedQuietly() && !batteryOptChecker.hasRequiredPermissions()) {
                 showBatteryOptDialog = true
             }
         }
@@ -784,18 +777,10 @@ class MainActivity : ComponentActivity() {
         // Refresh battery monitor notification if enabled
         mainViewModel.refreshBatteryMonitor(this)
         
-        // Check root status again in case user granted root access
         lifecycleScope.launch {
-            if (!rootRepo.checkRootFresh()) {
-                showRootRequiredDialog = true
-            } else {
+            val hasRoot = rootRepo.isRootGrantedQuietly()
+            if (hasRoot) {
                 mainViewModel.checkRootAndKernel()
-                showRootRequiredDialog = false
-                
-                if (showKernelVerificationDialog) {
-                    return@launch
-                }
-                
                 if (!batteryOptChecker.hasRequiredPermissions()) {
                     permissionDenialCount++
                     showBatteryOptDialog = true
@@ -803,6 +788,8 @@ class MainActivity : ComponentActivity() {
                     permissionDenialCount = 0
                     showBatteryOptDialog = false
                 }
+            } else {
+                showBatteryOptDialog = false
             }
         }
     }
