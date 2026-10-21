@@ -169,34 +169,44 @@ jobs:
 
       - name: 📢 Create GitHub Release
         if: steps.sign_apk.conclusion == 'success' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || github.event.inputs.publish_release == 'true')
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.release_tag.outputs.TAG }}
-          name: "EKM ${{ steps.release_tag.outputs.TAG }} for POCO F4 (EXTREME++) [Beta]"
-          prerelease: true
-          draft: false
-          files: ${{ steps.sign_apk.outputs.FINAL_APK_PATH }}
-          body: |
-            ## 🚀 Extreme+ Kernel Manager (EKM) - Beta Testing Release
-            
-            Engineered exclusively for **POCO F4 (`munch` / SM8250)** running **EXTREME++ Kernel by PandeyJI-9**.
-            
-            ### ✨ Highlights:
-            * **⚡ Tri-Profile Engine**: Dynamic Profile Switcher (Battery Saver 2.42GHz, Balanced Cruise 2.84GHz, Apex Turbo 3.19GHz).
-            * **🔓 Universal Handshake**: Removed all artificial kernel whitelists. Auto-detects EXTREME++ hardware node.
-            * **🌙 Hardware DC Dimming**: E4 AMOLED native Munch DSI/DRM registers controller + QS Tile.
-            * **🛡️ Dual-Tier Engine**: Rootless direct kernel nodes (`chmod 666`) + Elevated Root Shell (`libsu`).
-            * **📊 Live Telemetry**: Adreno 650 GPU, CPU per-core frequencies, L3 cache priority locks.
-            
-            ### 👑 Developer:
-            * **PandeyJi** ([@PandeyJi_8](https://t.me/PandeyJi_8) • [@PandeyJI-9](https://github.com/PandeyJI-9))
-            * 💬 Support & Bug Reports: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.release_tag.outputs.TAG }}"
+          APK_PATH="${{ steps.sign_apk.outputs.FINAL_APK_PATH }}"
+          
+          # Delete existing release for this tag if it already exists to avoid API collisions
+          gh release delete "$TAG" -y 2>/dev/null || true
+          
+          cat << 'EOF' > release_notes.md
+          ## 🚀 Extreme+ Kernel Manager (EKM) - Beta Testing Release
+          
+          Engineered exclusively for **POCO F4 (`munch` / SM8250)** running **EXTREME++ Kernel by PandeyJI-9**.
+          
+          ### ✨ Highlights:
+          * **⚡ Tri-Profile Engine**: Dynamic Profile Switcher (Battery Saver 2.42GHz, Balanced Cruise 2.84GHz, Apex Turbo 3.19GHz).
+          * **🔓 Universal Handshake**: Removed all artificial kernel whitelists. Auto-detects EXTREME++ hardware node.
+          * **🌙 Hardware DC Dimming**: E4 AMOLED native Munch DSI/DRM registers controller + QS Tile.
+          * **🛡️ Dual-Tier Engine**: Rootless direct kernel nodes (`chmod 666`) + Elevated Root Shell (`libsu`).
+          * **📊 Live Telemetry**: Adreno 650 GPU, CPU per-core frequencies, L3 cache priority locks.
+          
+          ### 👑 Developer:
+          * **PandeyJi** ([@PandeyJi_8](https://t.me/PandeyJi_8) • [@PandeyJI-9](https://github.com/PandeyJI-9))
+          * 💬 Support & Bug Reports: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)
 
-            ### 📲 Downloads:
-            Download the signed APK below and install directly on your device.
+          ### 📲 Downloads:
+          Download the signed APK below and install directly on your device.
+          EOF
+          
+          gh release create "$TAG" "$APK_PATH" \
+            --title "EKM $TAG for POCO F4 (EXTREME++) [Beta]" \
+            --notes-file release_notes.md \
+            --prerelease
+          
+          echo "GitHub Release published successfully!"
 
       - name: ✈️ Send Telegram Broadcast
-        if: steps.sign_apk.conclusion == 'success' && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
+        if: always() && steps.sign_apk.conclusion == 'success' && env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != ''
         run: |
           APK_PATH="${{ steps.sign_apk.outputs.FINAL_APK_PATH }}"
           FINAL_NAME="${{ steps.sign_apk.outputs.FINAL_APK_NAME }}"
