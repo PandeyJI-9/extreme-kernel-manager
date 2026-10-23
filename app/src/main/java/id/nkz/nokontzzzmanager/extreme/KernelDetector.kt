@@ -14,6 +14,7 @@ import javax.inject.Singleton
 
 data class ExtremeKernelInfo(
     val isExtremeKernel: Boolean = false,
+    val isBmwEdition: Boolean = false,
     val isHardwareAuthenticated: Boolean = false,
     val kernelRelease: String = "",
     val fullVersionString: String = "",
@@ -59,24 +60,30 @@ class KernelDetector @Inject constructor() {
         val isMunch = isPocoF4()
         val hasDirectWrite = checkDirectSysfsWritable()
 
-        val signatureMatched = EXTREME_SIGNATURES.any { sig ->
+        val isBmwMatch = procVersion.contains("Extreme++", ignoreCase = true) ||
+                unameRelease.contains("Extreme++", ignoreCase = true) ||
+                procVersion.contains("BMW-Edition", ignoreCase = true) ||
+                unameRelease.contains("BMW-Edition", ignoreCase = true) ||
+                procVersion.contains("BMW", ignoreCase = true) ||
+                unameRelease.contains("BMW", ignoreCase = true)
+
+        val signatureMatched = isBmwMatch || EXTREME_SIGNATURES.any { sig ->
             procVersion.contains(sig, ignoreCase = true) || unameRelease.contains(sig, ignoreCase = true)
         }
 
-        // Even if an imposter or kang dev modifies the name/uname,
-        // hardwareMagicMatched will authenticate the kernel!
-        // If it's a completely foreign/unpatched kernel, isExtreme becomes false!
-        val isExtreme = hardwareMagicMatched || signatureMatched || hasExtremeNode
+        // Check if device runs the EXTREME++ BMW Edition kernel
+        val isExtreme = isBmwMatch || hardwareMagicMatched || signatureMatched || hasExtremeNode
+        val isBmwEdition = isBmwMatch || (isExtreme && isMunch) || hardwareMagicMatched
 
         val badge = when {
-            hardwareMagicMatched -> "EXTREME++ Hardware Engine (Cryptographically Verified)"
-            isExtreme && isMunch -> "EXTREME++ Hardware Engine Active [POCO F4]"
+            isBmwMatch || isBmwEdition -> "Supported: EXTREME++ Gaming (BMW Edition) 🏎️💨"
             isExtreme -> "EXTREME++ Hardware Engine Active [Generic]"
             else -> "Standard Kernel Mode [Compatibility Active]"
         }
 
         val info = ExtremeKernelInfo(
             isExtremeKernel = isExtreme,
+            isBmwEdition = isBmwEdition,
             isHardwareAuthenticated = hardwareMagicMatched,
             kernelRelease = unameRelease.ifBlank { System.getProperty("os.version") ?: "Unknown" },
             fullVersionString = procVersion,

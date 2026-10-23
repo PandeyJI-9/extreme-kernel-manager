@@ -14,15 +14,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.FileWriter
 import javax.inject.Inject
 import javax.inject.Singleton
 
 private val Context.extremeProfileStore: DataStore<Preferences> by preferencesDataStore(name = "extreme_profiles")
 
 enum class ExtremeProfile(
+    val code: Int,
     val id: String,
     val title: String,
+    val subtitle: String,
     val description: String,
     val primeMaxFreqKHz: Int,
     val goldMaxFreqKHz: Int,
@@ -30,52 +31,86 @@ enum class ExtremeProfile(
     val primeMinFreqKHz: Int,
     val goldMinFreqKHz: Int,
     val littleMinFreqKHz: Int,
-    val gpuMaxPwrLevel: Int, // 0 = 670MHz, 1 = 587MHz, 2 = 490MHz
+    val gpuClockHz: Long,
+    val gpuMaxPwrLevel: Int, // 0 = 670MHz, 1 = 587MHz, 2 = 510MHz
+    val schedtuneBoost: Int,
+    val schedUpmigrate: String,
     val govUpRateUs: Int,
     val govDownRateUs: Int
 ) {
-    BATTERY_SAVER(
-        id = "battery_saver",
-        title = "Battery Saver",
-        description = "Clamped to 2.42 GHz Peak | GPU Capped 490MHz | Smooth Decay",
-        primeMaxFreqKHz = 2419200,
-        goldMaxFreqKHz = 2246400,
-        littleMaxFreqKHz = 1804800,
-        primeMinFreqKHz = 844800,
-        goldMinFreqKHz = 710400,
-        littleMinFreqKHz = 576000,
-        gpuMaxPwrLevel = 2,
-        govUpRateUs = 1000,
-        govDownRateUs = 10000
-    ),
-    BALANCED_CRUISE(
-        id = "balanced_cruise",
-        title = "Balanced Cruise",
-        description = "2.84 GHz Sweet Spot | 120 FPS Pacing | GPU 587MHz",
-        primeMaxFreqKHz = 2841600,
-        goldMaxFreqKHz = 2419200,
-        littleMaxFreqKHz = 1804800,
-        primeMinFreqKHz = 844800,
-        goldMinFreqKHz = 710400,
-        littleMinFreqKHz = 576000,
-        gpuMaxPwrLevel = 1,
-        govUpRateUs = 500,
-        govDownRateUs = 20000
-    ),
-    APEX_TURBO(
-        id = "apex_turbo",
-        title = "Apex Turbo Gaming",
-        description = "3.19 GHz Unlocked Monster | GPU 670MHz Uncapped | L3 Cache Priority",
+    GAMING(
+        code = 0,
+        id = "gaming",
+        title = "Gaming (BMW Monster Peak)",
+        subtitle = "3.19 GHz Prime Core • 670MHz GPU • 120 FPS Unlocked",
+        description = "BMW Monster Peak: 3.19 GHz Prime Core, 670MHz GPU, 120 FPS Unlocked (Default Boot State)",
         primeMaxFreqKHz = 3187200,
         goldMaxFreqKHz = 2419200,
         littleMaxFreqKHz = 1804800,
         primeMinFreqKHz = 844800,
         goldMinFreqKHz = 710400,
         littleMinFreqKHz = 576000,
+        gpuClockHz = 670000000L,
         gpuMaxPwrLevel = 0,
+        schedtuneBoost = 25,
+        schedUpmigrate = "60 75",
         govUpRateUs = 250,
         govDownRateUs = 40000
-    )
+    ),
+    BALANCED(
+        code = 1,
+        id = "balanced",
+        title = "Balanced (Sustained)",
+        subtitle = "2.84 GHz Prime Core • 587MHz GPU • 90 FPS Zero Throttling",
+        description = "2.84 GHz Prime Core, 587MHz GPU, 90 FPS Sustained Zero Throttling",
+        primeMaxFreqKHz = 2841600,
+        goldMaxFreqKHz = 2419200,
+        littleMaxFreqKHz = 1804800,
+        primeMinFreqKHz = 844800,
+        goldMinFreqKHz = 710400,
+        littleMinFreqKHz = 576000,
+        gpuClockHz = 587000000L,
+        gpuMaxPwrLevel = 1,
+        schedtuneBoost = 15,
+        schedUpmigrate = "65 80",
+        govUpRateUs = 500,
+        govDownRateUs = 20000
+    ),
+    BATTERY(
+        code = 2,
+        id = "battery",
+        title = "Battery Saver",
+        subtitle = "2.42 GHz Prime Core • 510MHz GPU • Maximum Battery Backup",
+        description = "2.42 GHz Prime Core, 510MHz GPU, Maximum Battery Backup",
+        primeMaxFreqKHz = 2419200,
+        goldMaxFreqKHz = 2246400,
+        littleMaxFreqKHz = 1804800,
+        primeMinFreqKHz = 844800,
+        goldMinFreqKHz = 710400,
+        littleMinFreqKHz = 576000,
+        gpuClockHz = 510000000L,
+        gpuMaxPwrLevel = 2,
+        schedtuneBoost = 0,
+        schedUpmigrate = "75 90",
+        govUpRateUs = 1000,
+        govDownRateUs = 10000
+    );
+
+    companion object {
+        fun fromCode(code: Int): ExtremeProfile = when (code) {
+            0 -> GAMING
+            1 -> BALANCED
+            2 -> BATTERY
+            else -> GAMING
+        }
+
+        fun fromId(id: String?): ExtremeProfile = when (id?.lowercase()) {
+            "gaming", "apex_turbo", "0" -> GAMING
+            "balanced", "balanced_cruise", "1" -> BALANCED
+            "battery", "battery_saver", "2" -> BATTERY
+            else -> GAMING
+        }
+    }
 }
 
 @Singleton
@@ -87,6 +122,11 @@ class ProfileManager @Inject constructor(
 
     companion object {
         private val KEY_ACTIVE_PROFILE = stringPreferencesKey("active_extreme_profile")
+
+        const val SYSFS_EXTREME_PROFILE = "/sys/kernel/extreme_profile"
+        const val GPU_MAX_CLOCK = "/sys/class/kgsl/kgsl-3d0/gpu_max_clock"
+        const val SCHEDTUNE_BOOST = "/dev/stune/top-app/schedtune.boost"
+        const val SCHED_UPMIGRATE = "/proc/sys/kernel/sched_upmigrate"
 
         const val CONF_DIR = "/data/adb/extreme"
         const val CONF_FILE = "$CONF_DIR/profile.conf"
@@ -106,33 +146,85 @@ class ProfileManager @Inject constructor(
     }
 
     val activeProfileFlow: Flow<ExtremeProfile> = context.extremeProfileStore.data.map { preferences ->
-        val profileId = preferences[KEY_ACTIVE_PROFILE] ?: ExtremeProfile.BALANCED_CRUISE.id
-        ExtremeProfile.values().find { it.id == profileId } ?: ExtremeProfile.BALANCED_CRUISE
+        val profileId = preferences[KEY_ACTIVE_PROFILE] ?: ExtremeProfile.GAMING.id
+        ExtremeProfile.fromId(profileId)
+    }
+
+    /**
+     * Synchronizes active profile state with the kernel dynamic node /sys/kernel/extreme_profile.
+     * By default on boot / first run, highlights Gaming Profile (0).
+     */
+    suspend fun syncWithKernel(): ExtremeProfile = withContext(Dispatchers.IO) {
+        val kernelCode = readKernelProfileNode()
+        val profile = if (kernelCode != null) {
+            ExtremeProfile.fromCode(kernelCode)
+        } else {
+            // Default boot state: Gaming (0)
+            ExtremeProfile.GAMING
+        }
+
+        context.extremeProfileStore.edit { prefs ->
+            prefs[KEY_ACTIVE_PROFILE] = profile.id
+        }
+        Log.i(TAG, "Synchronized active profile: ${profile.title} (code=${profile.code})")
+        profile
+    }
+
+    /**
+     * Reads active mode from /sys/kernel/extreme_profile.
+     * Non-intrusive: rootlessly first, and uses su only if root is already granted.
+     */
+    fun readKernelProfileNode(): Int? {
+        val file = File(SYSFS_EXTREME_PROFILE)
+        if (file.exists() && file.canRead()) {
+            try {
+                return file.readText().trim().toIntOrNull()
+            } catch (_: Exception) {}
+        }
+
+        if (Shell.isAppGrantedRoot() == true) {
+            try {
+                val res = Shell.cmd("cat $SYSFS_EXTREME_PROFILE 2>/dev/null").exec()
+                if (res.isSuccess && res.out.isNotEmpty()) {
+                    return res.out.first().trim().toIntOrNull()
+                }
+            } catch (_: Exception) {}
+        }
+        return null
     }
 
     suspend fun applyProfile(profile: ExtremeProfile): Boolean = withContext(Dispatchers.IO) {
-        Log.i(TAG, "Applying Extreme Profile: ${profile.title}")
+        Log.i(TAG, "Applying Extreme Profile (BMW Edition): ${profile.title} [code=${profile.code}]")
 
         val commands = mutableListOf<String>()
 
-        // 1. Little Cluster (Policy 0: CPU 0-3)
+        // 1. Core BMW Edition Profile Engine Switch Command:
+        // su -c "echo <code > /sys/kernel/extreme_profile && echo <gpu_clock> > /sys/class/kgsl/kgsl-3d0/gpu_max_clock && echo <schedtune> > /dev/stune/top-app/schedtune.boost && echo '<upmigrate>' > /proc/sys/kernel/sched_upmigrate"
+        val bmwCommand = "echo ${profile.code} > $SYSFS_EXTREME_PROFILE && " +
+                "echo ${profile.gpuClockHz} > $GPU_MAX_CLOCK && " +
+                "echo ${profile.schedtuneBoost} > $SCHEDTUNE_BOOST && " +
+                "echo '${profile.schedUpmigrate}' > $SCHED_UPMIGRATE"
+
+        commands.add(bmwCommand)
+
+        // 2. Little Cluster (Policy 0: CPU 0-3)
         applyClusterLimits(POLICY0_DIR, profile.littleMinFreqKHz, profile.littleMaxFreqKHz, profile, commands)
 
-        // 2. Gold Cluster (Policy 4: CPU 4-6)
+        // 3. Gold Cluster (Policy 4: CPU 4-6)
         applyClusterLimits(POLICY4_DIR, profile.goldMinFreqKHz, profile.goldMaxFreqKHz, profile, commands)
 
-        // 3. Prime Cluster (Policy 7: CPU 7)
+        // 4. Prime Cluster (Policy 7: CPU 7)
         applyClusterLimits(POLICY7_DIR, profile.primeMinFreqKHz, profile.primeMaxFreqKHz, profile, commands)
 
-        // 4. GPU Tuning
+        // 5. GPU Tuning
         applyGpuLimits(profile, commands)
 
-        // 5. Memory Bus & L3 Cache Locks for Turbo
-        if (profile == ExtremeProfile.APEX_TURBO) {
+        // 6. Memory Bus & L3 Cache Locks for Gaming Peak
+        if (profile == ExtremeProfile.GAMING) {
             writeNodeDualTier(LLCC_BW_MIN_FREQ, "10000000", commands)
         }
 
-        // Execute any commands that couldn't be done via Tier 1 direct writes
+        // Execute via Root Shell (libsu)
         if (commands.isNotEmpty()) {
             val res = Shell.cmd(*commands.toTypedArray()).exec()
             if (!res.isSuccess) {
@@ -140,12 +232,12 @@ class ProfileManager @Inject constructor(
             }
         }
 
-        // 6. Persist to DataStore
+        // 7. Persist to DataStore
         context.extremeProfileStore.edit { prefs ->
             prefs[KEY_ACTIVE_PROFILE] = profile.id
         }
 
-        // 7. Write to Root Boot Hook & Persistence files
+        // 8. Write to Root Boot Hook & Persistence files
         persistProfileConfig(profile)
 
         true
@@ -205,12 +297,10 @@ class ProfileManager @Inject constructor(
                 file.writeText(value)
                 true
             } catch (e: Exception) {
-                // If direct write threw security exception, enqueue for Tier 2 Shell
                 shellQueue.add("echo '$value' > '$path' 2>/dev/null || true")
                 false
             }
         } else {
-            // Node exists or may exist under root; enqueue for Tier 2 Shell
             shellQueue.add("echo '$value' > '$path' 2>/dev/null || true")
             return false
         }
@@ -222,8 +312,12 @@ class ProfileManager @Inject constructor(
      */
     private fun persistProfileConfig(profile: ExtremeProfile) {
         val confContent = """
-            # Extreme++ Kernel Profile Configuration
+            # Extreme++ Kernel Profile Configuration (BMW Edition)
+            PROFILE_CODE=${profile.code}
             PROFILE_ID=${profile.id}
+            GPU_CLOCK_HZ=${profile.gpuClockHz}
+            SCHEDTUNE_BOOST=${profile.schedtuneBoost}
+            SCHED_UPMIGRATE="${profile.schedUpmigrate}"
             PRIME_MAX_KHZ=${profile.primeMaxFreqKHz}
             GOLD_MAX_KHZ=${profile.goldMaxFreqKHz}
             LITTLE_MAX_KHZ=${profile.littleMaxFreqKHz}
@@ -237,10 +331,16 @@ class ProfileManager @Inject constructor(
 
         val bootScriptContent = """
             #!/system/bin/sh
-            # EXTREME++ Kernel Profile Boot Enforcer
+            # EXTREME++ Gaming (BMW Edition) Profile Boot Enforcer
             # Executed by KernelSU / Magisk / APatch service.d
             
             sleep 5
+            
+            # BMW Edition Dynamic Node
+            echo ${profile.code} > /sys/kernel/extreme_profile 2>/dev/null
+            echo ${profile.gpuClockHz} > /sys/class/kgsl/kgsl-3d0/gpu_max_clock 2>/dev/null
+            echo ${profile.schedtuneBoost} > /dev/stune/top-app/schedtune.boost 2>/dev/null
+            echo '${profile.schedUpmigrate}' > /proc/sys/kernel/sched_upmigrate 2>/dev/null
             
             # Policy 0 (Little 0-3)
             echo ${profile.littleMinFreqKHz} > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq 2>/dev/null

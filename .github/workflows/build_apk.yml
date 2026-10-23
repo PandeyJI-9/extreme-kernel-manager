@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Release Tag (e.g. v2.1.0-beta3)'
+        description: 'Release Tag (e.g. v2.1.0-beta4)'
         required: false
-        default: 'v2.1.0-beta3'
+        default: 'v2.1.0-beta4'
       publish_release:
         description: 'Publish GitHub Release'
         required: true
@@ -172,16 +172,19 @@ jobs:
           gh release delete "$TAG" -y 2>/dev/null || true
           
           cat << 'EOF' > release_notes.md
-          ## 🚀 Extreme+ Kernel Manager (EKM) - Beta Testing Release
+          ## 🏎️💨 Extreme+ Kernel Manager (EKM) - BMW Edition Release
           
-          Engineered exclusively for **POCO F4 (`munch` / SM8250)** running **EXTREME++ Kernel by PandeyJI-9**.
+          Engineered exclusively for **POCO F4 (`munch` / SM8250)** running **EXTREME++ Gaming (BMW Edition)** by PandeyJI-9.
           
           ### ✨ Highlights:
-          * **⚡ Extreme+ Native Governor**: Integrated support and prioritisation for custom `extreme+` CPU governor.
-          * **⚡ Tri-Profile Engine**: Dynamic Profile Switcher (Battery Saver 2.42GHz, Balanced Cruise 2.84GHz, Apex Turbo 3.19GHz).
-          * **🛡️ Dual-Tier Engine**: 100% rootless telemetry launch; root is requested strictly on-demand when tweaking parameters.
-          * **🌙 Hardware DC Dimming**: E4 AMOLED native Munch DSI/DRM registers controller + QS Tile.
-          * **📊 Live Telemetry**: Adreno 650 GPU, CPU per-core frequencies, L3 cache priority locks.
+          * **🏎️ BMW Edition Dynamic Profile Engine**: Live kernel profile switcher via `/sys/kernel/extreme_profile`.
+            * `0` -> **🏎️ Gaming (BMW Monster Peak)**: 3.19 GHz Prime Core, 670MHz GPU, Schedtune +25, 120 FPS Unlocked *(Default Boot State)*.
+            * `1` -> **⚖️ Balanced (Sustained)**: 2.84 GHz Prime Core, 587MHz GPU, Schedtune +15, 90 FPS Zero Throttling.
+            * `2` -> **🔋 Battery Saver**: 2.42 GHz Prime Core, 510MHz GPU, Maximum Battery Backup.
+          * **🔍 Smart Kernel Detection**: Auto-detects `EXTREME++ Gaming (BMW Edition)` with verified handshake.
+          * **🛡️ Dual-Tier Engine**: 100% rootless telemetry startup; elevated root privileges requested strictly on-demand.
+          * **🌙 Hardware DC Dimming**: Munch native E4 AMOLED DSI/DRM hardware nodes controller + QS Tile.
+          * **⚡ Native extreme+ Governor**: Prioritised custom in-kernel governor with dynamic rate limits.
           
           ### 👑 Developer:
           * **PandeyJi** ([@PandeyJi_8](https://t.me/PandeyJi_8) • [@PandeyJI-9](https://github.com/PandeyJI-9))
@@ -192,7 +195,7 @@ jobs:
           EOF
           
           gh release create "$TAG" "$APK_PATH" \
-            --title "EKM $TAG for POCO F4 (EXTREME++) [Beta]" \
+            --title "EKM $TAG - BMW Edition for POCO F4 (EXTREME++) [Beta]" \
             --notes-file release_notes.md \
             --prerelease
           
@@ -209,19 +212,20 @@ jobs:
           DOWNLOAD_URL="https://github.com/PandeyJI-9/extreme-kernel-manager/releases/download/${TAG}/${FINAL_NAME}"
           
           CAPTION=$(printf '%s\n' \
-            "🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]" \
+            "🏎️💨 <b>Extreme+ Kernel Manager (EKM)</b> [BMW Edition]" \
             "" \
             "📱 <b>Device:</b> POCO F4 (munch / SM8250)" \
-            "⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi" \
+            "⚡ <b>Target Kernel:</b> EXTREME++ Gaming (BMW Edition)" \
             "👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9" \
             "💬 <b>Support Group:</b> t.me/Extremeplus_Support" \
             "🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)" \
             "" \
-            "🔥 <b>Features:</b>" \
-            "• Dynamic Tri-Profile Engine (extreme+ Governor)" \
-            "• Hardware DC Dimming QS Tile" \
-            "• Dual-Tier Rootless/Root Architecture" \
-            "• Universal Handshake & Hardware Magic")
+            "🔥 <b>BMW Edition Features:</b>" \
+            "• Dynamic Profile Engine (/sys/kernel/extreme_profile)" \
+            "• 🏎️ Gaming: 3.19 GHz Prime, 670MHz GPU, 120 FPS Unlocked" \
+            "• ⚖️ Balanced: 2.84 GHz Prime, 587MHz GPU, 90 FPS Sustained" \
+            "• 🔋 Battery: 2.42 GHz Peak, 510MHz GPU, Maximum SOT" \
+            "• Hardware DC Dimming QS Tile & Native extreme+ Governor")
           
           HTTP_CODE=""
           BODY=""
@@ -246,19 +250,20 @@ jobs:
           if [ "$HTTP_CODE" != "200" ]; then
             echo "Executing Telegram broadcast with Direct APK Download Link..."
             MSG=$(printf '%s\n' \
-              "🚀 <b>Extreme+ Kernel Manager (EKM)</b> [Beta Testing]" \
+              "🏎️💨 <b>Extreme+ Kernel Manager (EKM)</b> [BMW Edition]" \
               "" \
               "📱 <b>Device:</b> POCO F4 (munch / SM8250)" \
-              "⚡ <b>Target Kernel:</b> EXTREME++ by PandeyJi" \
+              "⚡ <b>Target Kernel:</b> EXTREME++ Gaming (BMW Edition)" \
               "👑 <b>Dev:</b> @PandeyJi_8 | github.com/PandeyJI-9" \
               "💬 <b>Support Group:</b> t.me/Extremeplus_Support" \
               "🏷️ <b>Release:</b> ${TAG} (${FILE_SIZE_MB} MB)" \
               "" \
-              "🔥 <b>Features:</b>" \
-              "• Dynamic Tri-Profile Engine (extreme+ Governor)" \
-              "• Hardware DC Dimming QS Tile" \
-              "• Dual-Tier Rootless/Root Architecture" \
-              "• Universal Handshake & Hardware Magic" \
+              "🔥 <b>BMW Edition Features:</b>" \
+              "• Dynamic Profile Engine (/sys/kernel/extreme_profile)" \
+              "• 🏎️ Gaming: 3.19 GHz Prime, 670MHz GPU, 120 FPS Unlocked" \
+              "• ⚖️ Balanced: 2.84 GHz Prime, 587MHz GPU, 90 FPS Sustained" \
+              "• 🔋 Battery: 2.42 GHz Peak, 510MHz GPU, Maximum SOT" \
+              "• Hardware DC Dimming QS Tile & Native extreme+ Governor" \
               "" \
               "📥 <b>Direct APK Download:</b>" \
               "<a href=\"${DOWNLOAD_URL}\">⚡ Click Here to Download ${FINAL_NAME}</a>")

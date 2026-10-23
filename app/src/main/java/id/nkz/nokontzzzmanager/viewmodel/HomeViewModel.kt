@@ -45,6 +45,7 @@ class HomeViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             kernelDetector.detect()
+            profileManager.syncWithKernel()
             dcDimmingController.refreshState()
         }
     }
