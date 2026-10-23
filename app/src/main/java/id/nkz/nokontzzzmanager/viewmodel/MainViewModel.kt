@@ -34,7 +34,7 @@ class MainViewModel @Inject constructor(
     val kernelState: StateFlow<ExtremeKernelInfo> = kernelDetector.kernelState
 
     suspend fun checkRootAndKernel() {
-        val rooted = rootRepo.checkRootFresh(explicitPrompt = false)
+        val rooted = rootRepo.checkRootFresh(explicitPrompt = true)
         _isRootAvailable.value = rooted
         
         // EKM Handshake: Kernel Hardware Verification

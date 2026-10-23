@@ -201,9 +201,12 @@ class MainActivity : ComponentActivity() {
             val isRootAvailable by mainViewModel.isRootAvailable.collectAsStateWithLifecycle()
             val isKernelSupported by mainViewModel.isKernelSupported.collectAsStateWithLifecycle()
 
-            // Rootless non-blocking startup: check permissions only if quiet root is already granted
-            LaunchedEffect(isRootAvailable, isKernelSupported) {
-                if (isRootAvailable == true && isKernelSupported == true) {
+            // Root-only enforcement: app cannot open without root permission
+            LaunchedEffect(isRootAvailable) {
+                if (isRootAvailable == false) {
+                    showRootRequiredDialog = true
+                } else if (isRootAvailable == true) {
+                    showRootRequiredDialog = false
                     checkAndHandlePermissions()
                 }
             }
@@ -778,8 +781,11 @@ class MainActivity : ComponentActivity() {
         mainViewModel.refreshBatteryMonitor(this)
         
         lifecycleScope.launch {
-            val hasRoot = rootRepo.isRootGrantedQuietly()
-            if (hasRoot) {
+            val hasRoot = rootRepo.checkRootFresh(explicitPrompt = false)
+            if (!hasRoot) {
+                showRootRequiredDialog = true
+            } else {
+                showRootRequiredDialog = false
                 mainViewModel.checkRootAndKernel()
                 if (!batteryOptChecker.hasRequiredPermissions()) {
                     permissionDenialCount++
@@ -788,8 +794,6 @@ class MainActivity : ComponentActivity() {
                     permissionDenialCount = 0
                     showBatteryOptDialog = false
                 }
-            } else {
-                showBatteryOptDialog = false
             }
         }
     }

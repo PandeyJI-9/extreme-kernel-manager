@@ -60,8 +60,8 @@ configure <com.android.build.api.dsl.ApplicationExtension> {
         applicationId = "com.extreme.plus.by_pandeyji"
         minSdk = 31
         targetSdk = 35
-        versionCode = 127
-        versionName = "2.1.0-beta4"
+        versionCode = 128
+        versionName = "2.1.0-beta5"
     }
     buildTypes {
         release {
