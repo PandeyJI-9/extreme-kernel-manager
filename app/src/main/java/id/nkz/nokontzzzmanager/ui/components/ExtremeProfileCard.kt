@@ -96,18 +96,44 @@ fun ExtremeProfileCard(
                             )
                         }
 
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "EXTREME++ GAMING",
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    fontWeight = FontWeight.Black,
-                                    letterSpacing = 0.8.sp
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(2.dp)
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                            ) {
+                                Text(
+                                    text = "EXTREME++",
+                                    style = MaterialTheme.typography.titleMedium.copy(
+                                        fontWeight = FontWeight.Black,
+                                        letterSpacing = 0.5.sp
+                                    ),
+                                    maxLines = 1
                                 )
-                            )
+                                Surface(
+                                    shape = RoundedCornerShape(6.dp),
+                                    color = Color(0xFF00A3E0).copy(alpha = 0.15f),
+                                    border = BorderStroke(1.dp, Color(0xFF00A3E0).copy(alpha = 0.4f))
+                                ) {
+                                    Text(
+                                        text = "BMW EDITION",
+                                        modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp),
+                                        style = MaterialTheme.typography.labelSmall.copy(
+                                            fontSize = 9.sp,
+                                            fontWeight = FontWeight.Black,
+                                            letterSpacing = 0.5.sp
+                                        ),
+                                        color = Color(0xFF00A3E0)
+                                    )
+                                }
+                            }
                             Text(
-                                text = "BMW Edition • Dynamic Profile Switcher",
+                                text = "Dynamic Profile Switcher",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                maxLines = 1
                             )
                         }
                     }
@@ -132,7 +158,7 @@ fun ExtremeProfileCard(
                                 tint = if (kernelInfo.isExtremeKernel) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                text = if (kernelInfo.isExtremeKernel) "BMW ACTIVE" else "STANDARD",
+                                text = if (kernelInfo.isExtremeKernel) "ACTIVE" else "STANDARD",
                                 style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.ExtraBold),
                                 color = if (kernelInfo.isExtremeKernel) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -161,9 +187,14 @@ fun ExtremeProfileCard(
                         )
                         Text(
                             text = kernelInfo.statusBadge,
-                            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+                            style = MaterialTheme.typography.labelMedium.copy(
+                                fontWeight = FontWeight.Bold,
+                                letterSpacing = 0.3.sp
+                            ),
                             color = MaterialTheme.colorScheme.onSurface,
-                            maxLines = 1
+                            modifier = Modifier.weight(1f),
+                            softWrap = true,
+                            maxLines = 2
                         )
                     }
                 }
@@ -406,7 +437,7 @@ fun ExtremeProfileCard(
                         onClick = { showRebootConfirmDialog = activeProfile },
                         enabled = !isApplying,
                         shape = RoundedCornerShape(12.dp),
-                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+                        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 6.dp)
                     ) {
                         Icon(
                             imageVector = Icons.Default.RestartAlt,
@@ -414,7 +445,7 @@ fun ExtremeProfileCard(
                             modifier = Modifier.size(16.dp)
                         )
                         Spacer(modifier = Modifier.width(6.dp))
-                        Text("Apply & Drop Caches", style = MaterialTheme.typography.labelMedium)
+                        Text("Drop Caches", style = MaterialTheme.typography.labelMedium, maxLines = 1)
                     }
                 }
             }

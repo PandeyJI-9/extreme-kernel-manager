@@ -76,8 +76,8 @@ class KernelDetector @Inject constructor() {
         val isBmwEdition = isBmwMatch || (isExtreme && isMunch) || hardwareMagicMatched
 
         val badge = when {
-            isBmwMatch || isBmwEdition -> "Supported: EXTREME++ Gaming (BMW Edition) 🏎️💨"
-            isExtreme -> "EXTREME++ Hardware Engine Active [Generic]"
+            isBmwMatch || isBmwEdition -> "EXTREME++ BMW Edition Active 🏎️💨"
+            isExtreme -> "EXTREME++ Hardware Engine Active ⚡"
             else -> "Standard Kernel Mode [Compatibility Active]"
         }
 

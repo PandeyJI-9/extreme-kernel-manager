@@ -11,6 +11,7 @@ import com.topjohnwu.superuser.Shell
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -124,6 +125,7 @@ class ProfileManager @Inject constructor(
         private val KEY_ACTIVE_PROFILE = stringPreferencesKey("active_extreme_profile")
 
         const val SYSFS_EXTREME_PROFILE = "/sys/kernel/extreme_profile"
+        const val SYSFS_EXTREME_GAMING_MODE = "/sys/kernel/extreme_attributes/gaming_mode"
         const val GPU_MAX_CLOCK = "/sys/class/kgsl/kgsl-3d0/gpu_max_clock"
         const val SCHEDTUNE_BOOST = "/dev/stune/top-app/schedtune.boost"
         const val SCHED_UPMIGRATE = "/proc/sys/kernel/sched_upmigrate"
@@ -159,8 +161,9 @@ class ProfileManager @Inject constructor(
         val profile = if (kernelCode != null) {
             ExtremeProfile.fromCode(kernelCode)
         } else {
-            // Default boot state: Gaming (0)
-            ExtremeProfile.GAMING
+            // Keep saved profile from store if kernel node is temporarily inaccessible, fallback to Gaming (0)
+            val savedId = context.extremeProfileStore.data.map { it[KEY_ACTIVE_PROFILE] }.firstOrNull()
+            ExtremeProfile.fromId(savedId ?: ExtremeProfile.GAMING.id)
         }
 
         context.extremeProfileStore.edit { prefs ->
@@ -171,25 +174,35 @@ class ProfileManager @Inject constructor(
     }
 
     /**
-     * Reads active mode from /sys/kernel/extreme_profile.
-     * Non-intrusive: rootlessly first, and uses su only if root is already granted.
+     * Reads active mode from /sys/kernel/extreme_profile or /sys/kernel/extreme_attributes/gaming_mode.
+     * Non-intrusive: rootlessly first, and uses shell/su if accessible.
      */
     fun readKernelProfileNode(): Int? {
-        val file = File(SYSFS_EXTREME_PROFILE)
-        if (file.exists() && file.canRead()) {
-            try {
-                return file.readText().trim().toIntOrNull()
-            } catch (_: Exception) {}
-        }
+        val candidatePaths = listOf(SYSFS_EXTREME_PROFILE, SYSFS_EXTREME_GAMING_MODE)
 
-        if (Shell.isAppGrantedRoot() == true) {
+        // 1. Direct file read
+        for (path in candidatePaths) {
             try {
-                val res = Shell.cmd("cat $SYSFS_EXTREME_PROFILE 2>/dev/null").exec()
-                if (res.isSuccess && res.out.isNotEmpty()) {
-                    return res.out.first().trim().toIntOrNull()
+                val file = File(path)
+                if (file.exists() && file.canRead()) {
+                    val code = file.readText().trim().toIntOrNull()
+                    if (code != null) return code
                 }
             } catch (_: Exception) {}
         }
+
+        // 2. Read via Shell (works whether already checked or creates root shell)
+        try {
+            val cmd = candidatePaths.joinToString(" || ") { "cat $it 2>/dev/null" }
+            val res = Shell.cmd(cmd).exec()
+            if (res.isSuccess && res.out.isNotEmpty()) {
+                for (line in res.out) {
+                    val code = line.trim().toIntOrNull()
+                    if (code != null) return code
+                }
+            }
+        } catch (_: Exception) {}
+
         return null
     }
 
@@ -199,8 +212,8 @@ class ProfileManager @Inject constructor(
         val commands = mutableListOf<String>()
 
         // 1. Core BMW Edition Profile Engine Switch Command:
-        // su -c "echo <code > /sys/kernel/extreme_profile && echo <gpu_clock> > /sys/class/kgsl/kgsl-3d0/gpu_max_clock && echo <schedtune> > /dev/stune/top-app/schedtune.boost && echo '<upmigrate>' > /proc/sys/kernel/sched_upmigrate"
-        val bmwCommand = "echo ${profile.code} > $SYSFS_EXTREME_PROFILE && " +
+        val bmwCommand = "echo ${profile.code} > $SYSFS_EXTREME_PROFILE 2>/dev/null; " +
+                "echo ${profile.code} > $SYSFS_EXTREME_GAMING_MODE 2>/dev/null; " +
                 "echo ${profile.gpuClockHz} > $GPU_MAX_CLOCK && " +
                 "echo ${profile.schedtuneBoost} > $SCHEDTUNE_BOOST && " +
                 "echo '${profile.schedUpmigrate}' > $SCHED_UPMIGRATE"
@@ -338,6 +351,7 @@ class ProfileManager @Inject constructor(
             
             # BMW Edition Dynamic Node
             echo ${profile.code} > /sys/kernel/extreme_profile 2>/dev/null
+            echo ${profile.code} > /sys/kernel/extreme_attributes/gaming_mode 2>/dev/null
             echo ${profile.gpuClockHz} > /sys/class/kgsl/kgsl-3d0/gpu_max_clock 2>/dev/null
             echo ${profile.schedtuneBoost} > /dev/stune/top-app/schedtune.boost 2>/dev/null
             echo '${profile.schedUpmigrate}' > /proc/sys/kernel/sched_upmigrate 2>/dev/null

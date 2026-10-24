@@ -50,6 +50,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun refreshProfile() {
+        viewModelScope.launch(Dispatchers.IO) {
+            profileManager.syncWithKernel()
+        }
+    }
+
     private val _isScrolling = MutableStateFlow(false)
     private val _cpuGraphMode = MutableStateFlow(GraphMode.LOAD)
 
