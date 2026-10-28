@@ -126,7 +126,7 @@ This repository uses **GitHub Actions** (`.github/workflows/build_apk.yml`):
 ## 👑 Credits & Community
 
 * **Lead Architect & Developer**: **PandeyJi**
-  * Telegram: [@PandeyJi_8](https://t.me/PandeyJi_8)
+  * Telegram: [@Pandey_Ji_8](https://t.me/Pandey_Ji_8)
   * GitHub: [@PandeyJI-9](https://github.com/PandeyJI-9)
 * **Official Support Group**: [https://t.me/Extremeplus_Support](https://t.me/Extremeplus_Support)
   * Join for feature suggestions, bug reports, and kernel update announcements.
