@@ -26,7 +26,7 @@ listenablefuture = "9999.0-empty-to-avoid-conflict-with-guava"
 junit = "4.13.2"
 androidx-test-core = "1.7.0"
 mockito-core = "5.23.0"
-robolectric = "4.16.1"
+robolectric = "4.17"
 material3 = "1.5.0-alpha27"
 room = "2.8.4"
 
