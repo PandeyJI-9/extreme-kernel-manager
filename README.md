@@ -14,7 +14,7 @@
 [![UI Engine](https://img.shields.io/badge/UI-Jetpack_Compose_MD3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
 
 [![Support Group](https://img.shields.io/badge/Telegram-Extreme+_Support-2CA5E0?style=flat-square&logo=telegram&logoColor=white)](https://t.me/Extremeplus_Support)
-[![Lead Developer](https://img.shields.io/badge/Dev-@PandeyJi__8-0088cc?style=flat-square&logo=telegram&logoColor=white)](https://t.me/PandeyJi_8)
+[![Lead Developer](https://img.shields.io/badge/Dev-@Pandey__Ji__8-0088cc?style=flat-square&logo=telegram&logoColor=white)](https://t.me/Pandey_Ji_8)
 [![GitHub](https://img.shields.io/badge/GitHub-PandeyJI--9-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/PandeyJI-9)
 
 </div>

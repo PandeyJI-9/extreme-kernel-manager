@@ -27,5 +27,8 @@ local.properties
 # Docs (plans, notes)
 /docs/
 
+# Attachments
+attachments/
+
 # Agent workspace
 .omo/
